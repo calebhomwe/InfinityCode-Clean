@@ -1,0 +1,1 @@
+{"text": "{\n  \"action\": \"list_dir\",\n  \"args\": {\n    \"path\": \".\"\n  }\n}", "input_tokens": 620, "output_tokens": 105, "cached_at": 1786369804.2573698}

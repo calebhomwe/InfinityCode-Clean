@@ -1,0 +1,1 @@
+{"text": "```python\nimport os\nprint(os.getcwd())\n```", "input_tokens": 1808, "output_tokens": 15, "cached_at": 1786371977.6586182}

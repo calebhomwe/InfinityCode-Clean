@@ -1,0 +1,36 @@
+{
+  "name": "qwencloud-text",
+  "title": "QwenCloud Text",
+  "topic": "text generation",
+  "description": "Generate text, chat, code and reasoning with QwenCloud text models - pick the lane, call the API, handle rate limits.",
+  "source_type": "seeded",
+  "always": true,
+  "steps": [
+    {
+      "order": 1,
+      "instruction": "Route through the provider chain: free lane first when cost must be zero, paid qwen-plus/qwen-max when quality gates demand."
+    },
+    {
+      "order": 2,
+      "instruction": "Keep prompts lean: system role plus the task; compact history once it grows past 24 turns."
+    },
+    {
+      "order": 3,
+      "instruction": "For bulk jobs (batch summarise, polish, translate) script the calls with retries and exponential backoff."
+    },
+    {
+      "order": 4,
+      "instruction": "When the output drives tools, ask for strict JSON via function calling and validate it before use."
+    },
+    {
+      "order": 5,
+      "instruction": "On 429: back off, then fail over to the next lane - never drop the request silently."
+    },
+    {
+      "order": 6,
+      "instruction": "Meter every call and stop when the cost guardrail trips."
+    }
+  ],
+  "verified": true,
+  "created_at": "2026-08-11T00:00:00+00:00"
+}

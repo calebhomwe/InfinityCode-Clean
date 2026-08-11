@@ -1,0 +1,436 @@
+{
+  "date": "2026-08-11 00:04:54",
+  "concurrency": 50,
+  "wall_s": 13.44,
+  "success": 16,
+  "failed": 34,
+  "dropped": 3,
+  "rate_limited_429": 31,
+  "latency_p50_s": 3.453,
+  "latency_p95_s": 10.391,
+  "latency_p99_s": 13.094,
+  "latency_max_s": 13.094,
+  "total_cost_usd": 0.0,
+  "errors": {
+    "429": 31,
+    "error": 3
+  },
+  "samples": [
+    {
+      "i": 0,
+      "prompt_class": "short",
+      "ok": false,
+      "latency_s": 6.468,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 1,
+      "prompt_class": "medium",
+      "ok": true,
+      "latency_s": 2.906,
+      "text_len": 261,
+      "cost_usd": 0.0,
+      "cached": false
+    },
+    {
+      "i": 2,
+      "prompt_class": "long",
+      "ok": false,
+      "latency_s": 5.484,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '20', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1786377900000'}, 'limit_source': 'openrouter_free_tier_per_mi"
+    },
+    {
+      "i": 3,
+      "prompt_class": "short",
+      "ok": false,
+      "latency_s": 5.812,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 4,
+      "prompt_class": "medium",
+      "ok": false,
+      "latency_s": 6.125,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 5,
+      "prompt_class": "long",
+      "ok": false,
+      "latency_s": 11.968,
+      "kind": "error",
+      "error": "'NoneType' object is not subscriptable"
+    },
+    {
+      "i": 6,
+      "prompt_class": "short",
+      "ok": true,
+      "latency_s": 3.14,
+      "text_len": 48,
+      "cost_usd": 0.0,
+      "cached": false
+    },
+    {
+      "i": 7,
+      "prompt_class": "medium",
+      "ok": true,
+      "latency_s": 8.265,
+      "text_len": 246,
+      "cost_usd": 0.0,
+      "cached": false
+    },
+    {
+      "i": 8,
+      "prompt_class": "long",
+      "ok": false,
+      "latency_s": 10.765,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 9,
+      "prompt_class": "short",
+      "ok": false,
+      "latency_s": 11.046,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 10,
+      "prompt_class": "medium",
+      "ok": false,
+      "latency_s": 10.406,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 11,
+      "prompt_class": "long",
+      "ok": false,
+      "latency_s": 10.578,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 12,
+      "prompt_class": "short",
+      "ok": false,
+      "latency_s": 1.312,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '20', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1786377900000'}, 'limit_source': 'openrouter_free_tier_per_mi"
+    },
+    {
+      "i": 13,
+      "prompt_class": "medium",
+      "ok": true,
+      "latency_s": 2.578,
+      "text_len": 245,
+      "cost_usd": 0.0,
+      "cached": false
+    },
+    {
+      "i": 14,
+      "prompt_class": "long",
+      "ok": false,
+      "latency_s": 6.39,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 15,
+      "prompt_class": "short",
+      "ok": false,
+      "latency_s": 5.656,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 16,
+      "prompt_class": "medium",
+      "ok": false,
+      "latency_s": 9.609,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 17,
+      "prompt_class": "long",
+      "ok": false,
+      "latency_s": 1.343,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '20', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1786377900000'}, 'limit_source': 'openrouter_free_tier_per_mi"
+    },
+    {
+      "i": 18,
+      "prompt_class": "short",
+      "ok": false,
+      "latency_s": 4.25,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '20', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1786377900000'}, 'limit_source': 'openrouter_free_tier_per_mi"
+    },
+    {
+      "i": 19,
+      "prompt_class": "medium",
+      "ok": false,
+      "latency_s": 6.203,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 20,
+      "prompt_class": "long",
+      "ok": false,
+      "latency_s": 4.156,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '20', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1786377900000'}, 'limit_source': 'openrouter_free_tier_per_mi"
+    },
+    {
+      "i": 21,
+      "prompt_class": "short",
+      "ok": false,
+      "latency_s": 1.328,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '20', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1786377900000'}, 'limit_source': 'openrouter_free_tier_per_mi"
+    },
+    {
+      "i": 22,
+      "prompt_class": "medium",
+      "ok": false,
+      "latency_s": 10.562,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 23,
+      "prompt_class": "long",
+      "ok": true,
+      "latency_s": 3.89,
+      "text_len": 115,
+      "cost_usd": 0.0,
+      "cached": false
+    },
+    {
+      "i": 24,
+      "prompt_class": "short",
+      "ok": true,
+      "latency_s": 3.25,
+      "text_len": 80,
+      "cost_usd": 0.0,
+      "cached": false
+    },
+    {
+      "i": 25,
+      "prompt_class": "medium",
+      "ok": false,
+      "latency_s": 4.468,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 26,
+      "prompt_class": "long",
+      "ok": false,
+      "latency_s": 6.547,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 27,
+      "prompt_class": "short",
+      "ok": false,
+      "latency_s": 8.938,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 28,
+      "prompt_class": "medium",
+      "ok": true,
+      "latency_s": 4.656,
+      "text_len": 127,
+      "cost_usd": 0.0,
+      "cached": false
+    },
+    {
+      "i": 29,
+      "prompt_class": "long",
+      "ok": false,
+      "latency_s": 6.688,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 30,
+      "prompt_class": "short",
+      "ok": false,
+      "latency_s": 5.688,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '20', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1786377900000'}, 'limit_source': 'openrouter_free_tier_per_mi"
+    },
+    {
+      "i": 31,
+      "prompt_class": "medium",
+      "ok": false,
+      "latency_s": 7.672,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 32,
+      "prompt_class": "long",
+      "ok": false,
+      "latency_s": 5.125,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 33,
+      "prompt_class": "short",
+      "ok": false,
+      "latency_s": 11.391,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 34,
+      "prompt_class": "medium",
+      "ok": true,
+      "latency_s": 3.453,
+      "text_len": 147,
+      "cost_usd": 0.0,
+      "cached": false
+    },
+    {
+      "i": 35,
+      "prompt_class": "long",
+      "ok": true,
+      "latency_s": 13.094,
+      "text_len": 102,
+      "cost_usd": 0.0,
+      "cached": false
+    },
+    {
+      "i": 36,
+      "prompt_class": "short",
+      "ok": true,
+      "latency_s": 10.391,
+      "text_len": 103,
+      "cost_usd": 0.0,
+      "cached": false
+    },
+    {
+      "i": 37,
+      "prompt_class": "medium",
+      "ok": false,
+      "latency_s": 7.219,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 38,
+      "prompt_class": "long",
+      "ok": false,
+      "latency_s": 5.5,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 39,
+      "prompt_class": "short",
+      "ok": true,
+      "latency_s": 1.672,
+      "text_len": 243,
+      "cost_usd": 0.0,
+      "cached": false
+    },
+    {
+      "i": 40,
+      "prompt_class": "medium",
+      "ok": false,
+      "latency_s": 7.469,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 41,
+      "prompt_class": "long",
+      "ok": true,
+      "latency_s": 3.828,
+      "text_len": 382,
+      "cost_usd": 0.0,
+      "cached": false
+    },
+    {
+      "i": 42,
+      "prompt_class": "short",
+      "ok": true,
+      "latency_s": 2.844,
+      "text_len": 44,
+      "cost_usd": 0.0,
+      "cached": false
+    },
+    {
+      "i": 43,
+      "prompt_class": "medium",
+      "ok": true,
+      "latency_s": 2.203,
+      "text_len": 265,
+      "cost_usd": 0.0,
+      "cached": false
+    },
+    {
+      "i": 44,
+      "prompt_class": "long",
+      "ok": false,
+      "latency_s": 13.406,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 45,
+      "prompt_class": "short",
+      "ok": true,
+      "latency_s": 4.86,
+      "text_len": 54,
+      "cost_usd": 0.0,
+      "cached": false
+    },
+    {
+      "i": 46,
+      "prompt_class": "medium",
+      "ok": false,
+      "latency_s": 7.906,
+      "kind": "429",
+      "error": "All LLM routes failed (1 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'Novita', 'is_byok': True, 'previous_errors': [{'code"
+    },
+    {
+      "i": 47,
+      "prompt_class": "long",
+      "ok": true,
+      "latency_s": 2.672,
+      "text_len": 129,
+      "cost_usd": 0.0,
+      "cached": false
+    },
+    {
+      "i": 48,
+      "prompt_class": "short",
+      "ok": false,
+      "latency_s": 10.672,
+      "kind": "error",
+      "error": "'NoneType' object is not subscriptable"
+    },
+    {
+      "i": 49,
+      "prompt_class": "medium",
+      "ok": false,
+      "latency_s": 11.016,
+      "kind": "error",
+      "error": "'NoneType' object is not subscriptable"
+    }
+  ]
+}

@@ -1,0 +1,842 @@
+{
+  "ok": false,
+  "suite": "vehicle-tier-2",
+  "prompt": "Build a low-poly game-ready car. The four wheels must be symmetric around the body and parented to it; preserve every requested transform.\n\nIn Blender, create exactly these labelled objects on a ground plane.\nUse the requested primitive, location, and material name for each.\nAdd a camera and a light, save the .blend, then render a PNG.\n- Vehicle_Body: cube at [0.0, 0.0, 1.35], material VehiclePaint\n- Vehicle_Cabin: cube at [0.35, 0.0, 2.28], material WindowGlass\n- Vehicle_Wheel_01: cylinder at [-2.25, -1.4, 0.58], material Rubber\n- Vehicle_Wheel_02: cylinder at [-2.25, 1.4, 0.58], material Rubber\n- Vehicle_Wheel_03: cylinder at [2.25, -1.4, 0.58], material Rubber\n- Vehicle_Wheel_04: cylinder at [2.25, 1.4, 0.58], material Rubber",
+  "spec": [
+    {
+      "name": "Vehicle_Body",
+      "primitive": "cube",
+      "location": [
+        0.0,
+        0.0,
+        1.35
+      ],
+      "scale": [
+        3.0,
+        1.35,
+        0.55
+      ],
+      "material": "VehiclePaint",
+      "color": [
+        0.08,
+        0.33,
+        0.88,
+        1.0
+      ]
+    },
+    {
+      "name": "Vehicle_Cabin",
+      "primitive": "cube",
+      "location": [
+        0.35,
+        0.0,
+        2.28
+      ],
+      "scale": [
+        1.35,
+        1.12,
+        0.48
+      ],
+      "material": "WindowGlass",
+      "color": [
+        0.08,
+        0.55,
+        0.8,
+        1.0
+      ],
+      "parent": "Vehicle_Body"
+    },
+    {
+      "name": "Vehicle_Wheel_01",
+      "primitive": "cylinder",
+      "location": [
+        -2.25,
+        -1.4,
+        0.58
+      ],
+      "scale": [
+        0.58,
+        0.58,
+        0.34
+      ],
+      "rotation": [
+        1.570796,
+        0.0,
+        0.0
+      ],
+      "material": "Rubber",
+      "color": [
+        0.025,
+        0.03,
+        0.04,
+        1.0
+      ],
+      "parent": "Vehicle_Body"
+    },
+    {
+      "name": "Vehicle_Wheel_02",
+      "primitive": "cylinder",
+      "location": [
+        -2.25,
+        1.4,
+        0.58
+      ],
+      "scale": [
+        0.58,
+        0.58,
+        0.34
+      ],
+      "rotation": [
+        1.570796,
+        0.0,
+        0.0
+      ],
+      "material": "Rubber",
+      "color": [
+        0.025,
+        0.03,
+        0.04,
+        1.0
+      ],
+      "parent": "Vehicle_Body"
+    },
+    {
+      "name": "Vehicle_Wheel_03",
+      "primitive": "cylinder",
+      "location": [
+        2.25,
+        -1.4,
+        0.58
+      ],
+      "scale": [
+        0.58,
+        0.58,
+        0.34
+      ],
+      "rotation": [
+        1.570796,
+        0.0,
+        0.0
+      ],
+      "material": "Rubber",
+      "color": [
+        0.025,
+        0.03,
+        0.04,
+        1.0
+      ],
+      "parent": "Vehicle_Body"
+    },
+    {
+      "name": "Vehicle_Wheel_04",
+      "primitive": "cylinder",
+      "location": [
+        2.25,
+        1.4,
+        0.58
+      ],
+      "scale": [
+        0.58,
+        0.58,
+        0.34
+      ],
+      "rotation": [
+        1.570796,
+        0.0,
+        0.0
+      ],
+      "material": "Rubber",
+      "color": [
+        0.025,
+        0.03,
+        0.04,
+        1.0
+      ],
+      "parent": "Vehicle_Body"
+    }
+  ],
+  "blender_executable": "C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe",
+  "render_path": "C:\\Users\\caleb\\infinity-code\\backend\\data\\eval_reports\\blender_vehicle_20260802_000624\\vehicle.png",
+  "blend_path": "C:\\Users\\caleb\\infinity-code\\backend\\data\\eval_reports\\blender_vehicle_20260802_000624\\vehicle.blend",
+  "script_path": "C:\\Users\\caleb\\infinity-code\\backend\\data\\eval_reports\\blender_vehicle_20260802_000624\\reference_vehicle.py",
+  "scene_graph": {
+    "nodes": [
+      {
+        "name": "Vehicle_Body",
+        "type": "MESH",
+        "location": [
+          0.0,
+          0.0,
+          1.350000023841858
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          3.0,
+          1.350000023841858,
+          0.550000011920929
+        ],
+        "material": "VehiclePaint",
+        "parent": null,
+        "visible": true,
+        "dimensions": [
+          6.0,
+          2.700000047683716,
+          1.100000023841858
+        ],
+        "custom_props": {
+          "infinity_benchmark_id": "vehicle-tier-2",
+          "infinity_primitive": "cube"
+        },
+        "world_location": [
+          0.0,
+          0.0,
+          1.350000023841858
+        ],
+        "world_scale": [
+          3.0,
+          1.350000023841858,
+          0.550000011920929
+        ],
+        "world_rotation": [
+          0.0,
+          -0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "Vehicle_Cabin",
+        "type": "MESH",
+        "location": [
+          0.11666665971279144,
+          0.0,
+          1.6909091472625732
+        ],
+        "rotation": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          0.44999998807907104,
+          0.8296296000480652,
+          0.8727272152900696
+        ],
+        "material": "WindowGlass",
+        "parent": "Vehicle_Body",
+        "visible": true,
+        "dimensions": [
+          2.6999998092651367,
+          2.240000009536743,
+          0.9599999785423279
+        ],
+        "custom_props": {
+          "infinity_benchmark_id": "vehicle-tier-2",
+          "infinity_primitive": "cube"
+        },
+        "world_location": [
+          0.34999996423721313,
+          0.0,
+          2.2800002098083496
+        ],
+        "world_scale": [
+          1.3499999046325684,
+          1.1200000047683716,
+          0.47999998927116394
+        ],
+        "world_rotation": [
+          0.0,
+          -0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "Vehicle_Wheel_01",
+        "type": "MESH",
+        "location": [
+          -0.7499999403953552,
+          -1.0370370149612427,
+          -1.3999998569488525
+        ],
+        "rotation": [
+          1.5707957744598389,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          0.19333331286907196,
+          1.0545454025268555,
+          0.2518518567085266
+        ],
+        "material": "Rubber",
+        "parent": "Vehicle_Body",
+        "visible": true,
+        "dimensions": [
+          1.1599998474121094,
+          1.159999966621399,
+          0.6800000071525574
+        ],
+        "custom_props": {
+          "infinity_benchmark_id": "vehicle-tier-2",
+          "infinity_primitive": "cylinder"
+        },
+        "world_location": [
+          -2.249999761581421,
+          -1.399999976158142,
+          0.580000102519989
+        ],
+        "world_scale": [
+          0.5799999237060547,
+          0.5799999833106995,
+          0.3400000035762787
+        ],
+        "world_rotation": [
+          1.5707961320877075,
+          -0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "Vehicle_Wheel_02",
+        "type": "MESH",
+        "location": [
+          -0.7499999403953552,
+          1.0370370149612427,
+          -1.3999998569488525
+        ],
+        "rotation": [
+          1.5707957744598389,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          0.19333331286907196,
+          1.0545454025268555,
+          0.2518518567085266
+        ],
+        "material": "Rubber",
+        "parent": "Vehicle_Body",
+        "visible": true,
+        "dimensions": [
+          1.1599998474121094,
+          1.159999966621399,
+          0.6800000071525574
+        ],
+        "custom_props": {
+          "infinity_benchmark_id": "vehicle-tier-2",
+          "infinity_primitive": "cylinder"
+        },
+        "world_location": [
+          -2.249999761581421,
+          1.399999976158142,
+          0.580000102519989
+        ],
+        "world_scale": [
+          0.5799999237060547,
+          0.5799999833106995,
+          0.3400000035762787
+        ],
+        "world_rotation": [
+          1.5707961320877075,
+          -0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "Vehicle_Wheel_03",
+        "type": "MESH",
+        "location": [
+          0.7499999403953552,
+          -1.0370370149612427,
+          -1.3999998569488525
+        ],
+        "rotation": [
+          1.5707957744598389,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          0.19333331286907196,
+          1.0545454025268555,
+          0.2518518567085266
+        ],
+        "material": "Rubber",
+        "parent": "Vehicle_Body",
+        "visible": true,
+        "dimensions": [
+          1.1599998474121094,
+          1.159999966621399,
+          0.6800000071525574
+        ],
+        "custom_props": {
+          "infinity_benchmark_id": "vehicle-tier-2",
+          "infinity_primitive": "cylinder"
+        },
+        "world_location": [
+          2.249999761581421,
+          -1.399999976158142,
+          0.580000102519989
+        ],
+        "world_scale": [
+          0.5799999237060547,
+          0.5799999833106995,
+          0.3400000035762787
+        ],
+        "world_rotation": [
+          1.5707961320877075,
+          -0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "Vehicle_Wheel_04",
+        "type": "MESH",
+        "location": [
+          0.7499999403953552,
+          1.0370370149612427,
+          -1.3999998569488525
+        ],
+        "rotation": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          0.3333333134651184,
+          0.7407407164573669,
+          1.8181817531585693
+        ],
+        "material": "Rubber",
+        "parent": "Vehicle_Body",
+        "visible": true,
+        "dimensions": [
+          1.9999998807907104,
+          2.0,
+          2.0
+        ],
+        "custom_props": {
+          "infinity_benchmark_id": "vehicle-tier-2",
+          "infinity_primitive": "cylinder"
+        },
+        "world_location": [
+          2.249999761581421,
+          1.399999976158142,
+          0.580000102519989
+        ],
+        "world_scale": [
+          0.9999999403953552,
+          1.0,
+          1.0
+        ],
+        "world_rotation": [
+          0.0,
+          -0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "Bench_Ground",
+        "type": "MESH",
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material": "BenchGround",
+        "parent": null,
+        "visible": true,
+        "dimensions": [
+          20.0,
+          20.0,
+          0.0
+        ],
+        "custom_props": {},
+        "world_location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "world_scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "world_rotation": [
+          0.0,
+          -0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "Bench_KeyLight",
+        "type": "LIGHT",
+        "location": [
+          2.0,
+          -4.0,
+          7.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material": null,
+        "parent": null,
+        "visible": true,
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "custom_props": {},
+        "world_location": [
+          2.0,
+          -4.0,
+          7.0
+        ],
+        "world_scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "world_rotation": [
+          0.0,
+          -0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "Bench_Camera",
+        "type": "CAMERA",
+        "location": [
+          10.0,
+          -12.0,
+          9.0
+        ],
+        "rotation": [
+          1.0974780321121216,
+          -4.8213742331881804e-08,
+          0.6947382688522339
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material": null,
+        "parent": null,
+        "visible": true,
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "custom_props": {},
+        "world_location": [
+          10.0,
+          -12.0,
+          9.0
+        ],
+        "world_scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "world_rotation": [
+          1.0974780321121216,
+          -4.8213742331881804e-08,
+          0.6947382688522339
+        ]
+      }
+    ]
+  },
+  "passed": false,
+  "checks": [
+    {
+      "label": "Vehicle_Body exists",
+      "passed": true,
+      "detail": "named object present"
+    },
+    {
+      "label": "Vehicle_Body primitive",
+      "passed": true,
+      "detail": "cube"
+    },
+    {
+      "label": "Vehicle_Body benchmark",
+      "passed": true,
+      "detail": "vehicle-tier-2"
+    },
+    {
+      "label": "Vehicle_Body location",
+      "passed": true,
+      "detail": "observed [0.0, 0.0, 1.350000023841858]"
+    },
+    {
+      "label": "Vehicle_Body material",
+      "passed": true,
+      "detail": "VehiclePaint"
+    },
+    {
+      "label": "Vehicle_Body scale",
+      "passed": true,
+      "detail": "observed [3.0, 1.350000023841858, 0.550000011920929]"
+    },
+    {
+      "label": "Vehicle_Cabin exists",
+      "passed": true,
+      "detail": "named object present"
+    },
+    {
+      "label": "Vehicle_Cabin primitive",
+      "passed": true,
+      "detail": "cube"
+    },
+    {
+      "label": "Vehicle_Cabin benchmark",
+      "passed": true,
+      "detail": "vehicle-tier-2"
+    },
+    {
+      "label": "Vehicle_Cabin location",
+      "passed": true,
+      "detail": "observed [0.34999996423721313, 0.0, 2.2800002098083496]"
+    },
+    {
+      "label": "Vehicle_Cabin material",
+      "passed": true,
+      "detail": "WindowGlass"
+    },
+    {
+      "label": "Vehicle_Cabin scale",
+      "passed": true,
+      "detail": "observed [1.3499999046325684, 1.1200000047683716, 0.47999998927116394]"
+    },
+    {
+      "label": "Vehicle_Cabin parent",
+      "passed": true,
+      "detail": "Vehicle_Body"
+    },
+    {
+      "label": "Vehicle_Wheel_01 exists",
+      "passed": true,
+      "detail": "named object present"
+    },
+    {
+      "label": "Vehicle_Wheel_01 primitive",
+      "passed": true,
+      "detail": "cylinder"
+    },
+    {
+      "label": "Vehicle_Wheel_01 benchmark",
+      "passed": true,
+      "detail": "vehicle-tier-2"
+    },
+    {
+      "label": "Vehicle_Wheel_01 location",
+      "passed": true,
+      "detail": "observed [-2.249999761581421, -1.399999976158142, 0.580000102519989]"
+    },
+    {
+      "label": "Vehicle_Wheel_01 material",
+      "passed": true,
+      "detail": "Rubber"
+    },
+    {
+      "label": "Vehicle_Wheel_01 scale",
+      "passed": true,
+      "detail": "observed [0.5799999237060547, 0.5799999833106995, 0.3400000035762787]"
+    },
+    {
+      "label": "Vehicle_Wheel_01 rotation",
+      "passed": true,
+      "detail": "observed [1.5707961320877075, -0.0, 0.0]"
+    },
+    {
+      "label": "Vehicle_Wheel_01 parent",
+      "passed": true,
+      "detail": "Vehicle_Body"
+    },
+    {
+      "label": "Vehicle_Wheel_02 exists",
+      "passed": true,
+      "detail": "named object present"
+    },
+    {
+      "label": "Vehicle_Wheel_02 primitive",
+      "passed": true,
+      "detail": "cylinder"
+    },
+    {
+      "label": "Vehicle_Wheel_02 benchmark",
+      "passed": true,
+      "detail": "vehicle-tier-2"
+    },
+    {
+      "label": "Vehicle_Wheel_02 location",
+      "passed": true,
+      "detail": "observed [-2.249999761581421, 1.399999976158142, 0.580000102519989]"
+    },
+    {
+      "label": "Vehicle_Wheel_02 material",
+      "passed": true,
+      "detail": "Rubber"
+    },
+    {
+      "label": "Vehicle_Wheel_02 scale",
+      "passed": true,
+      "detail": "observed [0.5799999237060547, 0.5799999833106995, 0.3400000035762787]"
+    },
+    {
+      "label": "Vehicle_Wheel_02 rotation",
+      "passed": true,
+      "detail": "observed [1.5707961320877075, -0.0, 0.0]"
+    },
+    {
+      "label": "Vehicle_Wheel_02 parent",
+      "passed": true,
+      "detail": "Vehicle_Body"
+    },
+    {
+      "label": "Vehicle_Wheel_03 exists",
+      "passed": true,
+      "detail": "named object present"
+    },
+    {
+      "label": "Vehicle_Wheel_03 primitive",
+      "passed": true,
+      "detail": "cylinder"
+    },
+    {
+      "label": "Vehicle_Wheel_03 benchmark",
+      "passed": true,
+      "detail": "vehicle-tier-2"
+    },
+    {
+      "label": "Vehicle_Wheel_03 location",
+      "passed": true,
+      "detail": "observed [2.249999761581421, -1.399999976158142, 0.580000102519989]"
+    },
+    {
+      "label": "Vehicle_Wheel_03 material",
+      "passed": true,
+      "detail": "Rubber"
+    },
+    {
+      "label": "Vehicle_Wheel_03 scale",
+      "passed": true,
+      "detail": "observed [0.5799999237060547, 0.5799999833106995, 0.3400000035762787]"
+    },
+    {
+      "label": "Vehicle_Wheel_03 rotation",
+      "passed": true,
+      "detail": "observed [1.5707961320877075, -0.0, 0.0]"
+    },
+    {
+      "label": "Vehicle_Wheel_03 parent",
+      "passed": true,
+      "detail": "Vehicle_Body"
+    },
+    {
+      "label": "Vehicle_Wheel_04 exists",
+      "passed": true,
+      "detail": "named object present"
+    },
+    {
+      "label": "Vehicle_Wheel_04 primitive",
+      "passed": true,
+      "detail": "cylinder"
+    },
+    {
+      "label": "Vehicle_Wheel_04 benchmark",
+      "passed": true,
+      "detail": "vehicle-tier-2"
+    },
+    {
+      "label": "Vehicle_Wheel_04 location",
+      "passed": true,
+      "detail": "observed [2.249999761581421, 1.399999976158142, 0.580000102519989]"
+    },
+    {
+      "label": "Vehicle_Wheel_04 material",
+      "passed": true,
+      "detail": "Rubber"
+    },
+    {
+      "label": "Vehicle_Wheel_04 scale",
+      "passed": false,
+      "detail": "observed [0.9999999403953552, 1.0, 1.0]"
+    },
+    {
+      "label": "Vehicle_Wheel_04 rotation",
+      "passed": false,
+      "detail": "observed [0.0, -0.0, 0.0]"
+    },
+    {
+      "label": "Vehicle_Wheel_04 parent",
+      "passed": true,
+      "detail": "Vehicle_Body"
+    },
+    {
+      "label": "ground plane",
+      "passed": true,
+      "detail": "ground exists"
+    },
+    {
+      "label": "camera",
+      "passed": true,
+      "detail": "camera exists"
+    },
+    {
+      "label": "light",
+      "passed": true,
+      "detail": "light exists"
+    },
+    {
+      "label": "four wheels",
+      "passed": true,
+      "detail": "found 4"
+    },
+    {
+      "label": "wheel symmetry",
+      "passed": true,
+      "detail": "world positions [[-2.249999761581421, -1.399999976158142, 0.580000102519989], [-2.249999761581421, 1.399999976158142, 0.580000102519989], [2.249999761581421, -1.399999976158142, 0.580000102519989], [2.249999761581421, 1.399999976158142, 0.580000102519989]]"
+    },
+    {
+      "label": "wheel hierarchy",
+      "passed": true,
+      "detail": "all wheels parented to body"
+    }
+  ],
+  "failed_checks": [
+    {
+      "label": "Vehicle_Wheel_04 scale",
+      "passed": false,
+      "detail": "observed [0.9999999403953552, 1.0, 1.0]"
+    },
+    {
+      "label": "Vehicle_Wheel_04 rotation",
+      "passed": false,
+      "detail": "observed [0.0, -0.0, 0.0]"
+    }
+  ],
+  "scene_object_count": 9
+}

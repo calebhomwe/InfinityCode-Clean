@@ -1,0 +1,1 @@
+{"text": "```python\ndef format_price(value: float) -> str:\n    \"\"\"Return a price formatted as $1,234.56.\"\"\"\n    return f\"${value:,.2f}\"\n\n\ndef price_a(p: float) -> str:\n    return format_price(p)\n\n\ndef price_b(p: float, tax: float) -> str:\n    return format_price(p + tax)\n```", "input_tokens": 96, "output_tokens": 310, "cached_at": 1786373013.212997}

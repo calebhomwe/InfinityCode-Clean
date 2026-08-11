@@ -1,0 +1,1 @@
+{"text": "<|tool_call|>run_command{args: {\"command\": \"curl -s \\\"https://arxiv.org/search?q=multimodal%20retrieval%20augmented%20generation&start=0&size=100&order=reverse&searchtype=all\\\"\"}}", "input_tokens": 525, "output_tokens": 68, "cached_at": 1786371314.502505}

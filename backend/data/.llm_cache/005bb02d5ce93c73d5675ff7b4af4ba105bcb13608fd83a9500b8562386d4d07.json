@@ -1,0 +1,1 @@
+{"text": "<tool_call>web_fetch<arg_key>url</arg_key><arg_value>http://export.arxiv.org/api/query?search_query=all:multimodal+RAG+retrieval+augmented+generation&start=0&max_results=5&sortBy=submittedDate&sortOrder=descending</arg_value><arg_key>max_chars</arg_key><arg_value>10000</arg_value></tool_call>", "input_tokens": 720, "output_tokens": 254, "cached_at": 1786393896.8640835}

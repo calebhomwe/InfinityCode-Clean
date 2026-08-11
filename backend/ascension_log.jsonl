@@ -1,0 +1,4 @@
+{"ts": 1785989069.748, "event": "ascend", "state": "SS1", "speed": 0.0, "effort": 0.0, "from_state": "X Code", "to_state": "SS1", "reason": "council escalate", "owner_override": false}
+{"ts": 1785989161.523, "event": "blocked", "state": "SS1", "speed": 0.0, "effort": 0.0, "blocked_by": "passphrase", "detail": "owner override with wrong passphrase", "actor": "unknown"}
+{"ts": 1785989207.529, "event": "override", "state": "Mr X Final", "speed": 0.0, "effort": 0.0, "from_state": "SS1", "to_state": "Mr X Final", "reason": "owner override verification", "owner_override": true}
+{"ts": 1785989599.813, "event": "override", "state": "X Code", "speed": 0.0, "effort": 0.0, "from_state": "Mr X Final", "to_state": "X Code", "reason": "reset to base after verification", "owner_override": true}

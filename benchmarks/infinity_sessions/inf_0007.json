@@ -1,0 +1,83 @@
+{
+  "session_id": "inf_0007",
+  "user_id": "user_61",
+  "start_time": "2026-08-07T00:01:42.801849",
+  "end_time": "2026-08-07T00:01:42.801849",
+  "goal": "Fix bug #7",
+  "turns": [
+    {
+      "role": "user",
+      "content": "Turn 0 content",
+      "timestamp": "2026-08-07T00:01:42.801849",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 0
+    },
+    {
+      "role": "assistant",
+      "content": "Turn 1 content",
+      "timestamp": "2026-08-07T00:03:42.801849",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 0
+    },
+    {
+      "role": "user",
+      "content": "Turn 2 content",
+      "timestamp": "2026-08-07T00:05:42.801849",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 0
+    },
+    {
+      "role": "assistant",
+      "content": "Turn 3 content",
+      "timestamp": "2026-08-07T00:07:42.801849",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 0
+    },
+    {
+      "role": "user",
+      "content": "Turn 4 content",
+      "timestamp": "2026-08-07T00:09:42.801849",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 0
+    }
+  ],
+  "outcome": "completed",
+  "files_intended": [
+    "file0.py",
+    "file1.py",
+    "file2.py",
+    "file3.py"
+  ],
+  "files_modified": [
+    "file0.py"
+  ],
+  "credits_used": 60,
+  "model_used": "infinity-model-v1",
+  "user_rating": 5,
+  "user_feedback": "Quality: excellent"
+}

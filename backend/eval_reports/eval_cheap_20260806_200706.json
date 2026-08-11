@@ -1,0 +1,221 @@
+{
+  "run_id": "2d71463d-eae8-4814-a719-76c8208e22db",
+  "lane": "cheap",
+  "model": "deepseek/deepseek-v4-flash",
+  "profile": "all",
+  "tasks_total": 8,
+  "tasks_passed": 0,
+  "aggregate_score": 0.0,
+  "total_cost_usd": 0.0,
+  "avg_latency_ms": 0.0,
+  "summary": {
+    "pass_rate": 0.0,
+    "weighted_score": 0.0,
+    "weakest_capability": "code"
+  },
+  "capabilities": {
+    "code": {
+      "score": 0.0,
+      "tasks_total": 8,
+      "tasks_passed": 0,
+      "failed_tasks": [
+        {
+          "id": "hard-01",
+          "name": "async concurrent scraper",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        },
+        {
+          "id": "hard-02",
+          "name": "AVL tree implementation",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        },
+        {
+          "id": "hard-03",
+          "name": "React TypeScript todo component",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        },
+        {
+          "id": "hard-04",
+          "name": "Docker multi-stage FastAPI",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        },
+        {
+          "id": "hard-05",
+          "name": "Kubernetes deployment YAML",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        },
+        {
+          "id": "hard-06",
+          "name": "GraphQL Strawberry resolvers",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        },
+        {
+          "id": "hard-07",
+          "name": "regex email extractor",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        },
+        {
+          "id": "hard-08",
+          "name": "merge overlapping intervals",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        }
+      ]
+    }
+  },
+  "weaknesses": [
+    {
+      "capability": "code",
+      "score": 0.0,
+      "tasks_total": 8,
+      "tasks_passed": 0,
+      "failed_tasks": [
+        {
+          "id": "hard-01",
+          "name": "async concurrent scraper",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        },
+        {
+          "id": "hard-02",
+          "name": "AVL tree implementation",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        },
+        {
+          "id": "hard-03",
+          "name": "React TypeScript todo component",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        },
+        {
+          "id": "hard-04",
+          "name": "Docker multi-stage FastAPI",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        },
+        {
+          "id": "hard-05",
+          "name": "Kubernetes deployment YAML",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        },
+        {
+          "id": "hard-06",
+          "name": "GraphQL Strawberry resolvers",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        },
+        {
+          "id": "hard-07",
+          "name": "regex email extractor",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        },
+        {
+          "id": "hard-08",
+          "name": "merge overlapping intervals",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "task_id": "hard-01",
+      "name": "async concurrent scraper",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": false,
+      "score": 0.0,
+      "output": "",
+      "cost_usd": 0.0,
+      "latency_ms": 0.0,
+      "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}",
+      "capability": "code"
+    },
+    {
+      "task_id": "hard-02",
+      "name": "AVL tree implementation",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": false,
+      "score": 0.0,
+      "output": "",
+      "cost_usd": 0.0,
+      "latency_ms": 0.0,
+      "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}",
+      "capability": "code"
+    },
+    {
+      "task_id": "hard-03",
+      "name": "React TypeScript todo component",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": false,
+      "score": 0.0,
+      "output": "",
+      "cost_usd": 0.0,
+      "latency_ms": 0.0,
+      "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}",
+      "capability": "code"
+    },
+    {
+      "task_id": "hard-04",
+      "name": "Docker multi-stage FastAPI",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": false,
+      "score": 0.0,
+      "output": "",
+      "cost_usd": 0.0,
+      "latency_ms": 0.0,
+      "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}",
+      "capability": "code"
+    },
+    {
+      "task_id": "hard-05",
+      "name": "Kubernetes deployment YAML",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": false,
+      "score": 0.0,
+      "output": "",
+      "cost_usd": 0.0,
+      "latency_ms": 0.0,
+      "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}",
+      "capability": "code"
+    },
+    {
+      "task_id": "hard-06",
+      "name": "GraphQL Strawberry resolvers",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": false,
+      "score": 0.0,
+      "output": "",
+      "cost_usd": 0.0,
+      "latency_ms": 0.0,
+      "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}",
+      "capability": "code"
+    },
+    {
+      "task_id": "hard-07",
+      "name": "regex email extractor",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": false,
+      "score": 0.0,
+      "output": "",
+      "cost_usd": 0.0,
+      "latency_ms": 0.0,
+      "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}",
+      "capability": "code"
+    },
+    {
+      "task_id": "hard-08",
+      "name": "merge overlapping intervals",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": false,
+      "score": 0.0,
+      "output": "",
+      "cost_usd": 0.0,
+      "latency_ms": 0.0,
+      "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}",
+      "capability": "code"
+    }
+  ]
+}

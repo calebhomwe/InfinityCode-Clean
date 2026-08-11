@@ -1,0 +1,53 @@
+{
+  "run_id": "564e344e-f534-40a4-bdd9-5fd620212207",
+  "lane": "local",
+  "model": "local/qwen3:8b",
+  "profile": "tutorial-follow",
+  "tasks_total": 2,
+  "tasks_passed": 2,
+  "aggregate_score": 1.0,
+  "total_cost_usd": 0.0,
+  "avg_latency_ms": 3885.08,
+  "summary": {
+    "pass_rate": 1.0,
+    "weighted_score": 1.0,
+    "weakest_capability": null
+  },
+  "capabilities": {
+    "general": {
+      "score": 1.0,
+      "tasks_total": 2,
+      "tasks_passed": 2,
+      "failed_tasks": []
+    }
+  },
+  "weaknesses": [],
+  "results": [
+    {
+      "task_id": "ob-tut-001",
+      "name": "godot snowboard player",
+      "lane": "cheap",
+      "model": "local/qwen3:8b",
+      "passed": true,
+      "score": 1.0,
+      "output": "```gdscript\nextends CharacterBody3D\n\nexport var speed: float = 5.0\nexport var gravity_scale: float = 1.0\n\nfunc _physics_process(delta):\n    var direction = Vector3()\n    if Input.is_action_pressed(\"ui_left\"):\n        direction.x -= 1\n    if Input.is_action_pressed(\"ui_right\"):\n        direction.x += 1\n\n    var velocity = transform.basis.z * speed * direction.length()\n    velocity.y -= gravity_scale * 10 * delta\n\n    move_and_slide(velocity, Vector3.UP)\n```",
+      "cost_usd": 0.0,
+      "latency_ms": 3427.6375770568848,
+      "reason": "matched variant: Input.is_action_pressed",
+      "capability": "general"
+    },
+    {
+      "task_id": "ob-tut-002",
+      "name": "godot snow slope scene",
+      "lane": "cheap",
+      "model": "local/qwen3:8b",
+      "passed": true,
+      "score": 1.0,
+      "output": "```gdscript\nextends Node3D\n\nfunc _ready():\n    var slope = StaticBody3D.new()\n    slope.position = Vector3(0, 0, 0)\n    slope.scale = Vector3(10, 0.1, 10)\n    var box_shape = BoxShape3D.new()\n    box_shape.material = load(\"res://materials/white.material\")\n    slope.add_child(box_shape)\n    slope.rotation.x = -15\n    add_child(slope)\n\n    var light = DirectionalLight3D.new()\n    light.direction = Vector3(0, -1, 0)\n    light.energy = 1.5\n    light.shadow_enabled = true\n    light.shadow_map_size = 2048\n    add_child(light)\n\n    var camera = Camera3D.new()\n    camera.position = Vector3(0, 5, -10)\n    camera.look_target = Vector3(0, 0, 0)\n    add_child(camera)\n```",
+      "cost_usd": 0.0,
+      "latency_ms": 4342.519283294678,
+      "reason": "all expected substrings found",
+      "capability": "general"
+    }
+  ]
+}

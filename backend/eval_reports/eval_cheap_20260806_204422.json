@@ -1,0 +1,83 @@
+{
+  "run_id": "9c209e58-2c1c-4c7a-9128-ab2c8aa94b29",
+  "lane": "cheap",
+  "model": "openrouter/auto",
+  "profile": "all",
+  "tasks_total": 2,
+  "tasks_passed": 0,
+  "aggregate_score": 0.0,
+  "total_cost_usd": 0.0,
+  "avg_latency_ms": 0.0,
+  "summary": {
+    "pass_rate": 0.0,
+    "weighted_score": 0.0,
+    "weakest_capability": "code"
+  },
+  "capabilities": {
+    "code": {
+      "score": 0.0,
+      "tasks_total": 2,
+      "tasks_passed": 0,
+      "failed_tasks": [
+        {
+          "id": "free-test-01",
+          "name": "regex email extractor",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        },
+        {
+          "id": "free-test-02",
+          "name": "fibonacci sequence",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        }
+      ]
+    }
+  },
+  "weaknesses": [
+    {
+      "capability": "code",
+      "score": 0.0,
+      "tasks_total": 2,
+      "tasks_passed": 0,
+      "failed_tasks": [
+        {
+          "id": "free-test-01",
+          "name": "regex email extractor",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        },
+        {
+          "id": "free-test-02",
+          "name": "fibonacci sequence",
+          "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "task_id": "free-test-01",
+      "name": "regex email extractor",
+      "lane": "cheap",
+      "model": "openrouter/auto",
+      "passed": false,
+      "score": 0.0,
+      "output": "",
+      "cost_usd": 0.0,
+      "latency_ms": 0.0,
+      "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}",
+      "capability": "code"
+    },
+    {
+      "task_id": "free-test-02",
+      "name": "fibonacci sequence",
+      "lane": "cheap",
+      "model": "openrouter/auto",
+      "passed": false,
+      "score": 0.0,
+      "output": "",
+      "cost_usd": 0.0,
+      "latency_ms": 0.0,
+      "reason": "call failed: OpenRouter call failed after 3 attempts: Error code: 402 - {'error': {'message': 'Insufficient Balance', 'type': 'unknown_error', 'param': None, 'code': 'invalid_request_error'}}",
+      "capability": "code"
+    }
+  ]
+}

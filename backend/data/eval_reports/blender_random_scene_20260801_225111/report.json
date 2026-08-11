@@ -1,0 +1,479 @@
+{
+  "ok": true,
+  "seed": 260802,
+  "prompt": "In Blender, create exactly these labelled objects on a ground plane.\nUse the requested primitive, location, and material name for each.\nAdd a camera and a light, save the .blend, then render a PNG.\n- Bench_01_torus: torus at [0.0, 0.0, 1.0], material BenchMat_01\n- Bench_02_cube: cube at [0.0, 3.5, 1.0], material BenchMat_02\n- Bench_03_cylinder: cylinder at [3.0, 2.0, 1.0], material BenchMat_03\n- Bench_04_cone: cone at [-3.0, 2.0, 1.0], material BenchMat_04\n- Bench_05_uv_sphere: uv_sphere at [3.0, -2.0, 1.0], material BenchMat_05",
+  "spec": [
+    {
+      "name": "Bench_01_torus",
+      "primitive": "torus",
+      "location": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "material": "BenchMat_01",
+      "color": [
+        0.85,
+        0.12,
+        0.08,
+        1.0
+      ]
+    },
+    {
+      "name": "Bench_02_cube",
+      "primitive": "cube",
+      "location": [
+        0.0,
+        3.5,
+        1.0
+      ],
+      "material": "BenchMat_02",
+      "color": [
+        0.08,
+        0.36,
+        0.9,
+        1.0
+      ]
+    },
+    {
+      "name": "Bench_03_cylinder",
+      "primitive": "cylinder",
+      "location": [
+        3.0,
+        2.0,
+        1.0
+      ],
+      "material": "BenchMat_03",
+      "color": [
+        0.12,
+        0.72,
+        0.28,
+        1.0
+      ]
+    },
+    {
+      "name": "Bench_04_cone",
+      "primitive": "cone",
+      "location": [
+        -3.0,
+        2.0,
+        1.0
+      ],
+      "material": "BenchMat_04",
+      "color": [
+        0.92,
+        0.48,
+        0.06,
+        1.0
+      ]
+    },
+    {
+      "name": "Bench_05_uv_sphere",
+      "primitive": "uv_sphere",
+      "location": [
+        3.0,
+        -2.0,
+        1.0
+      ],
+      "material": "BenchMat_05",
+      "color": [
+        0.62,
+        0.16,
+        0.82,
+        1.0
+      ]
+    }
+  ],
+  "blender_executable": "C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe",
+  "render_path": "C:\\Users\\caleb\\infinity-code\\backend\\data\\eval_reports\\blender_random_scene_20260801_225111\\random_scene.png",
+  "blend_path": "C:\\Users\\caleb\\infinity-code\\backend\\data\\eval_reports\\blender_random_scene_20260801_225111\\random_scene.blend",
+  "script_path": "C:\\Users\\caleb\\infinity-code\\backend\\data\\eval_reports\\blender_random_scene_20260801_225111\\reference_scene.py",
+  "scene_graph": {
+    "nodes": [
+      {
+        "name": "Bench_01_torus",
+        "type": "MESH",
+        "location": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "rotation": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material": "BenchMat_01",
+        "parent": null,
+        "visible": true,
+        "dimensions": [
+          2.5,
+          2.5,
+          0.5
+        ],
+        "custom_props": {
+          "infinity_benchmark_id": "random-scene-260802",
+          "infinity_primitive": "torus"
+        }
+      },
+      {
+        "name": "Bench_02_cube",
+        "type": "MESH",
+        "location": [
+          0.0,
+          3.5,
+          1.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material": "BenchMat_02",
+        "parent": null,
+        "visible": true,
+        "dimensions": [
+          2.0,
+          2.0,
+          2.0
+        ],
+        "custom_props": {
+          "infinity_benchmark_id": "random-scene-260802",
+          "infinity_primitive": "cube"
+        }
+      },
+      {
+        "name": "Bench_03_cylinder",
+        "type": "MESH",
+        "location": [
+          3.0,
+          2.0,
+          1.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material": "BenchMat_03",
+        "parent": null,
+        "visible": true,
+        "dimensions": [
+          2.0,
+          2.0,
+          2.0
+        ],
+        "custom_props": {
+          "infinity_benchmark_id": "random-scene-260802",
+          "infinity_primitive": "cylinder"
+        }
+      },
+      {
+        "name": "Bench_04_cone",
+        "type": "MESH",
+        "location": [
+          -3.0,
+          2.0,
+          1.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material": "BenchMat_04",
+        "parent": null,
+        "visible": true,
+        "dimensions": [
+          2.0,
+          2.0,
+          2.0
+        ],
+        "custom_props": {
+          "infinity_benchmark_id": "random-scene-260802",
+          "infinity_primitive": "cone"
+        }
+      },
+      {
+        "name": "Bench_05_uv_sphere",
+        "type": "MESH",
+        "location": [
+          3.0,
+          -2.0,
+          1.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material": "BenchMat_05",
+        "parent": null,
+        "visible": true,
+        "dimensions": [
+          1.9999988079071045,
+          1.9999992847442627,
+          2.0
+        ],
+        "custom_props": {
+          "infinity_benchmark_id": "random-scene-260802",
+          "infinity_primitive": "uv_sphere"
+        }
+      },
+      {
+        "name": "Bench_Ground",
+        "type": "MESH",
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material": "BenchGround",
+        "parent": null,
+        "visible": true,
+        "dimensions": [
+          20.0,
+          20.0,
+          0.0
+        ],
+        "custom_props": {}
+      },
+      {
+        "name": "Bench_KeyLight",
+        "type": "LIGHT",
+        "location": [
+          2.0,
+          -4.0,
+          7.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material": null,
+        "parent": null,
+        "visible": true,
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "custom_props": {}
+      },
+      {
+        "name": "Bench_Camera",
+        "type": "CAMERA",
+        "location": [
+          10.0,
+          -12.0,
+          9.0
+        ],
+        "rotation": [
+          1.0974780321121216,
+          -4.8213742331881804e-08,
+          0.6947382688522339
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "material": null,
+        "parent": null,
+        "visible": true,
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "custom_props": {}
+      }
+    ]
+  },
+  "passed": true,
+  "checks": [
+    {
+      "label": "Bench_01_torus exists",
+      "passed": true,
+      "detail": "named object present"
+    },
+    {
+      "label": "Bench_01_torus primitive",
+      "passed": true,
+      "detail": "torus"
+    },
+    {
+      "label": "Bench_01_torus benchmark",
+      "passed": true,
+      "detail": "random-scene-260802"
+    },
+    {
+      "label": "Bench_01_torus location",
+      "passed": true,
+      "detail": "observed [0.0, 0.0, 1.0]"
+    },
+    {
+      "label": "Bench_01_torus material",
+      "passed": true,
+      "detail": "BenchMat_01"
+    },
+    {
+      "label": "Bench_02_cube exists",
+      "passed": true,
+      "detail": "named object present"
+    },
+    {
+      "label": "Bench_02_cube primitive",
+      "passed": true,
+      "detail": "cube"
+    },
+    {
+      "label": "Bench_02_cube benchmark",
+      "passed": true,
+      "detail": "random-scene-260802"
+    },
+    {
+      "label": "Bench_02_cube location",
+      "passed": true,
+      "detail": "observed [0.0, 3.5, 1.0]"
+    },
+    {
+      "label": "Bench_02_cube material",
+      "passed": true,
+      "detail": "BenchMat_02"
+    },
+    {
+      "label": "Bench_03_cylinder exists",
+      "passed": true,
+      "detail": "named object present"
+    },
+    {
+      "label": "Bench_03_cylinder primitive",
+      "passed": true,
+      "detail": "cylinder"
+    },
+    {
+      "label": "Bench_03_cylinder benchmark",
+      "passed": true,
+      "detail": "random-scene-260802"
+    },
+    {
+      "label": "Bench_03_cylinder location",
+      "passed": true,
+      "detail": "observed [3.0, 2.0, 1.0]"
+    },
+    {
+      "label": "Bench_03_cylinder material",
+      "passed": true,
+      "detail": "BenchMat_03"
+    },
+    {
+      "label": "Bench_04_cone exists",
+      "passed": true,
+      "detail": "named object present"
+    },
+    {
+      "label": "Bench_04_cone primitive",
+      "passed": true,
+      "detail": "cone"
+    },
+    {
+      "label": "Bench_04_cone benchmark",
+      "passed": true,
+      "detail": "random-scene-260802"
+    },
+    {
+      "label": "Bench_04_cone location",
+      "passed": true,
+      "detail": "observed [-3.0, 2.0, 1.0]"
+    },
+    {
+      "label": "Bench_04_cone material",
+      "passed": true,
+      "detail": "BenchMat_04"
+    },
+    {
+      "label": "Bench_05_uv_sphere exists",
+      "passed": true,
+      "detail": "named object present"
+    },
+    {
+      "label": "Bench_05_uv_sphere primitive",
+      "passed": true,
+      "detail": "uv_sphere"
+    },
+    {
+      "label": "Bench_05_uv_sphere benchmark",
+      "passed": true,
+      "detail": "random-scene-260802"
+    },
+    {
+      "label": "Bench_05_uv_sphere location",
+      "passed": true,
+      "detail": "observed [3.0, -2.0, 1.0]"
+    },
+    {
+      "label": "Bench_05_uv_sphere material",
+      "passed": true,
+      "detail": "BenchMat_05"
+    },
+    {
+      "label": "ground plane",
+      "passed": true,
+      "detail": "ground exists"
+    },
+    {
+      "label": "camera",
+      "passed": true,
+      "detail": "camera exists"
+    },
+    {
+      "label": "light",
+      "passed": true,
+      "detail": "light exists"
+    }
+  ],
+  "failed_checks": [],
+  "scene_object_count": 8
+}

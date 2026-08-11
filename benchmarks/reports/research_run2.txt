@@ -1,0 +1,11 @@
+﻿python.exe : {"totals": {"actions": {"runs": 1.0, "completed": 0.0, "calls": 1.0, "tokens_in": 201.0, "cost_usd": 0.0, 
+"wall_s": 0.795}, "kernel": {"runs": 1.0, "completed": 0.0, "calls": 1.0, "tokens_in": 458.0, "cost_usd": 0.0, 
+"wall_s": 0.381}}}
+At line:1 char:34
++ ... inity-code; & .\.venv\Scripts\python.exe Tools\ab_kernel_vs_actions.p ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ({"totals": {"ac...ll_s": 0.381}}}:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+{"mode": "actions", "goal": "Find 5 recent papers on multimodal RAG using web_fetch on the arXiv API, summarize key findings, and write a markdown comparison table to papers.md", "status": "error", "calls": 1, "tokens_in": 201, "cost_usd": 0.0, "wall_s": 0.795, "steps": 0, "error": ""}
+{"mode": "kernel", "goal": "Find 5 recent papers on multimodal RAG using web_fetch on the arXiv API, summarize key findings, and write a markdown comparison table to papers.md", "status": "error", "calls": 1, "tokens_in": 458, "cost_usd": 0.0, "wall_s": 0.381, "steps": 0, "error": ""}

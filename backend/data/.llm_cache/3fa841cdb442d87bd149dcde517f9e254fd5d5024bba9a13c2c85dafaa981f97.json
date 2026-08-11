@@ -1,0 +1,1 @@
+{"text": "The harness directs LLM calls through a failover chain, ensuring that if one provider fails, the system can automatically switch to a backup. It continuously tracks the health of each node in the chain to maintain reliable, uninterrupted service.", "input_tokens": 298, "output_tokens": 183, "cached_at": 1786377889.698596}

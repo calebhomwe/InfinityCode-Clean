@@ -1,0 +1,334 @@
+{
+  "session_id": "inf_0012",
+  "user_id": "user_90",
+  "start_time": "2026-08-07T00:01:42.804966",
+  "end_time": "2026-08-07T00:01:42.804966",
+  "goal": "Fix bug #12",
+  "turns": [
+    {
+      "role": "user",
+      "content": "Turn 0 content",
+      "timestamp": "2026-08-07T00:01:42.804966",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py",
+        "file1.py",
+        "file2.py",
+        "file3.py",
+        "file4.py",
+        "unintended0.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 1
+    },
+    {
+      "role": "assistant",
+      "content": "Turn 1 content",
+      "timestamp": "2026-08-07T00:03:42.804966",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py",
+        "file1.py",
+        "file2.py",
+        "file3.py",
+        "file4.py",
+        "unintended1.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 1
+    },
+    {
+      "role": "user",
+      "content": "Turn 2 content",
+      "timestamp": "2026-08-07T00:05:42.804966",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py",
+        "file1.py",
+        "file2.py",
+        "file3.py",
+        "file4.py",
+        "unintended2.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 3
+    },
+    {
+      "role": "assistant",
+      "content": "Turn 3 content",
+      "timestamp": "2026-08-07T00:07:42.804966",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py",
+        "file1.py",
+        "file2.py",
+        "file3.py",
+        "file4.py",
+        "unintended3.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 2
+    },
+    {
+      "role": "user",
+      "content": "Turn 4 content",
+      "timestamp": "2026-08-07T00:09:42.804966",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py",
+        "file1.py",
+        "file2.py",
+        "file3.py",
+        "file4.py",
+        "unintended4.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 3
+    },
+    {
+      "role": "assistant",
+      "content": "Turn 5 content",
+      "timestamp": "2026-08-07T00:11:42.804966",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py",
+        "file1.py",
+        "file2.py",
+        "file3.py",
+        "file4.py",
+        "unintended5.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 2
+    },
+    {
+      "role": "user",
+      "content": "Turn 6 content",
+      "timestamp": "2026-08-07T00:13:42.804966",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py",
+        "file1.py",
+        "file2.py",
+        "file3.py",
+        "file4.py",
+        "unintended6.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 2
+    },
+    {
+      "role": "assistant",
+      "content": "Turn 7 content",
+      "timestamp": "2026-08-07T00:15:42.804966",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py",
+        "file1.py",
+        "file2.py",
+        "file3.py",
+        "file4.py",
+        "unintended7.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 1
+    },
+    {
+      "role": "user",
+      "content": "Turn 8 content",
+      "timestamp": "2026-08-07T00:17:42.804966",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py",
+        "file1.py",
+        "file2.py",
+        "file3.py",
+        "file4.py",
+        "unintended8.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 2
+    },
+    {
+      "role": "assistant",
+      "content": "Turn 9 content",
+      "timestamp": "2026-08-07T00:19:42.804966",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py",
+        "file1.py",
+        "file2.py",
+        "file3.py",
+        "file4.py",
+        "unintended9.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 2
+    },
+    {
+      "role": "user",
+      "content": "Turn 10 content",
+      "timestamp": "2026-08-07T00:21:42.804966",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py",
+        "file1.py",
+        "file2.py",
+        "file3.py",
+        "file4.py",
+        "unintended10.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 1
+    },
+    {
+      "role": "assistant",
+      "content": "Turn 11 content",
+      "timestamp": "2026-08-07T00:23:42.804966",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py",
+        "file1.py",
+        "file2.py",
+        "file3.py",
+        "file4.py",
+        "unintended11.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 3
+    },
+    {
+      "role": "user",
+      "content": "Turn 12 content",
+      "timestamp": "2026-08-07T00:25:42.804966",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py",
+        "file1.py",
+        "file2.py",
+        "file3.py",
+        "file4.py",
+        "unintended12.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 1
+    },
+    {
+      "role": "assistant",
+      "content": "Turn 13 content",
+      "timestamp": "2026-08-07T00:27:42.804966",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py",
+        "file1.py",
+        "file2.py",
+        "file3.py",
+        "file4.py",
+        "unintended13.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 3
+    },
+    {
+      "role": "user",
+      "content": "Turn 14 content",
+      "timestamp": "2026-08-07T00:29:42.804966",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py",
+        "file1.py",
+        "file2.py",
+        "file3.py",
+        "file4.py",
+        "unintended14.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 1
+    },
+    {
+      "role": "assistant",
+      "content": "Turn 15 content",
+      "timestamp": "2026-08-07T00:31:42.804966",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py",
+        "file1.py",
+        "file2.py",
+        "file3.py",
+        "file4.py",
+        "unintended15.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 1
+    },
+    {
+      "role": "user",
+      "content": "Turn 16 content",
+      "timestamp": "2026-08-07T00:33:42.804966",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py",
+        "file1.py",
+        "file2.py",
+        "file3.py",
+        "file4.py",
+        "unintended16.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 1
+    }
+  ],
+  "outcome": "abandoned",
+  "files_intended": [
+    "file0.py",
+    "file1.py",
+    "file2.py",
+    "file3.py",
+    "file4.py"
+  ],
+  "files_modified": [
+    "file0.py",
+    "file1.py",
+    "file2.py",
+    "file3.py",
+    "file4.py",
+    "unintended0.py",
+    "unintended1.py",
+    "unintended2.py",
+    "unintended3.py",
+    "unintended4.py",
+    "unintended5.py",
+    "unintended6.py",
+    "unintended7.py",
+    "unintended8.py",
+    "unintended9.py",
+    "unintended10.py",
+    "unintended11.py",
+    "unintended12.py",
+    "unintended13.py",
+    "unintended14.py",
+    "unintended15.py",
+    "unintended16.py"
+  ],
+  "credits_used": 368,
+  "model_used": "infinity-model-v1",
+  "user_rating": 1,
+  "user_feedback": "Quality: critical"
+}

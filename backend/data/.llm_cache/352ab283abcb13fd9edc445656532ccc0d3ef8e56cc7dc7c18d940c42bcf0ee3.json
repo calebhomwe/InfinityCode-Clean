@@ -1,0 +1,1 @@
+{"text": "[{\"action\": \"web_fetch\", \"args\": {\"url\": \"http://export.arxiv.org/api/arxiv/query?search_query=all:\\\"multimodal RAG\\\"&start=0&max_results=5&sortBy=submittedDate&sortOrder=desc\"}}]", "input_tokens": 365, "output_tokens": 69, "cached_at": 1786390000.3691106}

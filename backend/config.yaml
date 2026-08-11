@@ -1,0 +1,186 @@
+﻿# Direct Kimi API. When this key is set AND the Moonshot org has balance,
+# K3 calls go straight to api.moonshot.ai instead of through OpenRouter.
+# Falls back to OpenRouter automatically if the account is unfunded.
+moonshot:
+  api_key: "${MOONSHOT_API_KEY}"
+  base_url: "https://api.moonshot.ai/v1"
+
+# Direct Alibaba Model Studio (Qwen). Serves the owner-benchmarked fast
+# set (qwen3-coder-480b ~1.5s, qwen3.7-max, qwen3-vl-plus). dashscope/* role
+# models route here; falls back to OpenRouter automatically if unset.
+dashscope:
+  api_key: "${DASHSCOPE_API_KEY}"
+  base_url: "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1"
+
+# Direct OpenRouter API. The FREE tier (openrouter/free + :free slugs) costs
+# $0 per token and needs only OPENROUTER_API_KEY (Settings > Providers or
+# .env). The default lanes below lead with it and fall back to DashScope's
+# free quota when the key is absent.
+openrouter:
+  api_key: "${OPENROUTER_API_KEY}"
+  base_url: "https://openrouter.ai/api/v1"
+
+# ---------------------------------------------------------------------------
+# ROUTING MODE  ("default" | "bfb")
+#   default: Qwen/DashScope-first council (historical behaviour).
+#   bfb (Bang For Buck): DeepSeek V4 Flash codes with thinking disabled,
+#     DeepSeek direct is pinned first; Qwen 3.8 Max stays reviewer/oracle.
+#   Per-mission override: a mission can pass mode: "bfb" in its params.
+# ---------------------------------------------------------------------------
+routing:
+  mode: "bfb"
+
+# ---------------------------------------------------------------------------
+# LOCAL INFERENCE  (optional — zero-cost, runs on your own GPU)
+# ---------------------------------------------------------------------------
+# If you have 16 GB VRAM + 32 GB RAM, the sweet spot is 14B-class models
+# at Q4_K_M quantization.  Best pick: Qwen2.5-Coder-14B-Instruct.
+#
+# Quick-start with Ollama:
+#   ollama pull qwen2.5-coder:14b
+#   ollama serve
+#
+# Then uncomment `local_endpoint` below and flip the role overrides to use
+# the `local/` model ids.  The router will cost them at $0 and skip API keys.
+# ---------------------------------------------------------------------------
+local:
+  # llama.cpp server running FABLE-MAX-LLAMA (Qwen 35B-A3B on port 8081) —
+  # the local big brain, ~47 tok/s warm. 27B fusion lives on 8082 when up.
+  endpoint: "http://localhost:8081/v1"
+  api_key: "dummy"  # required by OpenAI client, ignored locally
+  
+  # Alternative: Ollama OpenAI-compatible endpoint
+  # endpoint: "http://localhost:11434/v1"
+
+# Long-task harness settings (backend/core/longtask/).
+longtask:
+  # true = force builder AND reviewer onto local llama.cpp (zero cloud spend).
+  # Requires the llama.cpp server running on :8081 before launching tasks.
+  free_mode: false
+
+models:
+  architect: "dashscope/qwen-max"  # DashScope FREE
+  engineer: "dashscope/qwen-coder-plus"  # DashScope FREE
+  eye: "dashscope/qwen-vl-plus"  # DashScope FREE vision
+  artist: "dashscope/qwen-image-2.0-pro"  # DashScope image gen
+  worker: "openrouter/free"  # OpenRouter FREE default (dashscope fallback below)
+  creative: "dashscope/qwen-max"
+  debugger: "dashscope/qwen-max"
+
+  # --- LONG TASK (long-horizon agentic coder) ----------------------
+  # Builder: flash-tier coder (credit policy — the oracle never drafts).
+  # BFB mode swaps this to deepseek/deepseek-v4-flash automatically.
+  longtask_builder: "dashscope/qwen3.7-flash"
+  # Reviewer: local FABLE on :8081 (zero cost); flip to the builder
+  # model for high-stakes reviews.
+  longtask_reviewer: "local/fable-max-llamacpp"
+  
+  # --- YOUR LOCAL FABLE MODELS (require FABLE-FUSION-27B.bat running) ----
+  # fable-fusion-27b: 700+ ARC-C score, IQ4_XS quant, fits 16GB VRAM (port 8082)
+  # fable-max-llamacpp: 35B MoE via llama.cpp (port 8081)
+  # fable-fast: 9B Qwen for quick tasks via LM Studio
+  fable_fusion: "local/fable-fusion-27b"
+  fable_max: "local/fable-max-llamacpp"
+  fable_fast: "local/fable-fast"
+
+  # --- LOCAL MODE OVERRIDES (uncomment to go 100 % local) ---------------
+  # architect: "local/fable-fusion-27b"    # 27B for architecture/planning
+  # engineer: "local/fable-fusion-27b"     # 27B for coding
+  # inspector: "local/fable-fusion-27b"   # 27B for code review
+  # debugger: "local/fable-fusion-27b"    # 27B for debugging
+  # worker: "local/fable-fast"            # 9B for quick tasks
+  # creative: "local/fable-fusion-27b"    # 27B for creative work
+  # eye: "local/fable-fusion-27b"         # 27B for vision tasks (with mmproj)
+
+# Custom model strategy lanes. Each lane is an ordered chain: primary first,
+# then fallbacks. Swap in your own fine-tuned endpoint under `custom` when ready.
+lanes:
+  # Default: OpenRouter free tier first ($0, needs OPENROUTER_API_KEY), then
+  # DashScope free quota. `openrouter/free` auto-picks among :free models.
+  cheap: ["openrouter/free", "dashscope/qwen-turbo", "dashscope/qwen-plus", "dashscope/qwen-max"]
+  smart: ["openrouter/free", "dashscope/qwen-max", "dashscope/qwen-plus", "dashscope/qwen-turbo"]
+  vision: ["dashscope/qwen3-vl-plus", "dashscope/qwen-vl-plus", "dashscope/qwen-max"]
+  custom: ["dashscope/qwen3-coder-480b-a35b-instruct", "dashscope/qwen-max", "dashscope/qwen3.7-flash"]
+  # --- YOUR FABLE LANES (zero-cost, local GPU) --------------------------
+  # Use these by setting effort: "fable" or "fable_ultra" in requests
+  fable: ["local/fable-max-35b", "local/fable-fast"]           # 35B + 9B fallback
+  fable_ultra: ["local/fable-max-35b", "local/fable-fusion-27b"]  # 35B + 27B cascade
+  fable_fast: ["local/fable-fast", "local/fable-max-35b"]      # 9B first for speed
+  # --- VIBE CODER: qwen local + kimi swarm + glm-5.2; cloud-only when
+  #     the local server is down (kimi swarm + minimax m3 + glm-5-flash)
+  vibe: ["local/fable-max-llamacpp", "dashscope/qwen3.8-max", "dashscope/qwen-max", "dashscope/qwen3.7-flash"]
+  # --- LEGACY LOCAL LANE ------------------------------------------------
+  local: ["local/qwen2.5-coder-14b", "local/deepseek-coder-v2-lite-16b", "local/qwen3-14b"]
+
+costs:
+  daily_budget_aud: 100.0
+  warning_threshold: 80.0
+  emergency_fallback: "dashscope/qwen-turbo"  # DashScope FREE tier
+
+# Custom model retrain loop. Set api_key to start fine-tuning automatically once
+# enough accepted sessions have been logged. Provider: "together" or "fireworks".
+retrain:
+  provider: "together"
+  api_key: "${TOGETHER_API_KEY}"
+  base_model: "Qwen/Qwen3-Coder-Next"
+  min_examples: 100
+  fireworks_account: "${FIREWORKS_ACCOUNT}"
+
+paths:
+  skills: "./skills"
+  references: "./references"
+  outputs: "./outputs"
+  memory: "./memory.db"
+  worktrees: "./worktrees"
+
+self_improve:
+  enabled: true
+  # Automated evaluation is local-only. Offline models fail closed rather than
+  # silently falling back to paid cloud agents.
+  lanes: ["fable_fast", "local"]
+  auto_approve: false
+  fix_interval_hours: 1
+  evolve_interval_hours: 6
+  max_daily_patches: 5
+  max_daily_cost_aud: 2.0
+  sandbox:
+    max_memory_mb: 512
+    timeout_seconds: 10
+
+# Benchmark failures turn into local practice cards before their next run.
+# Keep this on a local model to avoid spending money on the improvement loop.
+# Override with INFINITY_BENCHMARK_MODEL only when you deliberately want a
+# different (possibly paid) coach.
+self_training:
+  benchmark_model: "local/fable-fast"
+
+# Hugging Face Dataset Viewer is token-aware and read-only. Exported rows are
+# marked review_required; they never enter fine-tuning automatically.
+huggingface:
+  datasets: ["LDJnr/GameCodeInstruct", "Unity-Technologies/ml-agents-datasets"]
+
+ui:
+  theme: "dark"
+  show_cost: true
+  show_swarm_map: true
+  auto_approve_threshold: 0.95
+
+# ---------------------------------------------------------------------------
+# CREDIT ENGINE  (user-facing wallet; 1 credit = $0.01 of metered LLM spend)
+#   Zero-credit lanes: local models, free-quota models, :free slugs, cache
+#   hits. BYOK (bring your own key) bypasses the wallet entirely.
+#   license_keys: owner-issued {key, plan} pairs for offline activation (MVP).
+# ---------------------------------------------------------------------------
+credits:
+  enabled: true
+  rate_credits_per_usd: 100
+  plans:
+    free:     {credits: 300,   price_usd: 0,   trial_days: 14}
+    pro:      {credits: 2000,  price_usd: 20}
+    pro_plus: {credits: 6000,  price_usd: 60}
+    ultra:    {credits: 20000, price_usd: 200}
+  packs:
+    starter: {credits: 1500, price_usd: 20, validity_days: 30}
+  rollover_fraction: 0.25
+  rollover_validity_days: 90
+  license_keys: []

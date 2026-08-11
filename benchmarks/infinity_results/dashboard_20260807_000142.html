@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Code QuestBench - 2026-08-07T00:01:42.986013</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1, h2, h3 {
+            color: #569cd6;
+        }
+        .metric-card {
+            background: #252526;
+            border: 1px solid #3e3e42;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px 0;
+        }
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .metric {
+            background: #2d2d30;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #4ec9b0;
+        }
+        .metric-label {
+            color: #9cdcfe;
+            margin-top: 5px;
+        }
+        .insight {
+            background: #3e2a1e;
+            border-left: 4px solid #d16969;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #3e3e42;
+        }
+        th {
+            background: #252526;
+            color: #569cd6;
+        }
+        .score-bar {
+            background: #3e3e42;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 5px 0;
+        }
+        .score-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #d16969 0%, #dcdcaa 50%, #4ec9b0 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Infinity Code QuestBench Results</h1>
+        <p>Generated: 2026-08-07T00:01:42.986013</p>
+        <p>Sessions analyzed: 20</p>
+
+        <div class="metric-grid">
+            <div class="metric">
+                <div class="metric-value">42.7</div>
+                <div class="metric-label">Overall Score</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">44%</div>
+                <div class="metric-label">Completion Rate</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">65%</div>
+                <div class="metric-label">Cascade Break Score</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">45%</div>
+                <div class="metric-label">Credit Efficiency</div>
+            </div>
+        </div>
+
+        <div class="metric-card">
+            <h2>Score Distribution</h2>
+            
+            <div style="margin: 10px 0;">
+                <div>0-20 (Critical): 7 sessions</div>
+                <div class="score-bar">
+                    <div class="score-fill" style="width: 35.0%"></div>
+                </div>
+            </div>
+            <div style="margin: 10px 0;">
+                <div>21-40 (Poor): 2 sessions</div>
+                <div class="score-bar">
+                    <div class="score-fill" style="width: 10.0%"></div>
+                </div>
+            </div>
+            <div style="margin: 10px 0;">
+                <div>41-60 (Fair): 5 sessions</div>
+                <div class="score-bar">
+                    <div class="score-fill" style="width: 25.0%"></div>
+                </div>
+            </div>
+            <div style="margin: 10px 0;">
+                <div>61-80 (Good): 0 sessions</div>
+                <div class="score-bar">
+                    <div class="score-fill" style="width: 0.0%"></div>
+                </div>
+            </div>
+            <div style="margin: 10px 0;">
+                <div>81-100 (Excellent): 6 sessions</div>
+                <div class="score-bar">
+                    <div class="score-fill" style="width: 30.0%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="metric-card">
+            <h2>Key Insights</h2>
+            <div class="insight">WARNING: 7 sessions have high cascade breaks. Change isolation engine needs improvement.</div><div class="insight">WARNING: Low credit efficiency (0.45). Users burning credits faster than expected.</div><div class="insight">WARNING: Sessions taking longer than expected (0.00). Consider performance optimization.</div>
+        </div>
+
+        <div class="metric-card">
+            <h2>Worst Performing Sessions</h2>
+            <table>
+        <tr>
+            <th>Session ID</th>
+            <th>Score</th>
+            <th>Cascade Breaks</th>
+        </tr>
+            <tr>
+                <td>inf_0005</td>
+                <td>2.0</td>
+                <td>48</td>
+            </tr>
+            <tr>
+                <td>inf_0000</td>
+                <td>2.0</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>inf_0004</td>
+                <td>2.6</td>
+                <td>31</td>
+            </tr>
+            <tr>
+                <td>inf_0009</td>
+                <td>2.6</td>
+                <td>35</td>
+            </tr>
+            <tr>
+                <td>inf_0013</td>
+                <td>2.6</td>
+                <td>45</td>
+            </tr></table>
+        </div>
+
+        <div class="metric-card">
+            <h2>All Sessions</h2>
+            <table>
+        <tr>
+            <th>Session ID</th>
+            <th>Overall</th>
+            <th>Completion</th>
+            <th>Cascade</th>
+            <th>Credits</th>
+            <th>Time</th>
+            <th>Satisfaction</th>
+        </tr>
+            <tr>
+                <td>inf_0000</td>
+                <td>2.0</td>
+                <td>0%</td>
+                <td>0%</td>
+                <td>10%</td>
+                <td>0%</td>
+                <td>0%</td>
+            </tr>
+            <tr>
+                <td>inf_0001</td>
+                <td>82.1</td>
+                <td>100%</td>
+                <td>100%</td>
+                <td>98%</td>
+                <td>0%</td>
+                <td>75%</td>
+            </tr>
+            <tr>
+                <td>inf_0002</td>
+                <td>51.8</td>
+                <td>50%</td>
+                <td>100%</td>
+                <td>34%</td>
+                <td>0%</td>
+                <td>50%</td>
+            </tr>
+            <tr>
+                <td>inf_0003</td>
+                <td>52.4</td>
+                <td>50%</td>
+                <td>100%</td>
+                <td>37%</td>
+                <td>0%</td>
+                <td>50%</td>
+            </tr>
+            <tr>
+                <td>inf_0004</td>
+                <td>2.6</td>
+                <td>0%</td>
+                <td>0%</td>
+                <td>13%</td>
+                <td>0%</td>
+                <td>0%</td>
+            </tr>
+            <tr>
+                <td>inf_0005</td>
+                <td>2.0</td>
+                <td>0%</td>
+                <td>0%</td>
+                <td>10%</td>
+                <td>0%</td>
+                <td>0%</td>
+            </tr>
+            <tr>
+                <td>inf_0006</td>
+                <td>52.2</td>
+                <td>50%</td>
+                <td>100%</td>
+                <td>36%</td>
+                <td>0%</td>
+                <td>50%</td>
+            </tr>
+            <tr>
+                <td>inf_0007</td>
+                <td>85.0</td>
+                <td>100%</td>
+                <td>100%</td>
+                <td>100%</td>
+                <td>0%</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>inf_0008</td>
+                <td>85.0</td>
+                <td>100%</td>
+                <td>100%</td>
+                <td>100%</td>
+                <td>0%</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>inf_0009</td>
+                <td>2.6</td>
+                <td>0%</td>
+                <td>0%</td>
+                <td>13%</td>
+                <td>0%</td>
+                <td>0%</td>
+            </tr>
+            <tr>
+                <td>inf_0010</td>
+                <td>82.5</td>
+                <td>100%</td>
+                <td>100%</td>
+                <td>100%</td>
+                <td>0%</td>
+                <td>75%</td>
+            </tr>
+            <tr>
+                <td>inf_0011</td>
+                <td>85.0</td>
+                <td>100%</td>
+                <td>100%</td>
+                <td>100%</td>
+                <td>0%</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>inf_0012</td>
+                <td>2.7</td>
+                <td>0%</td>
+                <td>0%</td>
+                <td>14%</td>
+                <td>0%</td>
+                <td>0%</td>
+            </tr>
+            <tr>
+                <td>inf_0013</td>
+                <td>2.6</td>
+                <td>0%</td>
+                <td>0%</td>
+                <td>13%</td>
+                <td>0%</td>
+                <td>0%</td>
+            </tr>
+            <tr>
+                <td>inf_0014</td>
+                <td>52.9</td>
+                <td>50%</td>
+                <td>100%</td>
+                <td>39%</td>
+                <td>0%</td>
+                <td>50%</td>
+            </tr>
+            <tr>
+                <td>inf_0015</td>
+                <td>37.6</td>
+                <td>20%</td>
+                <td>100%</td>
+                <td>21%</td>
+                <td>0%</td>
+                <td>25%</td>
+            </tr>
+            <tr>
+                <td>inf_0016</td>
+                <td>37.4</td>
+                <td>20%</td>
+                <td>100%</td>
+                <td>20%</td>
+                <td>0%</td>
+                <td>25%</td>
+            </tr>
+            <tr>
+                <td>inf_0017</td>
+                <td>3.3</td>
+                <td>0%</td>
+                <td>0%</td>
+                <td>17%</td>
+                <td>0%</td>
+                <td>0%</td>
+            </tr>
+            <tr>
+                <td>inf_0018</td>
+                <td>82.1</td>
+                <td>100%</td>
+                <td>100%</td>
+                <td>98%</td>
+                <td>0%</td>
+                <td>75%</td>
+            </tr>
+            <tr>
+                <td>inf_0019</td>
+                <td>51.1</td>
+                <td>50%</td>
+                <td>100%</td>
+                <td>30%</td>
+                <td>0%</td>
+                <td>50%</td>
+            </tr></table>
+        </div>
+    </div>
+</body>
+</html>

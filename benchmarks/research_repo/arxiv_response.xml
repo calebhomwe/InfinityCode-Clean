@@ -1,0 +1,400 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/819UvhtBQAJLsP/U8pxoAUtOPpk</id>
+  <title>arXiv Query: search_query=all:"multimodal RAG" OR all:"multimodal retrieval augmented generation"&amp;id_list=&amp;start=0&amp;max_results=15</title>
+  <updated>2026-08-10T19:35:43Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22multimodal+RAG%22+OR+all:%22multimodal+retrieval+augmented+generation%22&amp;start=0&amp;max_results=15&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>15</opensearch:itemsPerPage>
+  <opensearch:totalResults>153</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2607.28580v1</id>
+    <title>DualG-MRAG: Decoupling Macro-Reasoning and Micro-Matching for Multimodal Retrieval-Augmented Generation</title>
+    <updated>2026-07-30T17:40:05Z</updated>
+    <link href="https://arxiv.org/abs/2607.28580v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.28580v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>While Multimodal Retrieval-Augmented Generation (MM-RAG) has shown promising results, it still struggles with complex multi-hop reasoning tasks. Existing methods primarily focus on independent instance-level matching, which often fails to capture explicit relationships across modalities and documents. Although Graph-enhanced methods introduce structural modeling, they face a fundamental challenge in multimodal scenarios: incorporating fine-grained visual features leads to rapid graph expansion and retrieval noise, whereas coarse-grained representations cause the discarding of critical local evidence. To address this dilemma, we propose DualG-MRAG, a Dual-tier framework that introduces a decoupled architecture comprising Macro-reasoning and Micro-matching Graphs for Multimodal RAG. Specifically, to suppress retrieval noise by isolating global structural reasoning from fine-grained evidence matching, we construct a Macro Graph for global topological routing and a Micro Graph for precise local verification. Subsequently, to enable dynamic relevance propagation across heterogeneous evidence sources, we formulate retrieval as a query-driven message passing process via a GNN Retriever. Furthermore, to provide the generative model with coherent structural guidance, we introduce a dynamic programming decoding mechanism that extracts explicit reasoning paths directly from the GNN's forward pass, replacing the standard input of isolated document chunks. Extensive experiments demonstrate that DualG-MRAG outperforms baselines in both evidence recall and complex QA accuracy.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-30T17:40:05Z</published>
+    <arxiv:comment>Accepted to the 34th ACM International Conference on Multimedia (ACM MM 2026). 12 pages</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Jiacheng Tao</name>
+    </author>
+    <author>
+      <name>Qingyun Sun</name>
+    </author>
+    <author>
+      <name>Haonan Yuan</name>
+    </author>
+    <author>
+      <name>Ziwei Zhang</name>
+    </author>
+    <author>
+      <name>Jianxin Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.24554v1</id>
+    <title>DeCoRAG: Cognitive Decoupling and Semantic-Aware Cropping for Complex Document Understanding</title>
+    <updated>2026-07-27T15:28:02Z</updated>
+    <link href="https://arxiv.org/abs/2607.24554v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.24554v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Advancing multimodal retrieval-augmented generation (RAG) for complex document understanding presents a formidable dual dilemma of accuracy and efficiency, particularly in graph RAG. Processing structurally sparse yet visually dense layouts, such as extracting a tiny data marker from a financial chart, often incurs computationally prohibitive token overhead while still triggering catastrophic hallucination. However, multimodal Graph RAG pipelines rely on graph-construction stages that assume Vision-Language Models (VLMs) can resolve sparse semantics within high-density layouts. We challenge this assumption, revealing that forcing VLMs to localize visual evidence, interpret semantics, and extract relations triggers a "Visual Attention Sink," a mechanism driving catastrophic semantic loss, while full-page processing incurs massive computational overhead. Controlled interventions verify that this failure is boundary-driven rather than content-specific and that semantic anchoring mitigates it. To fundamentally correct this flawed paradigm, we introduce DeCoRAG, a multimodal Graph RAG pipeline that shifts knowledge processing from coupled visual-semantic reasoning to "Cognitive Decoupling." Rather than passively processing raw pixels, its graph-construction stage establishes a macroscopic Semantic Anchor to neutralize the attention sink. This anchor subsequently drives our Region-Aware Pruning and Cropping (RAP-Crop) mechanism, shifting the reasoning space from dense, noisy backgrounds to purified, intent-driven semantic clusters. The resulting graph supports hybrid retrieval and answer generation. Across complex document benchmarks, DeCoRAG improves the semantic pass rate by up to 12.5 percentage points over the strongest baseline and generalizes to DocVQA. RAP-Crop reduces offline graph-construction prompt tokens by 40.8% without sacrificing end-to-end accuracy.</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-27T15:28:02Z</published>
+    <arxiv:comment>11 pages, 4 figures, 8 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Shuo Wang</name>
+    </author>
+    <author>
+      <name>Kai Zhang</name>
+    </author>
+    <author>
+      <name>Wenyuan Huang</name>
+    </author>
+    <author>
+      <name>Yizheng Yu</name>
+    </author>
+    <author>
+      <name>Xia Liao</name>
+    </author>
+    <author>
+      <name>Junming Su</name>
+    </author>
+    <author>
+      <name>Qing Wang</name>
+    </author>
+    <author>
+      <name>Fang Xi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.24875v1</id>
+    <title>FinAbstain: Uncertainty-Calibrated Multimodal RAG for Selective Financial Forecasting</title>
+    <updated>2026-07-27T07:05:22Z</updated>
+    <link href="https://arxiv.org/abs/2607.24875v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.24875v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) can synthesize financial narratives but may express high confidence when evidence is sparse, stale, or contradictory. This failure is especially consequential in forecasting, where filings, news, prices, volume, and technical signals can disagree. We present FinAbstain, a research framework for uncertainty-calibrated multimodal retrieval-augmented generation (RAG) with selective prediction. A point-in-time retriever admits only information public at the forecast timestamp and supplies modality-specific evidence to fundamental, news, technical, risk, and verification agents. Their probabilistic assessments are aggregated with retrieval relevance, evidence contradiction, repeated-sample consistency, and historical calibration statistics. Temperature scaling, isotonic regression, conformal prediction, and a proposed hybrid uncertainty score are evaluated under a common chronological protocol. A controller predicts bullish, bearish, or neutral outcomes only when uncertainty is below a validated threshold; otherwise it abstains, requests evidence, reduces exposure, or routes the case to human review. The evaluation covers one- and five-day abnormal-return direction, twenty-day volatility intervals, and abstention decisions, using accuracy, calibration, risk--coverage, citation, trading, latency, and cost metrics. To make the design auditable before a full data collection is complete, we report explicitly labeled simulated results rather than empirical claims. These results illustrate the intended hypothesis: calibrated abstention may trade coverage for lower selective error and drawdown. The contribution is a time-safe architecture, a composite uncertainty formulation, and a reproducible evaluation blueprint for evidence-grounded selective financial forecasting.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-27T07:05:22Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Dorothy Torres</name>
+    </author>
+    <author>
+      <name>Wei Cheng</name>
+    </author>
+    <author>
+      <name>Henan Huang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.18917v1</id>
+    <title>TAP-RAG: Task-Aware Policy Control for Long-Document Multimodal Question Answering</title>
+    <updated>2026-07-21T09:59:13Z</updated>
+    <link href="https://arxiv.org/abs/2607.18917v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.18917v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Long-document multimodal question answering requires more than retrieving relevant chunks from a large document. Different queries require different evidence behavior. Existing multimodal RAG systems improve evidence access through text chunks, page images, graph links, or heterogeneous document elements, but they often apply a largely query-agnostic evidence-use strategy. We present TAP-RAG, a task-aware policy-controlled RAG framework for long-document multimodal QA. TAP-RAG contains a main controller, the Task-Aware Policy Controller (TAPC), and two policy-guided evidence executors: Task-Aware Query-Guided Flow Diffusion (TA-QFD) and Task-Aware Visual Enhancement (TAVE). For each query, TAPC predicts the task prior, estimates visual/local/global evidence signals, and produces an executable policy. TA-QFD then expands textual and structural evidence over the multimodal document graph, while TAVE selectively inspects page images when visual or layout evidence is needed. A guarded synthesis stage fuses text, visual, and structural evidence and abstains when support is insufficient. On DocBench and MMLongBench-Doc, TAP-RAG achieves the best overall accuracy among the compared systems, improving over a matched multimodal-RAG baseline by +9.1 points (61.1 to 70.2) and +4.5 points (42.2 to 46.7), respectively.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-21T09:59:13Z</published>
+    <arxiv:comment>18 pages, 6 figures, 9 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Zhong Ji</name>
+    </author>
+    <author>
+      <name>Keqi Jin</name>
+    </author>
+    <author>
+      <name>Yan Zhang</name>
+    </author>
+    <author>
+      <name>Jiasheng Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.10798v1</id>
+    <title>Trust Before Fusion: QIMG-7 and Source-Aware Resolution for Polluted Multimodal RAG</title>
+    <updated>2026-07-12T15:13:09Z</updated>
+    <link href="https://arxiv.org/abs/2607.10798v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.10798v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multimodal retrieval-augmented generation (RAG) is often evaluated with clean evidence, yet real retrieval can return topically relevant but unreliable content: false text and misleading images from corrupted metadata, entity swaps, typographic overlays, semantic edits, adversarial patches, blends, or style transfer. We introduce QIMG-7, a controlled benchmark for multimodal retrieval pollution in multi-sentence factual QA, spanning four datasets, seven image-attack families, and 16 paired clean/polluted regimes, for 1,760 evaluation rows per method. Across four generator/gate stacks, naive multimodal fusion is brittle: in the main gpt-4o-mini stack, Full-MM support drops from 0.908 with clean text to 0.490 with polluted text, often making Parametric fallback safer than retrieval. We propose source-aware trust resolution (SATR), a training-free approach that compares Parametric, Text-only, and Full-MM candidate answers and selects among candidate answers or falls back based on source reliability. The Field-Selector variant achieves the best balanced score, 0.816, improving over Full-MM by 11.7 points and over the Cascaded Router by 2.7 points. Ablations show that, in this text-first setting, explicit text-reliability modeling is the dominant driver of these gains. Overall, in text-first factual QA with multimodal retrieval conflict, our results support selective trust rather than unconditional fusion. Artifacts are available at https://github.com/SaadElDine/Trust_Before_Fusion.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-12T15:13:09Z</published>
+    <arxiv:comment>23 pages, 6 figures, 23 tables. Preprint under review</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Saadeldine Eletter</name>
+    </author>
+    <author>
+      <name>Owais Aijaz</name>
+    </author>
+    <author>
+      <name>Preslav Nakov</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.07383v1</id>
+    <title>MMAgent-R$^2$: Learning to Rerank and Reject for Agentic mRAG</title>
+    <updated>2026-07-08T13:15:39Z</updated>
+    <link href="https://arxiv.org/abs/2607.07383v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.07383v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Knowledge-based Visual Question Answering (KB-VQA) requires models to retrieve visual entities matching the query image from large-scale encyclopedic knowledge bases and answer related questions. Existing multimodal Retrieval Augmented Generation (mRAG) methods rely on global visual features to match candidate entities, yet when the knowledge base contains numerous visually similar entities, the retriever struggles to distinguish them, populating the candidate set with visually similar but factually mismatched distractors. Since subsequent processing steps such as noise filtering are also confined to this fixed candidate set, errors from failed retrieval inevitably propagate to the final answer. To address these challenges, we propose MMAgent-R$^2$, an agentic mRAG framework that integrates visual reranking and active rejection as its internal verification mechanism. Visual reranking directly compares query and candidate images, capturing discriminative details beyond textual descriptions to precisely identify the target entity among similar candidates; active rejection discards unreliable results and retrieves additional candidates when no confident match is found, moving beyond the fixed candidate pool. We design a composite reward function with step-level verification rewards and achieve joint optimization of external retrieval, internal verification, and answer generation via GRPO training. Experiments on InfoSeek, E-VQA, and MMhops demonstrate that \ours{} achieves state-of-the-art performance, with particularly notable advantages in challenging retrieval scenarios and complex multi-image multi-hop reasoning tasks.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-08T13:15:39Z</published>
+    <arxiv:comment>Accepted by ECCV 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Tao Zhang</name>
+    </author>
+    <author>
+      <name>Ziqi Zhang</name>
+    </author>
+    <author>
+      <name>Zongyang Ma</name>
+    </author>
+    <author>
+      <name>Yuxin Yang</name>
+    </author>
+    <author>
+      <name>Bing Li</name>
+    </author>
+    <author>
+      <name>Chunfeng Yuan</name>
+    </author>
+    <author>
+      <name>Kang Rong</name>
+    </author>
+    <author>
+      <name>Fengyun Rao</name>
+    </author>
+    <author>
+      <name>Jing Lyu</name>
+    </author>
+    <author>
+      <name>Weiming Hu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.24799v1</id>
+    <title>Multimodal Hybrid Retrieval-Augmented Generation for Scientific Document Understanding using Open-Source SLMs</title>
+    <updated>2026-07-06T08:32:09Z</updated>
+    <link href="https://arxiv.org/abs/2607.24799v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.24799v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large Language Models tend to hallucinate when answering domain-specific ques tions from scientific documents without prior fine-tuning. Currently, methods such as Retrieval-Augmented Generation partially solve this problem but face different challenges: limited context knowledge, difference between sparse and dense retrieval, and retrieval noise. This paper presents an Advanced Multimodal Retrieval-Augmented Generation system that aims to solve those challenges and im prove the accuracy of information extraction. The proposed architecture introduces a multimodal ingestion pipeline that leverages an open-source Vision-Language Model (Qwen2-VL-2B-Instruct) to generate textual summaries of tables and fig ures. The retrieval phase integrates HNSW-based semantic search with GIN-based lexical search, unified through Reciprocal Rank Fusion and refined using Cross Encoder reranking to minimize retrieval noise. To ensure conversational coherence across multi-turn interactions, a Query Condenser module is employed. Evaluation is conducted by independently assessing the ingestion, retrieval and generation stages using the MMLongBench benchmark, a BeIR-format synthetic dataset and the DeepEval framework. Moreover, results demonstrate a 157% improvement in retrieval quality over a Naive-RAG baseline, with only 50 ms additional la tency, while Qwen2-VL-2B-Instruct achieved results comparable to cloud-based models in BERTScore. These findings validate that open-source optimized SLMs, paired with advanced retrieval strategies, can provide competitive performance for document understanding without relying on cloud-based models.</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-06T08:32:09Z</published>
+    <arxiv:comment>7 pages, 1 figure, 4 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Alexandru-Andrei Saucă</name>
+    </author>
+    <author>
+      <name>Ana-Luiza Rusnac</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.04625v1</id>
+    <title>Hierarchical Evidence-Driven Reasoning for Long Document Understanding</title>
+    <updated>2026-07-06T03:08:28Z</updated>
+    <link href="https://arxiv.org/abs/2607.04625v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.04625v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-Augmented Generation (RAG) streamlines long-document understanding by leveraging retrieval mechanisms to restrict input images to a highly curated subset. However, existing multimodal RAG pipelines primarily face two critical challenges: first, standard semantic similarity retrievers frequently fetch topically overlapping yet answer-void distractor pages that mislead downstream generation; second, rigid single-pass pipelines heavily depend on initial retrieval success, where any omission of core evidence inevitably causes cascading errors. To address these challenges, we introduce HIEVI-RAG, a hierarchical, evidence-driven multimodal RAG framework for closed-domain document understanding. HIEVI-RAG systematically factorizes complex queries into a cooperative four-stage pipeline: (1) hierarchical question decomposition to break multi-hop root queries into atomic child questions; (2) coarse visual page retrieval leveraging a multimodal retriever to fetch candidate pages based on semantic similarity; (3) fine-grained page verification via EVIAGENT, a specialized multi-page verifier trained with GRPO to execute cross-page reasoning over multi-image blocks; and (4) memory-guided iterative generation that leverages accumulated sub-question context to execute multi-round, dynamic reasoning over the prioritized sequence. Extensive evaluations across four benchmarks demonstrate the robust efficacy and synergy of our framework, which significantly outperforms existing open-source baselines and exceeds the strongest reported baseline by an average of 8.05% in accuracy.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-06T03:08:28Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Junyu Xiong</name>
+    </author>
+    <author>
+      <name>Yonghui Wang</name>
+    </author>
+    <author>
+      <name>Rongjian Gu</name>
+    </author>
+    <author>
+      <name>Chenyu Liu</name>
+    </author>
+    <author>
+      <name>Bing Yin</name>
+    </author>
+    <author>
+      <name>Wengang Zhou</name>
+    </author>
+    <author>
+      <name>Houqiang Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.05438v1</id>
+    <title>Modality Relevance is not Modality Utility: Post-hoc Selective Modality Escalation for Cost-Aware Multimodal RAG</title>
+    <updated>2026-07-03T15:28:16Z</updated>
+    <link href="https://arxiv.org/abs/2607.05438v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.05438v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multimodal retrieval-augmented generation (RAG) grounds a generator in evidence drawn from heterogeneous modalities -- text, tables, and images. The dominant deployment choice is binary and made before the model has tried to answer: either run a cheap text(+table) pipeline, or pay for an expensive vision-language model (VLM) over every image. Recent adaptive systems improve on this by selecting the modality or fidelity pre-retrieval, from a question-conditioned predictor of which modality will be needed. We show that this is the wrong decision point. Through an oracle headroom analysis on MultiModalQA, we find that the relevance of a modality to a question is a weak predictor of whether that modality is actually needed to answer correctly: a large fraction of questions whose gold support includes an image are nonetheless answerable from text and tables alone, and a pre-retrieval router that escalates on apparent visual relevance over-escalates substantially relative to an oracle. We propose \textbf{post-hoc selective modality escalation}: answer cheaply from text and tables, run a verifier on the (query, draft answer, evidence) tuple that localizes which modality is missing, and pay for VLM evidence only there. A calibrated value-of-escalation router then decides whether the expected accuracy gain justifies the visual cost. On MultiModalQA, our router recovers the accuracy of an always-on VLM pipeline while issuing far fewer visual calls, and closes most of the gap to the oracle escalation rate. The result extends a routing-signal hierarchy established for retrieval depth and reasoning hops to a third axis -- modality -- under a single cost-aware selective-escalation view.</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-03T15:28:16Z</published>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Xue Li</name>
+    </author>
+    <author>
+      <name>Yiming Gai</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.00685v1</id>
+    <title>M2Note: Continual Evolution of Vision Language Models via Mistake Notebook Learning</title>
+    <updated>2026-07-01T09:30:10Z</updated>
+    <link href="https://arxiv.org/abs/2607.00685v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.00685v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Vision Language Models (VLMs) have demonstrated remarkable capabilities in multimodal reasoning tasks, yet they still suffer from recurring failures, such as skipping key visual checks, misapplying domain rules, and hallucinating unsupported concepts. Most existing solutions rely on supervised fine-tuning (SFT) and reinforcement learning (RL), which are expensive to iterate and can be brittle under distribution shift. To this end, we propose Multimodal Mistake Notebook Learning (M2Note), a training-free continual evolution framework that externalizes learning into an editable memory. M2Note transforms failed trajectories into compact subject-guidance notes: the subject summarizes the underlying domain and concept, while the guidance provides actionable verification steps that can be reused in future inference. At test time, M2Note retrieves relevant notes via multimodal retrieval-augmented generation (RAG) and appends them to the model context, steering reasoning away from previously observed pitfalls. To stabilize continual evolution, we adopt batch-level post-verification with rollback, which commits notebook edits only if they improve performance on the same batch, reducing noisy updates and preventing regressions. M2Note supports both self-evolving, where the same VLM acts as solver and supervisor, and cross-model evolving, where a stronger supervisor guides a weaker solver, enabling capability transfer without weight updates. Experiments on six multimodal reasoning benchmarks show consistent improvements across domains and backbones, while achieving strong cost and sample efficiency and remaining complementary to Chain-of-Thought (CoT) prompting.</summary>
+    <category term="cs.MA" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-01T09:30:10Z</published>
+    <arxiv:primary_category term="cs.MA"/>
+    <author>
+      <name>Haiwen Li</name>
+    </author>
+    <author>
+      <name>Jing Tang</name>
+    </author>
+    <author>
+      <name>Rui Chen</name>
+    </author>
+    <author>
+      <name>Lei Sun</name>
+    </author>
+    <author>
+      <name>Xiangxiang Chu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.28780v1</id>
+    <title>Multimodal Graph RAG for Long-range Visually Rich Document Understanding</title>
+    <updated>2026-06-27T07:14:31Z</updated>
+    <link href="https://arxiv.org/abs/2606.28780v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.28780v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multimodal large language models (MLLMs) are widely applied to visual document understanding. However, comprehending long documents remains an issue by the limited context window. Though recent multimodal retrieval-augmented generation (MMRAG) can address this challenge by retrieving relevant pages. It still struggles with the visual question answering (VQA) requiring holistic comprehension of a document. To cope with this, knowledge graph (KG) that summarizes global knowledge of a document can provide an effective solution. However, most existing LLM-based KG construction methods handle only the language modality, leaving the automatic creation of multimodal KGs (MMKGs) for visually rich documents largely unexplored. In this paper, we introduce a multimodal graph-based RAG approach to tackle this problem. Existing LLM-based KG methods evaluate the QA performance relying on indirect evidence such as comprehensiveness, diversity, empowerment, and so on. The lack of annotated datasets for comprehensive document-level VQA poses a significant challenge to effective model evaluation. To overcome this limitation, we also introduce a new benchmark, DLVQA (document-level VQA), which provides reference summaries and corresponding supporting facts for global document-level questions. Experimental results show that our approach outperforms existing MMRAG or KG-based approaches on multi-hop QA/VQA benchmarks and DLVQA.</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-27T07:14:31Z</published>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Yi-Cheng Wang</name>
+    </author>
+    <author>
+      <name>Chu-Song Chen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.22643v1</id>
+    <title>Reason Before You Retrieve: Agentic Planning for Multi-modal RAG</title>
+    <updated>2026-06-24T02:40:49Z</updated>
+    <link href="https://arxiv.org/abs/2607.22643v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.22643v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multimodal retrieval-augmented generation (mRAG) aims to answer image-text queries with external knowledge, but most existing systems still retrieve directly from raw multimodal input over a flat evidence space. This design often struggles with two key challenges: the retrieval target is under-specified because the question intent must be grounded to the correct visual referent, and the search space is weakly structured, forcing semantically distinct evidence to compete in a single global ranking step. We propose MM-R2, a multimodal agentic retrieval framework that reasons before retrieval by explicitly modeling both what to retrieve and where to search. MM-R2 first constructs an intent-grounded retrieval state from the image-question pair, capturing the information need, grounded referent, and retrieval constraints. It then performs retrieval over a structured KnowledgeMap, where the agent selects relevant retrieval units before issuing grounded queries within them. To enable this capability, we build MM-R2-Traj, a large-scale trajectory dataset of multi-step retrieval processes, and adopt a two-stage post-training strategy with supervised fine-tuning and GRPO. Experiments on Infoseek and Encyclopedic VQA datasets show that MM-R2 substantially outperforms strong baselines on answer accuracy while also yielding more interpretable and verifiable retrieval trajectories.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-24T02:40:49Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Tianyu Yang</name>
+    </author>
+    <author>
+      <name>Shir Simon</name>
+    </author>
+    <author>
+      <name>Zhenzhen Li</name>
+    </author>
+    <author>
+      <name>Minhao Cheng</name>
+    </author>
+    <author>
+      <name>Xiangliang Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.17449v1</id>
+    <title>MODE-RAG: Manifold Outlier Diagnosis and Energy-based Retrieval-Augmented Generation Evaluation</title>
+    <updated>2026-06-16T03:06:35Z</updated>
+    <link href="https://arxiv.org/abs/2606.17449v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.17449v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>While Multimodal Retrieval-Augmented Generation (M-RAG) enhances Large Vision-Language Models, it remains highly susceptible to cross-modal hallucinations, causal fabrications, and sycophancy. Furthermore, existing mitigation pipelines often face an intervention paradox: static rules tend to unnecessarily disrupt accurate generations, whereas leaving the multi-modal reasoning completely unguided allows existing mismatches to cascade into severe logical fabrications. To quantify and mitigate these hallucinations, we propose a Multi-Agent system, MODE-RAG, driven by Variational Free Energy (VFE) and internal attention states to dynamically gate interventions. High-risk queries are routed to five stage-specific agents, integrating Monte Carlo Tree Search (MCTS) for rigorous causal derivation and logit perturbations to penalize sycophancy. Dedicated Correction and Overseer agents ensure formatting stability and perform post-hoc factual verification. To objectively evaluate our approach, we introduce ModeVent, a challenging subset derived from the MultiVent dataset. Extensive experiments indicate that our system effectively reduces hallucination rates and logical fabrication, significantly improving the robustness of M-RAG systems.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.MM" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-16T03:06:35Z</published>
+    <arxiv:comment>To be presented at ACL 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Zehang Wei</name>
+    </author>
+    <author>
+      <name>Jiaxin Dai</name>
+    </author>
+    <author>
+      <name>Jiamin Yan</name>
+    </author>
+    <author>
+      <name>Xiang Xiang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.15906v1</id>
+    <title>MAGE-RAG: Multigranular Adaptive Graph Evidence for Agentic Multimodal RAG in Long-Document QA</title>
+    <updated>2026-06-14T16:34:15Z</updated>
+    <link href="https://arxiv.org/abs/2606.15906v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.15906v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Long-document multimodal question answering requires a system to locate sparse evidence in long PDFs and integrate clues from text, tables, images, charts, and complex layouts. Existing RAG methods mostly rely on fixed Top-k retrieval over text chunks or pages. Text retrieval can compress the context but often loses visual and layout information; page-level visual retrieval preserves the original page, yet it also sends large irrelevant regions to the reader, leading to a static trade-off among evidence coverage, noise, and inference cost. This paper proposes MAGE-RAG, a multigranular adaptive graph evidence framework for long-document multimodal QA. MAGE-RAG uses page retrieval as the entry point for query-time evidence construction. Offline, it builds an evidence graph with page nodes and element nodes, encoding containment, reading order, layout adjacency, section hierarchy, and semantic-neighbor relations. At query time, an online evidence controller iteratively activates, opens, searches, and prunes evidence under explicit budgets. The resulting evidence subgraph is then rendered into structured multimodal reader input, allowing the LVLM to consume compact and relevant evidence within a limited context. On LongDocURL and MMLongBench-Doc, we establish a unified comparison and analysis protocol covering Direct MLLM, Text RAG, Page-level Visual RAG, and Graph/Agentic RAG. Experiments show that MAGE-RAG achieves 52.75 overall accuracy on LongDocURL, and 53.26 accuracy with 51.19 F1 on MMLongBench-Doc. Fine-grained breakdowns, budget-performance curves, ablations, and trace-based analysis further show that query-time evidence subgraph construction can balance dispersed evidence coverage with context-noise control. Our code is available at https://github.com/laonuo2004/MAGE-RAG.git.</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.DB" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.MM" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-14T16:34:15Z</published>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Yilong Zuo</name>
+    </author>
+    <author>
+      <name>Xunkai Li</name>
+    </author>
+    <author>
+      <name>Jing Yuan</name>
+    </author>
+    <author>
+      <name>Qiangqiang Dai</name>
+    </author>
+    <author>
+      <name>Hongchao Qin</name>
+    </author>
+    <author>
+      <name>Ronghua Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.07252v2</id>
+    <title>Constrained Dominant Sets for Multimodal Document Question Answering</title>
+    <updated>2026-06-08T12:27:36Z</updated>
+    <link href="https://arxiv.org/abs/2606.07252v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.07252v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Long multimodal document question answering is limited by which evidence reaches the reader, rather than by the quantity retrieved. In lengthy documents, findings often recur across figures, captions, and introductory sentences, causing similarity based retrievers in modern multimodal retrieval-augmented generation (RAG) systems to allocate resources to near-duplicates while overlooking complementary evidence. This work introduces a retriever that selects evidence as a Constrained Dominant Set (CDS) on a query-augmented affinity graph, offering three advantages that similarity ranking does not. First, the query is encoded as a hard structural constraint, ensuring that every selected element is directly connected to the question through the cluster anchor. Second, the relevance-redundancy balance is determined automatically by a spectral bound, eliminating the need for manually tuned trade offs required by diversity-aware selectors. Third, the selection process achieves a global equilibrium via replicator dynamics, thereby avoiding the distortions introduced by greedy heuristics. The method is inherently graph-based and does not require training. Using a Qwen3-VL-32B reader, CDS establishes a new state of the art on VisDoMBench ($66.99$ average) and improves over the no-retrieval baseline by $37.1$ points on VisDoMBench and $4.8$ on MMLongBench-Doc.</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-05T13:24:46Z</published>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Ambuj Mehrish</name>
+    </author>
+    <author>
+      <name>Sebastiano Vascon</name>
+    </author>
+  </entry>
+</feed>

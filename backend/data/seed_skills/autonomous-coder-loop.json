@@ -1,0 +1,40 @@
+{
+  "name": "autonomous-coder-loop",
+  "title": "Autonomous Coder Loop",
+  "topic": "autonomous execution",
+  "description": "Sustained autonomous coding: decompose into tiny verified steps, build+test gate every cycle, revert on regression, stop on quota or goal.",
+  "source_type": "seeded",
+  "always": true,
+  "steps": [
+    {
+      "order": 1,
+      "instruction": "Decompose the goal into a queue of small tasks; each must be implementable and verifiable in one cycle."
+    },
+    {
+      "order": 2,
+      "instruction": "Write the queue to a ledger file so the state survives restarts."
+    },
+    {
+      "order": 3,
+      "instruction": "Each cycle: read only the files the task touches, make the minimal change, then run build and tests."
+    },
+    {
+      "order": 4,
+      "instruction": "Green: record it and take the next task. Red: revert this cycle's change and retry once with a different approach."
+    },
+    {
+      "order": 5,
+      "instruction": "Use cheap models for grunt work; escalate to the smart lane only for architecture decisions."
+    },
+    {
+      "order": 6,
+      "instruction": "Track cost per cycle; stop on budget, on repeated failure, or when the queue empties."
+    },
+    {
+      "order": 7,
+      "instruction": "No cycle counts as done without the proof gate passing: build green and tests pass."
+    }
+  ],
+  "verified": true,
+  "created_at": "2026-08-11T00:00:00+00:00"
+}

@@ -1,0 +1,141 @@
+{
+  "session_id": "inf_0006",
+  "user_id": "user_17",
+  "start_time": "2026-08-07T00:01:42.800849",
+  "end_time": "2026-08-07T00:01:42.800849",
+  "goal": "Fix bug #6",
+  "turns": [
+    {
+      "role": "user",
+      "content": "Turn 0 content",
+      "timestamp": "2026-08-07T00:01:42.800849",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 0
+    },
+    {
+      "role": "assistant",
+      "content": "Turn 1 content",
+      "timestamp": "2026-08-07T00:03:42.800849",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 0
+    },
+    {
+      "role": "user",
+      "content": "Turn 2 content",
+      "timestamp": "2026-08-07T00:05:42.800849",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 0
+    },
+    {
+      "role": "assistant",
+      "content": "Turn 3 content",
+      "timestamp": "2026-08-07T00:07:42.800849",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 0
+    },
+    {
+      "role": "user",
+      "content": "Turn 4 content",
+      "timestamp": "2026-08-07T00:09:42.800849",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 0
+    },
+    {
+      "role": "assistant",
+      "content": "Turn 5 content",
+      "timestamp": "2026-08-07T00:11:42.800849",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 0
+    },
+    {
+      "role": "user",
+      "content": "Turn 6 content",
+      "timestamp": "2026-08-07T00:13:42.800849",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 0
+    },
+    {
+      "role": "assistant",
+      "content": "Turn 7 content",
+      "timestamp": "2026-08-07T00:15:42.800849",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 0
+    },
+    {
+      "role": "user",
+      "content": "Turn 8 content",
+      "timestamp": "2026-08-07T00:17:42.800849",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 0
+    },
+    {
+      "role": "assistant",
+      "content": "Turn 9 content",
+      "timestamp": "2026-08-07T00:19:42.800849",
+      "tool_calls": null,
+      "files_touched": [
+        "file0.py"
+      ],
+      "lines_added": 0,
+      "lines_removed": 0,
+      "cascade_breaks": 0
+    }
+  ],
+  "outcome": "partial",
+  "files_intended": [
+    "file0.py",
+    "file1.py"
+  ],
+  "files_modified": [
+    "file0.py"
+  ],
+  "credits_used": 139,
+  "model_used": "infinity-model-v1",
+  "user_rating": 3,
+  "user_feedback": "Quality: fair"
+}

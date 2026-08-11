@@ -1,0 +1,1 @@
+{"text": "\n\n```python\n# Use web_fetch to get arXiv papers on multimodal RAG\ntask_input = {\n  \"url\": \"http://export.arxiv.org/api/query?search_query=all:multimodal+RAG&sortBy=submittedDate&sortOrder=descending&max_results=5\",\n  \"max_chars\": 4000\n}\nweb_fetch(**task_input)\n```\n", "input_tokens": 2822, "output_tokens": 757, "cached_at": 1786394508.2950745}

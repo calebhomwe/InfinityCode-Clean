@@ -1,0 +1,2274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Replit-style IDE</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><rect x='1' y='1' width='11' height='11' rx='2' fill='%230079f2'/><rect x='8' y='8' width='11' height='11' rx='2' fill='%23f26207'/></svg>">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0e1525; --panel: #1c2333; --panel-2: #232b3d; --border: #2b3245;
+    --text: #d9dde7; --muted: #8b93a7; --accent: #0079f2;
+    --mono: ui-monospace, "JetBrains Mono", "Fira Code", Consolas, Menlo, monospace;
+  }
+  html, body { height: 100%; }
+  body {
+    display: flex; flex-direction: column; overflow: hidden;
+    background: var(--bg); color: var(--text);
+    font: 14px/1.5 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+
+  .topbar { height: 48px; flex: none; display: flex; align-items: center; gap: 10px; padding: 0 12px; background: var(--panel); border-bottom: 1px solid var(--border); }
+  .logo { display: flex; align-items: center; gap: 8px; font-weight: 700; }
+  .project-name { color: var(--muted); font-size: 13px; padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); }
+  .spacer { flex: 1; }
+  .save-ind { font-size: 12px; color: var(--muted); min-width: 70px; text-align: right; }
+  .btn { border: none; border-radius: 6px; padding: 7px 14px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--text); background: var(--panel-2); }
+  .btn:hover:not(:disabled) { filter: brightness(1.15); }
+  .btn:disabled { opacity: .45; cursor: default; }
+  .btn-run { background: linear-gradient(135deg, #1faa63, #178f52); color: #fff; }
+  .btn-stop { background: #8a2f36; color: #fff; }
+
+  .main { flex: 1; display: flex; min-height: 0; }
+  #sidebar { width: 220px; min-width: 140px; flex: none; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+  .side-head { display: flex; align-items: center; justify-content: space-between; padding: 10px 10px 6px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .icon-btn { background: none; border: none; color: var(--muted); font-size: 16px; cursor: pointer; padding: 2px 7px; border-radius: 4px; }
+  .icon-btn:hover { color: var(--text); background: var(--panel-2); }
+  #fileList { list-style: none; overflow-y: auto; flex: 1; padding: 2px 6px 10px; }
+  #fileList li { display: flex; align-items: center; gap: 7px; padding: 5px 8px; border-radius: 6px; cursor: pointer; font-size: 13px; color: var(--muted); }
+  #fileList li:hover { background: var(--panel-2); color: var(--text); }
+  #fileList li.active { background: rgba(0, 121, 242, .16); color: var(--text); }
+  #fileList li.folder { color: var(--text); font-size: 12px; font-weight: 600; }
+  #fileList .arrow { width: 10px; flex: none; font-size: 10px; color: var(--muted); }
+  #fileList .dot { width: 8px; height: 8px; border-radius: 2px; flex: none; background: #6b7280; }
+  .dot.js { background: #f7c948; } .dot.md { background: #5aa9e6; }
+  .dot.css { background: #e07aa8; } .dot.html { background: #f28c38; }
+  .dot.json { background: #58c475; }
+  #fileList .ren, #fileList .del { margin-left: auto; visibility: hidden; background: none; border: none; color: var(--muted); cursor: pointer; font-size: 12px; }
+  #fileList .del { margin-left: 2px; }
+  #fileList li:hover .ren, #fileList li:hover .del { visibility: visible; }
+  #fileList .ren:hover { color: #7aa2f7; }
+  #fileList .del:hover { color: #f87171; }
+  .side-foot { display: flex; gap: 6px; padding: 8px; border-top: 1px solid var(--border); }
+  .side-foot .icon-btn { font-size: 12px; flex: 1; }
+
+  .divider-v { width: 5px; cursor: col-resize; flex: none; }
+  .divider-h { height: 5px; cursor: row-resize; flex: none; }
+  .divider-v:hover, .divider-h:hover { background: rgba(0, 121, 242, .5); }
+
+  .editor-area { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+  .tabs { display: flex; flex: none; overflow-x: auto; background: var(--bg); border-bottom: 1px solid var(--border); }
+  .tab { display: flex; align-items: center; gap: 8px; padding: 8px 12px; font-size: 13px; color: var(--muted); cursor: pointer; white-space: nowrap; border-right: 1px solid var(--border); background: #141b2b; }
+  .tab:hover { color: var(--text); }
+  .tab.active { background: var(--panel); color: var(--text); box-shadow: inset 0 2px 0 var(--accent); }
+  .tab .close { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 12px; padding: 0 2px; }
+  .tab .close:hover { color: #f87171; }
+
+  .editor-wrap { flex: 1; display: flex; min-height: 0; position: relative; background: var(--panel); }
+  .gutter { width: 52px; flex: none; background: #171e2e; color: #4b5468; text-align: right; padding: 12px 10px 12px 0; font: 12.5px/21px var(--mono); white-space: pre; overflow: hidden; user-select: none; border-right: 1px solid var(--border); }
+  .editor-stack { flex: 1; position: relative; min-width: 0; }
+  #highlight, #editor { font: 13.5px/21px var(--mono); padding: 12px 14px; white-space: pre; tab-size: 2; }
+  #highlight { position: absolute; inset: 0; margin: 0; overflow: hidden; pointer-events: none; color: var(--text); }
+  #editor { position: absolute; inset: 0; width: 100%; height: 100%; background: transparent; color: transparent; caret-color: #ffffff; border: none; outline: none; resize: none; overflow: auto; }
+  #editor::selection { background: rgba(0, 121, 242, .4); color: transparent; }
+
+  .tk-cm { color: #5c6370; font-style: italic; }
+  .tk-st { color: #98c379; } .tk-nu { color: #d19a66; } .tk-kw { color: #c678dd; }
+  .tk-lt { color: #56b6c2; } .tk-fn { color: #61afef; } .tk-ty { color: #e5c07b; }
+  .tk-op { color: #7f8899; } .tk-at { color: #c678dd; } .tk-hex { color: #d19a66; }
+  .tk-prop { color: #7aa2f7; } .tk-sel { color: #e5c07b; } .tk-pn { color: #8b93a7; }
+  .tk-key { color: #7aa2f7; } .tk-tg { color: #f87171; } .tk-an { color: #e5c07b; }
+  .tk-dt { color: #c678dd; } .tk-hd { color: #61afef; font-weight: 700; }
+  .tk-cb, .tk-ic { color: #98c379; } .tk-bd { font-weight: 700; }
+  .tk-lk { color: #61afef; text-decoration: underline; } .tk-q { color: #8b93a7; font-style: italic; }
+
+  .searchbox { position: absolute; top: 10px; right: 26px; z-index: 5; background: var(--panel-2); border: 1px solid var(--border); border-radius: 8px; padding: 8px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 8px 24px rgba(0, 0, 0, .4); }
+  .search-row { display: flex; gap: 6px; align-items: center; }
+  .searchbox input { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text); padding: 6px 8px; font-size: 12.5px; outline: none; width: 180px; }
+  .searchbox input:focus { border-color: var(--accent); }
+  .tiny-btn { background: var(--panel); border: 1px solid var(--border); color: var(--muted); border-radius: 6px; padding: 5px 8px; font-size: 12px; cursor: pointer; }
+  .tiny-btn:hover { color: var(--text); border-color: var(--accent); }
+  .tiny-btn.on { background: rgba(0, 121, 242, .2); color: var(--text); border-color: var(--accent); }
+  #findCount { font-size: 11px; color: var(--muted); min-width: 52px; text-align: center; }
+
+  #previewPane { flex: 1; min-width: 0; border: none; border-left: 1px solid var(--border); background: #fff; }
+  .empty-state { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: var(--panel); color: var(--muted); font-size: 14px; }
+  .hidden { display: none !important; }
+
+  .console { height: 200px; min-height: 70px; flex: none; display: flex; flex-direction: column; background: #141b2b; border-top: 1px solid var(--border); }
+  .console-head { display: flex; align-items: center; gap: 8px; padding: 6px 10px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); }
+  #consoleOutput { flex: 1; overflow-y: auto; padding: 8px 12px; font: 12.5px/1.55 var(--mono); }
+  #consoleOutput .line { white-space: pre-wrap; word-break: break-word; padding-left: 10px; border-left: 2px solid transparent; margin-bottom: 2px; }
+  .line.log { color: var(--text); }
+  .line.warn { color: #e5c07b; border-color: #e5c07b; }
+  .line.error { color: #f87171; border-color: #f87171; }
+  .line.result { color: #7aa2f7; }
+  .line.system { color: var(--muted); font-style: italic; }
+  .line.input { color: #9ece6a; }
+  .line.jump { cursor: pointer; text-decoration: underline dotted; }
+  .mini-btn { background: var(--panel-2); color: var(--text); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 12px; cursor: pointer; font-style: normal; }
+  .mini-btn:hover { border-color: var(--accent); }
+  #consoleInput { background: var(--bg); border: none; border-top: 1px solid var(--border); color: var(--text); font: 12.5px var(--mono); padding: 8px 12px; outline: none; }
+  #consoleInput::placeholder { color: #4b5468; }
+
+  #agentPanel { width: 310px; flex: none; display: flex; flex-direction: column; background: var(--panel); border-left: 1px solid var(--border); }
+  .agent-head { display: flex; align-items: center; gap: 8px; padding: 8px 10px; font-size: 12px; font-weight: 600; border-bottom: 1px solid var(--border); }
+  .badge { font-size: 10px; font-weight: 400; padding: 2px 8px; border-radius: 99px; background: var(--panel-2); color: var(--muted); border: 1px solid var(--border); max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #agentMsgs { flex: 1; overflow-y: auto; padding: 10px; display: flex; flex-direction: column; gap: 8px; font-size: 13px; }
+  .msg { padding: 8px 10px; border-radius: 8px; white-space: pre-wrap; word-break: break-word; line-height: 1.45; }
+  .msg.user { background: rgba(0, 121, 242, .15); border: 1px solid rgba(0, 121, 242, .3); align-self: flex-end; max-width: 92%; }
+  .msg.agent { background: var(--panel-2); max-width: 95%; }
+  .msg.tool { font: 11.5px var(--mono); color: var(--muted); background: transparent; padding: 1px 4px; }
+  .msg.tool.fail { color: #f87171; }
+  .chips { display: flex; gap: 6px; padding: 0 8px 6px; flex-wrap: wrap; }
+  .chip { background: var(--panel-2); border: 1px solid var(--border); color: var(--muted); font-size: 11px; border-radius: 99px; padding: 3px 10px; cursor: pointer; }
+  .chip:hover { color: var(--text); border-color: var(--accent); }
+  .agent-input { display: flex; gap: 6px; padding: 8px; border-top: 1px solid var(--border); }
+  .agent-input input { flex: 1; min-width: 0; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text); padding: 8px 10px; font-size: 13px; outline: none; }
+  .agent-input input:focus { border-color: var(--accent); }
+  .agent-input .btn { padding: 8px 12px; }
+
+  .modal { position: fixed; inset: 0; background: rgba(5, 8, 15, .7); display: flex; align-items: center; justify-content: center; z-index: 60; }
+  .modal-box { width: 460px; max-width: 92vw; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+  .modal-box h3 { margin-bottom: 6px; font-size: 15px; }
+  .modal-box .hint { font-size: 12px; color: var(--muted); margin-bottom: 10px; line-height: 1.5; }
+  .modal-box label { display: block; font-size: 12px; color: var(--muted); margin: 10px 0 4px; }
+  .modal-box input { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text); padding: 8px 10px; font-size: 13px; outline: none; }
+  .modal-box input:focus { border-color: var(--accent); }
+  .modal-actions { display: flex; gap: 8px; margin-top: 16px; align-items: center; }
+  .keys { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  .keys td { padding: 4px 6px; font-size: 12.5px; color: var(--muted); border-bottom: 1px solid var(--border); }
+  .keys td:first-child { color: var(--text); }
+  kbd { background: var(--bg); border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 4px; padding: 1px 6px; font: 11px var(--mono); }
+
+  .quickopen { position: fixed; top: 70px; left: 50%; transform: translateX(-50%); width: 420px; max-width: 90vw; background: var(--panel); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 12px 40px rgba(0, 0, 0, .5); z-index: 55; overflow: hidden; }
+  .quickopen input { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 10px 12px; font-size: 14px; outline: none; }
+  #quickList { max-height: 260px; overflow-y: auto; }
+  .qitem { padding: 7px 12px; font-size: 13px; color: var(--muted); cursor: pointer; }
+  .qitem.sel { background: rgba(0, 121, 242, .15); color: var(--text); }
+
+  .statusbar { height: 26px; flex: none; display: flex; align-items: center; justify-content: space-between; padding: 0 12px; background: #141b2b; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); }
+  .status-run { color: #4ade80; }
+  iframe.sandbox { display: none; }
+  .toast { position: fixed; right: 16px; bottom: 40px; z-index: 70; background: var(--panel-2); border: 1px solid var(--border); color: var(--text); padding: 8px 14px; border-radius: 8px; font-size: 13px; opacity: 0; transform: translateY(6px); transition: .18s; pointer-events: none; }
+  .toast.show { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="logo">
+    <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+      <rect x="1" y="1" width="11" height="11" rx="2" fill="#0079f2"/>
+      <rect x="8" y="8" width="11" height="11" rx="2" fill="#f26207" opacity="0.92"/>
+    </svg>
+    <span>repl-ish</span>
+  </div>
+  <div class="project-name">my-first-repl</div>
+  <div class="spacer"></div>
+  <span id="saveInd" class="save-ind">Saved</span>
+  <button id="runBtn" class="btn btn-run">&#9654; Run</button>
+  <button id="stopBtn" class="btn btn-stop" disabled>&#9632; Stop</button>
+  <button id="agentToggle" class="btn">&#10022; Agent</button>
+</header>
+
+<div class="main">
+  <aside id="sidebar">
+    <div class="side-head">
+      <span>Files</span>
+      <button id="newFileBtn" class="icon-btn" title="New file (folders: dir/file.js)">+</button>
+    </div>
+    <ul id="fileList"></ul>
+    <div class="side-foot">
+      <button id="exportBtn" class="icon-btn" title="Download project as JSON">&#11015; Export</button>
+      <button id="importBtn" class="icon-btn" title="Import project JSON">&#11014; Import</button>
+      <input type="file" id="importFile" accept=".json,application/json" class="hidden">
+    </div>
+  </aside>
+  <div class="divider-v" id="sidebarResizer"></div>
+
+  <section class="editor-area">
+    <div class="tabs" id="tabs"></div>
+    <div class="editor-wrap">
+      <div class="gutter" id="gutter"></div>
+      <div class="editor-stack">
+        <pre id="highlight" aria-hidden="true"></pre>
+        <textarea id="editor" wrap="off" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
+        <div class="searchbox hidden" id="searchBox">
+          <div class="search-row">
+            <input id="findInput" placeholder="Find" autocomplete="off">
+            <button id="caseBtn" class="tiny-btn" title="Match case">Aa</button>
+            <span id="findCount"></span>
+            <button id="prevMatch" class="tiny-btn" title="Previous (Shift+Enter)">&#8593;</button>
+            <button id="nextMatch" class="tiny-btn" title="Next (Enter)">&#8595;</button>
+            <button id="closeSearchBtn" class="tiny-btn" title="Close (Esc)">&#10005;</button>
+          </div>
+          <div class="search-row hidden" id="replaceRow">
+            <input id="replaceInput" placeholder="Replace" autocomplete="off">
+            <button id="btnReplace" class="tiny-btn">Replace</button>
+            <button id="btnReplaceAll" class="tiny-btn">All</button>
+          </div>
+        </div>
+      </div>
+      <iframe id="previewPane" class="hidden" sandbox="allow-scripts allow-forms allow-modals allow-popups" title="Live preview"></iframe>
+      <div class="empty-state hidden" id="emptyState">Open a file from the sidebar to start coding</div>
+    </div>
+    <div class="divider-h" id="consoleResizer"></div>
+    <div class="console" id="consolePanel">
+      <div class="console-head">
+        <span>Console</span>
+        <div class="spacer"></div>
+        <button id="clearConsole" class="icon-btn" title="Clear console">&#10227;</button>
+      </div>
+      <div id="consoleOutput"></div>
+      <input id="consoleInput" placeholder="Type a JavaScript expression and press Enterâ€¦" spellcheck="false">
+    </div>
+  </section>
+
+  <aside id="agentPanel">
+    <div class="agent-head">
+      <span>&#10022; Agent</span>
+      <span id="agentBadge" class="badge">local brain</span>
+      <div class="spacer"></div>
+      <button id="agentSettings" class="icon-btn" title="Agent settings">&#9881;</button>
+      <button id="agentClose" class="icon-btn" title="Hide agent">&#10005;</button>
+    </div>
+    <div id="agentMsgs"></div>
+    <div class="chips" id="agentChips">
+      <button class="chip" data-say="build snake game">&#127918; snake</button>
+      <button class="chip" data-say="build todo app">&#9989; todo</button>
+      <button class="chip" data-say="build landing page">&#127912; landing</button>
+      <button class="chip" data-say="fix">&#128295; fix last error</button>
+      <button class="chip" data-say="help">? help</button>
+    </div>
+    <div class="agent-input">
+      <input id="agentInput" placeholder="Ask the agentâ€¦ (&quot;help&quot; for commands)" autocomplete="off">
+      <button id="agentSend" class="btn btn-run">&#8593;</button>
+    </div>
+  </aside>
+</div>
+
+<footer class="statusbar">
+  <span id="statusLeft">Ready</span>
+  <span><span id="statusCaret">Ln 1, Col 1</span> &nbsp;&middot;&nbsp; <span id="statusLang">&mdash;</span> &nbsp;&middot;&nbsp; Ctrl/Cmd+P files &nbsp;&middot;&nbsp; Ctrl/Cmd+Shift+P commands &nbsp;&middot;&nbsp; ? help</span>
+</footer>
+
+<div class="quickopen hidden" id="quickOpen">
+  <input id="quickInput" placeholder="Open fileâ€¦" autocomplete="off">
+  <div id="quickList"></div>
+</div>
+
+<div class="modal hidden" id="settingsModal">
+  <div class="modal-box">
+    <h3>&#10022; Agent settings</h3>
+    <p class="hint">
+      Optional: connect any OpenAI-compatible endpoint (OpenAI, OpenRouter, Groq, LM Studio, Ollamaâ€¦).
+      Without it the agent uses its built-in local brain. For Ollama start it with
+      <b>OLLAMA_ORIGINS=*</b> so the browser may call it. Keys stay in your browser (localStorage).
+    </p>
+    <label>Endpoint URL
+      <input id="cfgEndpoint" placeholder="http://localhost:11434/v1  or  https://api.openai.com/v1">
+    </label>
+    <label>API key
+      <input id="cfgKey" type="password" placeholder="sk-â€¦ (leave blank for local servers)">
+    </label>
+    <label>Model
+      <input id="cfgModel" placeholder="gpt-4o-mini, llama3.1:8b, â€¦">
+    </label>
+    <div class="modal-actions">
+      <button id="cfgClear" class="btn">Reset</button>
+      <div class="spacer"></div>
+      <button id="cfgCancel" class="btn">Cancel</button>
+      <button id="cfgSave" class="btn btn-run">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal hidden" id="shortcutsModal">
+  <div class="modal-box">
+    <h3>Keyboard shortcuts</h3>
+    <table class="keys">
+      <tr><td>Run</td><td><kbd>Ctrl/Cmd</kbd> + <kbd>Enter</kbd></td></tr>
+      <tr><td>Save</td><td><kbd>Ctrl/Cmd</kbd> + <kbd>S</kbd></td></tr>
+      <tr><td>Find / Replace</td><td><kbd>Ctrl/Cmd</kbd> + <kbd>F</kbd> / <kbd>H</kbd></td></tr>
+      <tr><td>Quick open file</td><td><kbd>Ctrl/Cmd</kbd> + <kbd>P</kbd></td></tr>
+      <tr><td>Command palette</td><td><kbd>Ctrl/Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd></td></tr>
+      <tr><td>Focus agent</td><td><kbd>Ctrl/Cmd</kbd> + <kbd>K</kbd></td></tr>
+      <tr><td>Toggle comment</td><td><kbd>Ctrl/Cmd</kbd> + <kbd>/</kbd></td></tr>
+      <tr><td>Duplicate line</td><td><kbd>Ctrl/Cmd</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd></td></tr>
+      <tr><td>Move line up / down</td><td><kbd>Alt</kbd> + <kbd>&uarr;</kbd> / <kbd>&darr;</kbd></td></tr>
+      <tr><td>Indent / outdent</td><td><kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd></td></tr>
+      <tr><td>Leave editor</td><td><kbd>Esc</kbd> then <kbd>Tab</kbd></td></tr>
+      <tr><td>This help</td><td><kbd>?</kbd></td></tr>
+    </table>
+    <div class="modal-actions">
+      <div class="spacer"></div>
+      <button id="keysClose" class="btn">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  var KEY = 'replit-clone-files-v2';
+  var AGENT_SETTINGS_KEY = 'repl-ish-agent-settings';
+  var SESSION_KEY = 'repl-ish-session';
+  var PROJECT = 'default';
+
+  function resolveApiBase() {
+    var fallback = 'http://127.0.0.1:8000/api/v1';
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var project = params.get('project');
+      if (project && /^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$/.test(project)) PROJECT = project;
+      var raw = params.get('api') || fallback;
+      var parsed = new URL(raw);
+      if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') return fallback;
+      // The desktop backend is local by design. Never let a crafted iframe URL
+      // turn the IDE into a source-code exfiltration client.
+      if (parsed.hostname !== '127.0.0.1' && parsed.hostname !== 'localhost') return fallback;
+      return raw.replace(/\/$/, '');
+    } catch (_) {
+      return fallback;
+    }
+  }
+
+  var API_BASE = resolveApiBase();
+
+  var DEFAULTS = {
+    'index.js': [
+      '// Welcome to your Replit-style workspace!',
+      '// Press Run (or Ctrl/Cmd+Enter) to execute the active file.',
+      '// Files can live in folders (src/game.js) and require("./file.js") resolves relative paths.',
+      '// The Agent panel (right) can build, fix and run things for you.',
+      '',
+      'const utils = require("./utils.js");',
+      '',
+      'function greet(name) {',
+      '  return "Hello, " + name + "! ðŸ‘‹";',
+      '}',
+      '',
+      'console.log(greet("world"));',
+      'console.log("clamp(15, 0, 10) =", utils.clamp(15, 0, 10));',
+      'console.log("randomInt(1, 6)  =", utils.randomInt(1, 6));',
+      '',
+      'console.log({ editor: "textarea", sandboxed: true, modules: "commonjs" });',
+      'console.warn("This is a warning");',
+      'console.error("This is an error");',
+      '',
+      '// Code runs in a Web Worker, so Stop really stops. Try it:',
+      '// while (true) { console.log("spinningâ€¦"); }'
+    ].join('\n'),
+    'utils.js': [
+      '// Utility module. Other files load it with require("./utils.js").',
+      '',
+      'function clamp(n, min, max) {',
+      '  return Math.min(Math.max(n, min), max);',
+      '}',
+      '',
+      'function randomInt(min, max) {',
+      '  return Math.floor(Math.random() * (max - min + 1)) + min;',
+      '}',
+      '',
+      'module.exports = { clamp: clamp, randomInt: randomInt };',
+      '',
+      'if (typeof __main !== "undefined" && __main === "utils.js") {',
+      '  console.log("clamp(15, 0, 10) =", clamp(15, 0, 10));',
+      '  console.log("randomInt(1, 6)  =", randomInt(1, 6));',
+      '}'
+    ].join('\n'),
+    'index.html': [
+      '<!doctype html>',
+      '<html lang="en">',
+      '<head>',
+      '  <meta charset="utf-8">',
+      '  <title>Preview demo</title>',
+      '  <style>',
+      '    body { font-family: sans-serif; background: #f5f7fa; color: #1c2333; display: grid; place-items: center; min-height: 90vh; margin: 0; }',
+      '    .card { background: #fff; padding: 2rem 2.5rem; border-radius: 12px; box-shadow: 0 4px 18px rgba(0,0,0,.08); text-align: center; }',
+      '    button { margin-top: 1rem; padding: .5rem 1rem; border: none; border-radius: 8px; background: #0079f2; color: #fff; font-size: 1rem; cursor: pointer; }',
+      '  </style>',
+      '</head>',
+      '<body>',
+      '  <div class="card">',
+      '    <h1>Live preview</h1>',
+      '    <p>Edit this file and watch it reload as you type.</p>',
+      '    <button onclick="count()">Clicked 0 times</button>',
+      '  </div>',
+      '  <script>',
+      '    var n = 0;',
+      '    function count() {',
+      '      n = n + 1;',
+      '      document.querySelector("button").textContent = "Clicked " + n + " times";',
+      '    }',
+      '  <\/script>',
+      '</body>',
+      '</html>'
+    ].join('\n'),
+    'README.md': [
+      '# My Repl',
+      '',
+      'A tiny Replit-style IDE that runs entirely in your browser.',
+      '',
+      '## Features',
+      '- Agent panel: builds, fixes, runs; optional real LLM via the gear icon',
+      '- Starter builds: ask the agent for a snake game, todo app, or landing page',
+      '- Folders, find/replace, command palette (Ctrl/Cmd+Shift+P)',
+      '- Comment toggle, move/duplicate lines, bracket auto-pairing',
+      '- Syntax highlighting; Web Worker runs with hard Stop; require() with folders',
+      '- Live preview for .html/.css; export/import; click console errors to jump to the line',
+      '',
+      '## Shortcuts',
+      '- Ctrl/Cmd+Enter run Â· Ctrl/Cmd+S save Â· Ctrl/Cmd+F find Â· Ctrl/Cmd+H replace',
+      '- Ctrl/Cmd+P quick open Â· Ctrl/Cmd+Shift+P palette Â· Ctrl/Cmd+K agent',
+      '- Ctrl/Cmd+/ comment Â· Ctrl/Cmd+Shift+D duplicate line Â· Alt+Up/Down move line',
+      '- Press ? for the full list'
+    ].join('\n')
+  };
+
+  // ---------- built-in starter templates ----------
+  var TEMPLATES = {
+    snake: `<!doctype html>
+<html><head><meta charset="utf-8"><title>Snake</title>
+<style>
+body{margin:0;background:#0e1525;color:#d9dde7;font-family:sans-serif;display:grid;place-items:center;min-height:100vh}
+canvas{background:#1c2333;border-radius:8px}
+p{color:#8b93a7}
+</style></head>
+<body>
+<div style="text-align:center">
+<h2>Snake</h2>
+<canvas id="c" width="400" height="400"></canvas>
+<p>Arrow keys to move. Score: <span id="s">0</span></p>
+</div>
+<script>
+var ctx = document.getElementById("c").getContext("2d");
+var G = 20, snake = [{x:10,y:10}], dir = {x:1,y:0}, food = spawn(), score = 0, dead = false;
+function spawn(){ return { x: Math.floor(Math.random()*G), y: Math.floor(Math.random()*G) }; }
+document.addEventListener("keydown", function(e){
+  if (e.key === "ArrowUp" && dir.y !== 1) dir = {x:0,y:-1};
+  if (e.key === "ArrowDown" && dir.y !== -1) dir = {x:0,y:1};
+  if (e.key === "ArrowLeft" && dir.x !== 1) dir = {x:-1,y:0};
+  if (e.key === "ArrowRight" && dir.x !== -1) dir = {x:1,y:0};
+  e.preventDefault();
+});
+setInterval(function(){
+  if (dead) return;
+  var h = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
+  if (h.x < 0 || h.y < 0 || h.x >= G || h.y >= G) {
+    dead = true;
+    setTimeout(function(){ alert("Game over! Score: " + score); }, 50);
+    return;
+  }
+  snake.unshift(h);
+  if (h.x === food.x && h.y === food.y) { score++; document.getElementById("s").textContent = score; food = spawn(); }
+  else snake.pop();
+  ctx.fillStyle = "#1c2333"; ctx.fillRect(0,0,400,400);
+  ctx.fillStyle = "#f26207"; ctx.fillRect(food.x*20, food.y*20, 18, 18);
+  snake.forEach(function(p, i){ ctx.fillStyle = i ? "#1faa63" : "#4ade80"; ctx.fillRect(p.x*20, p.y*20, 18, 18); });
+}, 120);
+<\/script></body></html>`,
+    todo: `<!doctype html>
+<html><head><meta charset="utf-8"><title>Todo</title>
+<style>
+body{font-family:sans-serif;background:#0e1525;color:#d9dde7;display:grid;place-items:center;min-height:100vh;margin:0}
+.box{background:#1c2333;padding:24px;border-radius:12px;width:340px}
+input[type=text]{width:68%;padding:8px;border-radius:6px;border:1px solid #2b3245;background:#0e1525;color:#d9dde7}
+button{padding:8px 10px;border:none;border-radius:6px;background:#0079f2;color:#fff;cursor:pointer}
+ul{list-style:none;padding:0;margin-top:14px}
+li{padding:8px;border-bottom:1px solid #2b3245;display:flex;justify-content:space-between;gap:8px}
+li.done span{text-decoration:line-through;color:#8b93a7}
+li button{background:#8a2f36}
+span{cursor:pointer}
+</style></head>
+<body><div class="box"><h2>Todo</h2>
+<div><input type="text" id="t" placeholder="Add a taskâ€¦"> <button onclick="add()">Add</button></div>
+<ul id="list"></ul></div>
+<script>
+var items = [];
+function add() {
+  var el = document.getElementById("t");
+  var v = el.value.trim();
+  if (!v) return;
+  items.push({ text: v, done: false });
+  el.value = "";
+  render();
+}
+function toggle(i) { items[i].done = !items[i].done; render(); }
+function del(i) { items.splice(i, 1); render(); }
+function render() {
+  var ul = document.getElementById("list");
+  ul.innerHTML = "";
+  items.forEach(function (it, i) {
+    var li = document.createElement("li");
+    if (it.done) li.className = "done";
+    var span = document.createElement("span");
+    span.textContent = it.text;
+    span.onclick = function () { toggle(i); };
+    var b = document.createElement("button");
+    b.textContent = "x";
+    b.onclick = function () { del(i); };
+    li.appendChild(span); li.appendChild(b);
+    ul.appendChild(li);
+  });
+}
+<\/script></body></html>`,
+    landing: `<!doctype html>
+<html><head><meta charset="utf-8"><title>Aurora â€” Ship faster</title>
+<style>
+:root{color-scheme:dark}
+body{margin:0;font-family:sans-serif;background:radial-gradient(1200px 600px at 70% -10%, #12304d, transparent), #0b1020;color:#e8ecf4}
+header{display:flex;justify-content:space-between;padding:20px 6vw;align-items:center}
+nav a{color:#9aa4b8;margin-left:18px;text-decoration:none}
+.hero{padding:10vh 6vw;max-width:760px}
+h1{font-size:52px;line-height:1.05;margin:0 0 16px}
+.grad{background:linear-gradient(90deg,#4f8cff,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
+p.sub{color:#9aa4b8;font-size:18px}
+.cta{display:inline-block;margin-top:24px;padding:12px 22px;border-radius:10px;background:#4f8cff;color:#fff;text-decoration:none;font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:0 6vw 10vh}
+.card{background:#12182b;border:1px solid #232b45;border-radius:12px;padding:20px}
+.card h3{margin:0 0 8px}
+.card p{color:#9aa4b8;margin:0}
+footer{color:#5b6478;padding:24px 6vw;border-top:1px solid #232b45}
+</style></head>
+<body>
+<header><b>Aurora</b><nav><a href="#">Product</a><a href="#">Pricing</a><a href="#">Docs</a></nav></header>
+<div class="hero">
+<h1>Ship your ideas <span class="grad">at light speed</span></h1>
+<p class="sub">Aurora is the all-in-one workspace for teams that build. Plan, code, and launch without leaving your browser.</p>
+<a class="cta" href="#">Start building &rarr;</a>
+</div>
+<div class="cards">
+<div class="card"><h3>&#9889; Instant</h3><p>Zero-setup environments spin up in milliseconds.</p></div>
+<div class="card"><h3>&#129309; Collaborative</h3><p>Multiplayer editing for code, docs, and design.</p></div>
+<div class="card"><h3>&#128274; Secure</h3><p>Sandboxed runs and granular secrets by default.</p></div>
+</div>
+<footer>&copy; 2026 Aurora Labs &mdash; built by the agent &#10022;</footer>
+</body></html>`
+  };
+
+  // ---------- runner sources ----------
+  var WORKER_SRC = `
+function fmt(v, depth) {
+  depth = depth || 0;
+  if (v === null) return 'null';
+  var t = typeof v;
+  if (t === 'undefined') return 'undefined';
+  if (t === 'string') return depth ? JSON.stringify(v) : v;
+  if (t === 'number' || t === 'boolean') return String(v);
+  if (t === 'bigint') return String(v) + 'n';
+  if (t === 'symbol') return v.toString();
+  if (t === 'function') return 'f ' + (v.name || 'anonymous') + '()';
+  if (v instanceof Error) return v.stack || (v.name + ': ' + v.message);
+  if (depth >= 3) return Array.isArray(v) ? '[...]' : '{...}';
+  try {
+    if (Array.isArray(v)) return '[' + v.map(function (x) { return fmt(x, depth + 1); }).join(', ') + ']';
+    var keys = Object.keys(v);
+    var body = keys.slice(0, 25).map(function (k) { return k + ': ' + fmt(v[k], depth + 1); }).join(', ');
+    return '{ ' + body + (keys.length > 25 ? ', ...' : '') + ' }';
+  } catch (e) { return String(v); }
+}
+function send(type, args) {
+  self.postMessage({ type: type, text: args.map(function (a) { return fmt(a); }).join(' ') });
+}
+['log', 'info', 'debug', 'warn', 'error'].forEach(function (m) {
+  var out = (m === 'info' || m === 'debug') ? 'log' : m;
+  console[m] = function () { send(out, Array.prototype.slice.call(arguments)); };
+});
+self.addEventListener('error', function (e) {
+  send('error', [e.message + (e.lineno ? ' (line ' + e.lineno + ')' : '')]);
+  e.preventDefault();
+});
+self.addEventListener('unhandledrejection', function (e) {
+  send('error', ['Unhandled rejection: ' + fmt(e.reason)]);
+  e.preventDefault();
+});
+var mods = {};
+var moduleCache = {};
+function dirOf(p) {
+  p = String(p);
+  var i = p.lastIndexOf('/');
+  return i === -1 ? '' : p.slice(0, i + 1);
+}
+function resolveMod(name, baseDir) {
+  var raw = String(name);
+  var joined = (raw.indexOf('./') === 0 || raw.indexOf('../') === 0) ? baseDir + raw : raw;
+  var parts = joined.split('/');
+  var out = [];
+  for (var i = 0; i < parts.length; i++) {
+    var seg = parts[i];
+    if (seg === '' || seg === '.') continue;
+    if (seg === '..') { out.pop(); continue; }
+    out.push(seg);
+  }
+  var p = out.join('/');
+  if (p.slice(-3) !== '.js') p = p + '.js';
+  return p;
+}
+function makeRequire(baseDir) {
+  return function require(name) {
+    var clean = resolveMod(name, baseDir);
+    if (!(clean in mods)) throw new Error('Cannot find module "' + name + '"');
+    if (moduleCache[clean]) return moduleCache[clean].exports;
+    var module = { exports: {} };
+    moduleCache[clean] = module;
+    var fn = new Function('module', 'exports', 'require', mods[clean]);
+    fn(module, module.exports, makeRequire(dirOf(clean)));
+    return module.exports;
+  };
+}
+var require = makeRequire('');
+self.addEventListener('message', function (ev) {
+  var d = ev.data || {};
+  if (d.type === 'run') {
+    mods = d.modules || {};
+    moduleCache = {};
+    require = makeRequire(dirOf(d.target));
+    var __main = d.target;
+    var module = { exports: {} };
+    var exports = module.exports;
+    try {
+      var r = eval(d.code);
+      if (r !== undefined) send('result', [r]);
+      self.postMessage({ type: 'done', text: '' });
+    } catch (err) {
+      send('error', [err && err.stack ? err.stack : String(err)]);
+      self.postMessage({ type: 'done', text: '' });
+    }
+  } else if (d.type === 'eval') {
+    try { send('result', [eval(d.code)]); }
+    catch (err) { send('error', [err && err.stack ? err.stack : String(err)]); }
+  }
+});
+`;
+
+  var BOOTSTRAP = `<!doctype html><html><head><meta charset="utf-8"></head><body><script>
+(function () {
+  function fmt(v, depth) {
+    depth = depth || 0;
+    if (v === null) return 'null';
+    var t = typeof v;
+    if (t === 'undefined') return 'undefined';
+    if (t === 'string') return depth ? JSON.stringify(v) : v;
+    if (t === 'number' || t === 'boolean') return String(v);
+    if (t === 'bigint') return String(v) + 'n';
+    if (t === 'symbol') return v.toString();
+    if (t === 'function') return 'f ' + (v.name || 'anonymous') + '()';
+    if (v instanceof Error) return v.stack || (v.name + ': ' + v.message);
+    if (typeof Element !== 'undefined' && v instanceof Element) {
+      return '<' + v.tagName.toLowerCase() + (v.id ? '#' + v.id : '') + '>';
+    }
+    if (depth >= 3) return Array.isArray(v) ? '[...]' : '{...}';
+    try {
+      if (Array.isArray(v)) {
+        return '[' + v.map(function (x) { return fmt(x, depth + 1); }).join(', ') + ']';
+      }
+      var keys = Object.keys(v);
+      var body = keys.slice(0, 25).map(function (k) { return k + ': ' + fmt(v[k], depth + 1); }).join(', ');
+      return '{ ' + body + (keys.length > 25 ? ', ...' : '') + ' }';
+    } catch (e) { return String(v); }
+  }
+  function send(type, args) {
+    try {
+      parent.postMessage({ __sandbox: true, type: type,
+        text: args.map(function (a) { return fmt(a); }).join(' ') }, '*');
+    } catch (e) {}
+  }
+  ['log', 'info', 'debug', 'warn', 'error'].forEach(function (m) {
+    var out = (m === 'info' || m === 'debug') ? 'log' : m;
+    console[m] = function () { send(out, Array.prototype.slice.call(arguments)); };
+  });
+  window.addEventListener('error', function (e) {
+    send('error', [e.message + (e.lineno ? ' (line ' + e.lineno + ')' : '')]);
+  });
+  window.addEventListener('unhandledrejection', function (e) {
+    send('error', ['Unhandled rejection: ' + fmt(e.reason)]);
+  });
+  var mods = {};
+  var moduleCache = {};
+  function dirOf(p) {
+    p = String(p);
+    var i = p.lastIndexOf('/');
+    return i === -1 ? '' : p.slice(0, i + 1);
+  }
+  function resolveMod(name, baseDir) {
+    var raw = String(name);
+    var joined = (raw.indexOf('./') === 0 || raw.indexOf('../') === 0) ? baseDir + raw : raw;
+    var parts = joined.split('/');
+    var out = [];
+    for (var i = 0; i < parts.length; i++) {
+      var seg = parts[i];
+      if (seg === '' || seg === '.') continue;
+      if (seg === '..') { out.pop(); continue; }
+      out.push(seg);
+    }
+    var p = out.join('/');
+    if (p.slice(-3) !== '.js') p = p + '.js';
+    return p;
+  }
+  function makeRequire(baseDir) {
+    return function require(name) {
+      var clean = resolveMod(name, baseDir);
+      if (!(clean in mods)) throw new Error('Cannot find module "' + name + '"');
+      if (moduleCache[clean]) return moduleCache[clean].exports;
+      var module = { exports: {} };
+      moduleCache[clean] = module;
+      var fn = new Function('module', 'exports', 'require', mods[clean]);
+      fn(module, module.exports, makeRequire(dirOf(clean)));
+      return module.exports;
+    };
+  }
+  var require = makeRequire('');
+  window.addEventListener('message', function (ev) {
+    var d = ev.data || {};
+    if (d.type === 'run') {
+      mods = d.modules || {};
+      moduleCache = {};
+      require = makeRequire(dirOf(d.target));
+      var __main = d.target;
+      var module = { exports: {} };
+      var exports = module.exports;
+      try {
+        var r = eval(d.code);
+        if (r !== undefined) send('result', [r]);
+        send('done', []);
+      } catch (err) {
+        send('error', [err && err.stack ? err.stack : String(err)]);
+        send('done', []);
+      }
+    } else if (d.type === 'eval') {
+      try { send('result', [eval(d.code)]); }
+      catch (err) { send('error', [err && err.stack ? err.stack : String(err)]); }
+    }
+  });
+  parent.postMessage({ __sandbox: true, type: 'ready' }, '*');
+})();
+<\/script></body></html>`;
+
+  var LANGS = { js: 'JavaScript', mjs: 'JavaScript', json: 'JSON', md: 'Markdown', html: 'HTML', css: 'CSS', txt: 'Plain Text' };
+
+  // ---------- syntax highlighting ----------
+  var SPECS = {
+    js: [
+      ['cm', /\/\/[^\n]*|\/\*[\s\S]*?(?:\*\/|$)/],
+      ['st', /`(?:\\[\s\S]|[^\\`])*`?|"(?:\\.|[^"\\\n])*"?|'(?:\\.|[^'\\\n])*'?/],
+      ['nu', /\b(?:0[xX][\da-fA-F_]+|0[bB][01_]+|0[oO][0-7_]+|\d[\d_]*(?:\.\d[\d_]*)?(?:[eE][+-]?\d+)?n?)\b/],
+      ['kw', /\b(?:const|let|var|function|return|if|else|for|while|do|switch|case|default|break|continue|new|class|extends|super|this|typeof|instanceof|in|of|try|catch|finally|throw|delete|void|yield|async|await|import|export|from|static|get|set|debugger)\b/],
+      ['lt', /\b(?:true|false|null|undefined|NaN|Infinity)\b/],
+      ['fn', /[A-Za-z_$][\w$]*(?=\s*\()/],
+      ['ty', /\b[A-Z][\w$]*\b/],
+      ['op', /[+\-*/%=!<>&|^~?:]+/]
+    ],
+    json: [
+      ['key', /"(?:\\.|[^"\\])*"(?=\s*:)/],
+      ['st', /"(?:\\.|[^"\\])*"/],
+      ['nu', /-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/],
+      ['lt', /\b(?:true|false|null)\b/]
+    ],
+    css: [
+      ['cm', /\/\*[\s\S]*?(?:\*\/|$)/],
+      ['st', /"(?:\\.|[^"\\\n])*"?|'(?:\\.|[^'\\\n])*'?/],
+      ['at', /@[\w-]+/],
+      ['hex', /#[0-9a-fA-F]{3,8}\b/],
+      ['nu', /(?:\d+\.?\d*|\.\d+)(?:px|em|rem|vh|vw|vmin|vmax|%|s|ms|deg|fr|ch)?/],
+      ['prop', /[a-zA-Z-]+(?=\s*:)/],
+      ['sel', /[.#][-\w]+/],
+      ['kw', /!important\b/],
+      ['pn', /[{}();:,]/]
+    ],
+    html: [
+      ['cm', /<!--[\s\S]*?(?:-->|$)/],
+      ['dt', /<![Dd][Oo][Cc][Tt][Yy][Pp][Ee][^>]*>/],
+      ['tg', /<\/?[a-zA-Z][\w:-]*|\/?>/],
+      ['an', /[a-zA-Z_:-]+(?==)/],
+      ['st', /"[^"]*"?|'[^']*'?/]
+    ],
+    md: [
+      ['hd', /^#{1,6}[^\n]*/],
+      ['cb', /^```[^\n]*/],
+      ['ic', /`[^`\n]*`?/],
+      ['bd', /\*\*[^*\n]+\*\*|__[^_\n]+__/],
+      ['lk', /\[[^\]\n]*\]\([^)\n]*\)/],
+      ['q', /^>[^\n]*/]
+    ]
+  };
+  var RULES_CACHE = {};
+
+  function langOf(name) {
+    var e = extOf(name || '');
+    if (e === 'js' || e === 'mjs' || e === 'ts' || e === 'jsx') return 'js';
+    if (e === 'json') return 'json';
+    if (e === 'css') return 'css';
+    if (e === 'html' || e === 'htm' || e === 'xml' || e === 'svg') return 'html';
+    if (e === 'md' || e === 'markdown') return 'md';
+    return 'text';
+  }
+  function rulesFor(lang) {
+    if (!RULES_CACHE[lang]) {
+      var spec = SPECS[lang];
+      var flags = 'g' + (lang === 'md' ? 'm' : '');
+      RULES_CACHE[lang] = new RegExp(
+        spec.map(function (s) { return '(' + s[1].source + ')'; }).join('|'), flags);
+    }
+    return RULES_CACHE[lang];
+  }
+  function escapeHtml(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+  function highlight(code, lang) {
+    var spec = SPECS[lang];
+    if (!spec) return escapeHtml(code);
+    var rules = rulesFor(lang);
+    rules.lastIndex = 0;
+    var out = '', last = 0, m;
+    while ((m = rules.exec(code)) !== null) {
+      out += escapeHtml(code.slice(last, m.index));
+      var cls = '';
+      for (var i = 0; i < spec.length; i++) {
+        if (m[i + 1] !== undefined) { cls = spec[i][0]; break; }
+      }
+      out += '<span class="tk-' + cls + '">' + escapeHtml(m[0]) + '</span>';
+      last = m.index + m[0].length;
+      if (m.index === rules.lastIndex) rules.lastIndex++;
+    }
+    out += escapeHtml(code.slice(last));
+    return out;
+  }
+  function renderHighlight() {
+    highlightEl.innerHTML = highlight(editor.value, langOf(activeFile)) + '\n';
+  }
+
+  // ---------- state ----------
+  var files = {};
+  var openTabs = [];
+  var activeFile = null;
+  var expanded = {};
+  var runner = null, replRunner = null, running = false;
+  var currentRunFile = null, lastRunError = null, sawRunError = false, fixAttempts = 0;
+  var saveTimer = null, toastTimer = null, previewTimer = null;
+  var backendRevision = 0, backendReady = false, backendConnecting = false;
+  var backendSaveInFlight = false, backendSaveQueued = false;
+  var localChangedWhileHydrating = false;
+  var history = [], histIdx = -1;
+  var tabEscape = false;
+  var agentBusy = false, agentHistory = [];
+  var agentCfg = { endpoint: '', key: '', model: '' };
+  var searchState = { matches: [], idx: 0, sensitive: true };
+
+  function $(id) { return document.getElementById(id); }
+  var editor = $('editor'), gutter = $('gutter'), highlightEl = $('highlight'),
+      fileList = $('fileList'), tabsEl = $('tabs'),
+      consoleOutput = $('consoleOutput'), consoleInput = $('consoleInput'),
+      statusLeft = $('statusLeft'), statusCaret = $('statusCaret'), statusLang = $('statusLang'),
+      saveInd = $('saveInd'), runBtn = $('runBtn'), stopBtn = $('stopBtn'),
+      emptyState = $('emptyState'), sidebar = $('sidebar'), consolePanel = $('consolePanel'),
+      previewPane = $('previewPane'), toastEl = $('toast'),
+      agentPanel = $('agentPanel'), agentMsgs = $('agentMsgs'), agentInput = $('agentInput'),
+      agentSend = $('agentSend'), agentBadge = $('agentBadge'), settingsModal = $('settingsModal'),
+      cfgEndpoint = $('cfgEndpoint'), cfgKey = $('cfgKey'), cfgModel = $('cfgModel'),
+      quickOpen = $('quickOpen'), quickInput = $('quickInput'), quickList = $('quickList'),
+      searchBox = $('searchBox'), findInput = $('findInput'), findCount = $('findCount'),
+      replaceRow = $('replaceRow'), replaceInput = $('replaceInput'),
+      shortcutsModal = $('shortcutsModal'),
+      editorArea = document.querySelector('.editor-area');
+
+  function extOf(name) {
+    var base = String(name);
+    var slash = base.lastIndexOf('/');
+    if (slash !== -1) base = base.slice(slash + 1);
+    var i = base.lastIndexOf('.');
+    return i === -1 ? '' : base.slice(i + 1).toLowerCase();
+  }
+  function validFileName(name) {
+    return /^([A-Za-z0-9_\-]+\/)*[A-Za-z0-9_\-]+\.[A-Za-z0-9]{1,8}$/.test(name);
+  }
+
+  // ---------- persistence ----------
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (raw) {
+        var d = JSON.parse(raw);
+        if (d && typeof d === 'object' && Object.keys(d).length) { files = d; return; }
+      }
+    } catch (e) {}
+    files = JSON.parse(JSON.stringify(DEFAULTS));
+  }
+  function snapshotFiles() {
+    syncActiveToModel();
+    return JSON.parse(JSON.stringify(files));
+  }
+  function persistLocal() {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(files));
+      if (!backendReady) saveInd.textContent = 'Saved locally';
+      return true;
+    } catch (e) {
+      saveInd.textContent = 'Save failed';
+      return false;
+    }
+  }
+  function persist() {
+    snapshotFiles();
+    localChangedWhileHydrating = true;
+    persistLocal();
+    if (backendReady) queueBackendSave();
+    else hydrateBackend(true);
+  }
+  function schedulePersist() {
+    saveInd.textContent = 'Saving\u2026';
+    localChangedWhileHydrating = true;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(persist, 300);
+  }
+
+  function normalizeTabsAfterBackendLoad() {
+    openTabs = openTabs.filter(function (name) { return name in files; });
+    if (!openTabs.length) {
+      var first = ('index.js' in files) ? 'index.js' : (Object.keys(files).sort()[0] || null);
+      if (first) openTabs = [first];
+    }
+    if (!activeFile || !(activeFile in files)) activeFile = openTabs[0] || null;
+    if (activeFile && openTabs.indexOf(activeFile) === -1) openTabs.push(activeFile);
+    loadEditorForActive();
+    renderFiles();
+    renderTabs();
+  }
+
+  async function readBackendProject() {
+    var response = await fetch(API_BASE + '/ide/files?project=' + encodeURIComponent(PROJECT), {
+      headers: { 'Accept': 'application/json' }
+    });
+    if (!response.ok) throw new Error('Backend workspace load failed (' + response.status + ')');
+    return response.json();
+  }
+
+  async function hydrateBackend(localWins) {
+    if (backendConnecting || backendReady) return;
+    backendConnecting = true;
+    try {
+      var remote = await readBackendProject();
+      backendRevision = Number(remote.revision) || 0;
+      var remoteFiles = (remote.files && typeof remote.files === 'object') ? remote.files : {};
+      var shouldMerge = !!localWins || localChangedWhileHydrating;
+      if (Object.keys(remoteFiles).length) {
+        if (shouldMerge) files = Object.assign({}, remoteFiles, snapshotFiles());
+        else files = remoteFiles;
+        normalizeTabsAfterBackendLoad();
+        persistLocal();
+      }
+      backendReady = true;
+      saveInd.textContent = 'Saved to backend';
+      // Empty remote projects are migrated from the local cache. A local edit
+      // made during startup is also written back without discarding it.
+      if (!Object.keys(remoteFiles).length || shouldMerge) queueBackendSave();
+    } catch (error) {
+      backendReady = false;
+      saveInd.textContent = 'Saved locally';
+    } finally {
+      backendConnecting = false;
+    }
+  }
+
+  function queueBackendSave() {
+    if (!backendReady) return;
+    if (backendSaveInFlight) {
+      backendSaveQueued = true;
+      return;
+    }
+    void saveBackendProject();
+  }
+
+  async function saveBackendProject() {
+    backendSaveInFlight = true;
+    backendSaveQueued = false;
+    saveInd.textContent = 'Saving to backend\u2026';
+    try {
+      var payloadFiles = snapshotFiles();
+      for (var attempt = 0; attempt < 2; attempt++) {
+        var response = await fetch(API_BASE + '/ide/files', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            project: PROJECT,
+            files: payloadFiles,
+            base_revision: backendRevision
+          })
+        });
+        if (response.status === 409 && attempt === 0) {
+          // Preserve files created by another device, while keeping this
+          // editor's version for paths it actively owns.
+          var remote = await readBackendProject();
+          backendRevision = Number(remote.revision) || 0;
+          payloadFiles = Object.assign({}, remote.files || {}, snapshotFiles());
+          files = payloadFiles;
+          normalizeTabsAfterBackendLoad();
+          persistLocal();
+          continue;
+        }
+        if (!response.ok) throw new Error('Backend workspace save failed (' + response.status + ')');
+        var saved = await response.json();
+        backendRevision = Number(saved.revision) || backendRevision;
+        saveInd.textContent = 'Saved to backend';
+        break;
+      }
+    } catch (error) {
+      backendReady = false;
+      persistLocal();
+      saveInd.textContent = 'Saved locally';
+    } finally {
+      backendSaveInFlight = false;
+      if (backendSaveQueued && backendReady) queueBackendSave();
+    }
+  }
+  function saveSession() {
+    try { localStorage.setItem(SESSION_KEY, JSON.stringify({ tabs: openTabs, active: activeFile })); } catch (_) {}
+  }
+  function loadSession() {
+    try {
+      var d = JSON.parse(localStorage.getItem(SESSION_KEY));
+      if (d && Array.isArray(d.tabs)) {
+        var t = d.tabs.filter(function (n) { return n in files; });
+        if (t.length) {
+          openTabs = t;
+          activeFile = (d.active && d.active in files) ? d.active : t[0];
+          return true;
+        }
+      }
+    } catch (_) {}
+    return false;
+  }
+  function loadAgentCfg() {
+    try {
+      var d = JSON.parse(localStorage.getItem(AGENT_SETTINGS_KEY));
+      if (d && typeof d === 'object') agentCfg = { endpoint: d.endpoint || '', key: d.key || '', model: d.model || '' };
+    } catch (e) {}
+  }
+  function saveAgentCfg() {
+    try { localStorage.setItem(AGENT_SETTINGS_KEY, JSON.stringify(agentCfg)); } catch (e) {}
+  }
+  function llmConfigured() { return !!agentCfg.endpoint && !!agentCfg.model; }
+
+  // ---------- toast ----------
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 1600);
+  }
+
+  // ---------- file tree ----------
+  function buildTree() {
+    var root = {};
+    Object.keys(files).sort().forEach(function (p) {
+      var parts = p.split('/');
+      var node = root;
+      parts.forEach(function (seg, i) {
+        if (i === parts.length - 1) node[seg] = { __file: p };
+        else {
+          if (!node[seg] || node[seg].__file) node[seg] = {};
+          node = node[seg];
+        }
+      });
+    });
+    return root;
+  }
+  function makeFileRow(name, depth) {
+    var li = document.createElement('li');
+    if (name === activeFile) li.classList.add('active');
+    li.dataset.name = name;
+    li.style.paddingLeft = (8 + depth * 12) + 'px';
+    var dot = document.createElement('span');
+    dot.className = 'dot ' + extOf(name);
+    var label = document.createElement('span');
+    label.textContent = name.split('/').pop();
+    label.title = name;
+    var ren = document.createElement('button');
+    ren.className = 'ren'; ren.textContent = '\u270E'; ren.title = 'Rename';
+    ren.dataset.rename = name;
+    var del = document.createElement('button');
+    del.className = 'del'; del.textContent = '\u2715'; del.title = 'Delete file';
+    del.dataset.del = name;
+    li.appendChild(dot); li.appendChild(label); li.appendChild(ren); li.appendChild(del);
+    return li;
+  }
+  function renderTreeNode(node, prefix, depth) {
+    var keys = Object.keys(node).sort(function (a, b) {
+      var af = node[a].__file ? 1 : 0, bf = node[b].__file ? 1 : 0;
+      if (af !== bf) return af - bf;
+      return a.localeCompare(b);
+    });
+    keys.forEach(function (k) {
+      var n = node[k];
+      if (n.__file) {
+        fileList.appendChild(makeFileRow(n.__file, depth));
+      } else {
+        var path = prefix + k + '/';
+        var li = document.createElement('li');
+        li.className = 'folder';
+        li.style.paddingLeft = (8 + depth * 12) + 'px';
+        var ar = document.createElement('span');
+        ar.className = 'arrow';
+        ar.textContent = expanded[path] !== false ? '\u25BE' : '\u25B8';
+        var lb = document.createElement('span');
+        lb.textContent = k;
+        li.appendChild(ar); li.appendChild(lb);
+        li.addEventListener('click', function () {
+          expanded[path] = expanded[path] === false;
+          renderFiles();
+        });
+        fileList.appendChild(li);
+        if (expanded[path] !== false) renderTreeNode(n, path, depth + 1);
+      }
+    });
+  }
+  function renderFiles() {
+    fileList.innerHTML = '';
+    renderTreeNode(buildTree(), '', 0);
+  }
+  function renderTabs() {
+    tabsEl.innerHTML = '';
+    openTabs.forEach(function (name) {
+      var t = document.createElement('div');
+      t.className = 'tab' + (name === activeFile ? ' active' : '');
+      t.dataset.tab = name;
+      var label = document.createElement('span');
+      label.textContent = name.split('/').pop();
+      label.title = name;
+      var c = document.createElement('button');
+      c.className = 'close'; c.textContent = '\u2715'; c.dataset.close = name;
+      t.appendChild(label); t.appendChild(c);
+      tabsEl.appendChild(t);
+    });
+    saveSession();
+  }
+
+  function syncActiveToModel() {
+    if (activeFile && activeFile in files) files[activeFile] = editor.value;
+  }
+  function loadEditorForActive() {
+    if (activeFile) {
+      editor.readOnly = false;
+      editor.value = files[activeFile];
+      emptyState.classList.add('hidden');
+    } else {
+      editor.readOnly = true;
+      editor.value = '';
+      emptyState.classList.remove('hidden');
+    }
+    updateGutter(); renderHighlight(); updateCaret(); updateLang(); updatePreviewVisibility();
+  }
+
+  function openFile(name) {
+    if (!(name in files)) return;
+    syncActiveToModel();
+    if (openTabs.indexOf(name) === -1) openTabs.push(name);
+    activeFile = name;
+    loadEditorForActive();
+    renderFiles(); renderTabs();
+    editor.focus();
+  }
+  function closeTab(name) {
+    var i = openTabs.indexOf(name);
+    if (i === -1) return;
+    syncActiveToModel();
+    openTabs.splice(i, 1);
+    if (activeFile === name) {
+      activeFile = openTabs[Math.min(i, openTabs.length - 1)] || null;
+      loadEditorForActive();
+    }
+    renderTabs(); renderFiles();
+  }
+  function createFile() {
+    var name = prompt('New file name (folders allowed, e.g. src/game.js):');
+    if (!name) return;
+    var clean = name.trim();
+    if (!validFileName(clean)) { toast('Invalid file name'); return; }
+    if (files[clean] !== undefined) { toast('File already exists'); return; }
+    files[clean] = '';
+    persist();
+    openFile(clean);
+  }
+  function removeFileNoConfirm(name) {
+    delete files[name];
+    openTabs = openTabs.filter(function (t) { return t !== name; });
+    if (activeFile === name) activeFile = null;
+    if (Object.keys(files).length === 0) files['untitled.js'] = '';
+    if (!activeFile) {
+      activeFile = openTabs[0] || Object.keys(files).sort()[0] || null;
+      if (activeFile && openTabs.indexOf(activeFile) === -1) openTabs.push(activeFile);
+    }
+    loadEditorForActive();
+    renderFiles(); renderTabs();
+  }
+  function deleteFile(name) {
+    if (!confirm('Delete "' + name + '"?')) return;
+    removeFileNoConfirm(name);
+    persist();
+  }
+  function renameFile(oldName, newName) {
+    if (!(oldName in files)) return { ok: false, out: 'file not found' };
+    var clean = String(newName == null ? '' : newName).trim();
+    if (!validFileName(clean)) return { ok: false, out: 'invalid name' };
+    if (clean === oldName) return { ok: true, out: 'unchanged' };
+    if (files[clean] !== undefined) return { ok: false, out: 'name already exists' };
+    files[clean] = files[oldName];
+    delete files[oldName];
+    openTabs = openTabs.map(function (t) { return t === oldName ? clean : t; });
+    if (activeFile === oldName) activeFile = clean;
+    loadEditorForActive();
+    renderFiles(); renderTabs(); persist();
+    return { ok: true, out: 'renamed to ' + clean };
+  }
+  function promptRename(oldName) {
+    var nn = prompt('Rename "' + oldName + '" to:', oldName);
+    if (!nn) return;
+    var r = renameFile(oldName, nn);
+    if (!r.ok) toast(r.out);
+  }
+
+  fileList.addEventListener('click', function (e) {
+    var del = e.target.closest('[data-del]');
+    if (del) { deleteFile(del.dataset.del); return; }
+    var ren = e.target.closest('[data-rename]');
+    if (ren) { promptRename(ren.dataset.rename); return; }
+    var li = e.target.closest('li[data-name]');
+    if (li) openFile(li.dataset.name);
+  });
+  tabsEl.addEventListener('click', function (e) {
+    var close = e.target.closest('[data-close]');
+    if (close) { closeTab(close.dataset.close); return; }
+    var t = e.target.closest('[data-tab]');
+    if (t) openFile(t.dataset.tab);
+  });
+  $('newFileBtn').addEventListener('click', createFile);
+
+  // ---------- export / import ----------
+  function exportProject() {
+    var blob = new Blob([JSON.stringify({ name: 'my-first-repl', files: files }, null, 2)], { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'my-first-repl.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { try { URL.revokeObjectURL(a.href); } catch (_) {} }, 1000);
+  }
+  function importProject(fileObj) {
+    var rd = new FileReader();
+    rd.onload = function () {
+      try {
+        var d = JSON.parse(rd.result);
+        var f = (d && d.files) ? d.files : d;
+        if (!f || typeof f !== 'object') throw new Error('bad format');
+        var clean = {};
+        Object.keys(f).forEach(function (k) { if (typeof f[k] === 'string') clean[k] = f[k]; });
+        if (!Object.keys(clean).length) throw new Error('no files found');
+        if (!confirm('Replace current project with ' + Object.keys(clean).length + ' imported files?')) return;
+        files = clean;
+        openTabs = [];
+        activeFile = Object.keys(files).sort()[0] || null;
+        if (activeFile) openTabs = [activeFile];
+        loadEditorForActive();
+        renderFiles(); renderTabs(); persist();
+        toast('Project imported');
+      } catch (err) { toast('Import failed: ' + err.message); }
+    };
+    rd.readAsText(fileObj);
+  }
+  $('exportBtn').addEventListener('click', exportProject);
+  $('importBtn').addEventListener('click', function () { $('importFile').click(); });
+  $('importFile').addEventListener('change', function () {
+    if (this.files && this.files[0]) importProject(this.files[0]);
+    this.value = '';
+  });
+
+  // ---------- preview ----------
+  function shouldPreview() {
+    var e = activeFile ? extOf(activeFile) : '';
+    return e === 'html' || e === 'css';
+  }
+  function refreshPreview() {
+    if (!shouldPreview()) return;
+    var doc;
+    if (extOf(activeFile) === 'html') {
+      doc = files[activeFile];
+    } else {
+      doc = '<!doctype html><html><head><meta charset="utf-8"><style>' +
+        String(files[activeFile]).replace(/<\/style/gi, '<\\/style') +
+        '</style></head><body><h1>CSS preview</h1><p>Editing ' + activeFile +
+        ' reloads this pane live.</p><button>A button</button><input placeholder="An input"></body></html>';
+    }
+    previewPane.srcdoc = doc;
+  }
+  function updatePreviewVisibility() {
+    if (shouldPreview()) {
+      previewPane.classList.remove('hidden');
+      refreshPreview();
+    } else {
+      previewPane.classList.add('hidden');
+    }
+  }
+  function schedulePreview() {
+    if (!shouldPreview()) return;
+    clearTimeout(previewTimer);
+    previewTimer = setTimeout(refreshPreview, 300);
+  }
+
+  // ---------- editor ----------
+  function updateGutter() {
+    var n = editor.value ? editor.value.split('\n').length : 1;
+    var s = '';
+    for (var i = 1; i <= n; i++) s += i + '\n';
+    gutter.textContent = s;
+    gutter.scrollTop = editor.scrollTop;
+  }
+  function updateCaret() {
+    var pos = editor.selectionStart || 0;
+    var upto = editor.value.slice(0, pos);
+    var ln = upto.split('\n').length;
+    var col = pos - upto.lastIndexOf('\n');
+    statusCaret.textContent = 'Ln ' + ln + ', Col ' + col;
+  }
+  function updateLang() {
+    statusLang.textContent = activeFile ? (LANGS[extOf(activeFile)] || 'Plain Text') : '\u2014';
+  }
+  function insertText(text) {
+    editor.focus();
+    var ok = false;
+    try { ok = document.execCommand('insertText', false, text); } catch (e) { ok = false; }
+    if (!ok) {
+      editor.setRangeText(text, editor.selectionStart, editor.selectionEnd, 'end');
+      editor.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  }
+  function outdentLine() {
+    var s = editor.selectionStart;
+    var lineStart = editor.value.lastIndexOf('\n', s - 1) + 1;
+    var m = editor.value.slice(lineStart).match(/^ {1,2}/);
+    if (!m) return;
+    editor.setSelectionRange(lineStart, lineStart + m[0].length);
+    insertText('');
+    editor.setSelectionRange(lineStart, lineStart);
+  }
+
+  // editing helpers
+  function lineCommentToggle() {
+    var v = editor.value, s = editor.selectionStart, en = editor.selectionEnd;
+    var ls = v.lastIndexOf('\n', s - 1) + 1;
+    var le = v.indexOf('\n', en); if (le === -1) le = v.length;
+    var lines = v.slice(ls, le).split('\n');
+    var nonEmpty = lines.filter(function (l) { return l.trim() !== ''; });
+    var all = nonEmpty.length && nonEmpty.every(function (l) { return /^\s*\/\//.test(l); });
+    var out = lines.map(function (l) {
+      if (l.trim() === '') return l;
+      if (all) return l.replace(/^(\s*)\/\/\s?/, '$1');
+      var m = l.match(/^\s*/)[0];
+      return m + '// ' + l.slice(m.length);
+    }).join('\n');
+    editor.setSelectionRange(ls, le);
+    insertText(out);
+    editor.setSelectionRange(ls, ls + out.length);
+  }
+  function blockCommentToggle() {
+    var v = editor.value, s = editor.selectionStart, en = editor.selectionEnd;
+    var ls = v.lastIndexOf('\n', s - 1) + 1;
+    var le = v.indexOf('\n', en); if (le === -1) le = v.length;
+    var block = v.slice(ls, le);
+    var trimmed = block.trim();
+    var out;
+    if (trimmed.indexOf('/*') === 0 && trimmed.slice(-2) === '*/') {
+      out = block.replace(/\/\*\s?/, '').replace(/\s?\*\/\s*$/, '');
+    } else {
+      out = '/* ' + block + ' */';
+    }
+    editor.setSelectionRange(ls, le);
+    insertText(out);
+    editor.setSelectionRange(ls, ls + out.length);
+  }
+  function toggleComment() {
+    if (!activeFile) return;
+    var lang = langOf(activeFile);
+    if (lang === 'js') lineCommentToggle();
+    else if (lang === 'css') blockCommentToggle();
+    else toast('Comment toggle works for JS and CSS here');
+  }
+  function moveLine(dir) {
+    var v = editor.value;
+    var s = editor.selectionStart, en = editor.selectionEnd;
+    var ls = v.lastIndexOf('\n', s - 1) + 1;
+    var le = v.indexOf('\n', en); if (le === -1) le = v.length;
+    if (dir === -1) {
+      if (ls === 0) return;
+      var pls = v.lastIndexOf('\n', ls - 2) + 1;
+      var prev = v.slice(pls, ls - 1);
+      var cur = v.slice(ls, le);
+      editor.setSelectionRange(pls, le);
+      insertText(cur + '\n' + prev);
+      editor.setSelectionRange(pls + (s - ls), pls + (en - ls));
+    } else {
+      if (le >= v.length) return;
+      var nle = v.indexOf('\n', le + 1); if (nle === -1) nle = v.length;
+      var next = v.slice(le + 1, nle);
+      var cur2 = v.slice(ls, le);
+      editor.setSelectionRange(ls, nle);
+      insertText(next + '\n' + cur2);
+      var base = ls + next.length + 1;
+      editor.setSelectionRange(base + (s - ls), base + (en - ls));
+    }
+  }
+  function duplicateLine() {
+    var v = editor.value, s = editor.selectionStart;
+    var ls = v.lastIndexOf('\n', s - 1) + 1;
+    var le = v.indexOf('\n', s); if (le === -1) le = v.length;
+    var line = v.slice(ls, le);
+    editor.setSelectionRange(le, le);
+    insertText('\n' + line);
+    editor.setSelectionRange(s + line.length + 1, s + line.length + 1);
+  }
+  function jumpToLine(file, ln) {
+    if (!(file in files)) return;
+    openFile(file);
+    var lines = editor.value.split('\n');
+    var idx = 0;
+    for (var i = 0; i < Math.min(ln - 1, lines.length); i++) idx += lines[i].length + 1;
+    editor.setSelectionRange(idx, idx + (lines[ln - 1] || '').length);
+    editor.focus();
+    editor.scrollTop = Math.max(0, (ln - 1) * 21 - editor.clientHeight / 2);
+  }
+
+  var PAIRS = { '(': ')', '[': ']', '{': '}', '"': '"', "'": "'", '`': '`' };
+  var PAIR_CLOSE = { '(': ')', '[': ']', '{': '}', '"': '"', "'": "'", '`': '`' };
+  var CLOSERS = [')', ']', '}', '"', "'", '`'];
+
+  editor.addEventListener('input', function () {
+    if (!activeFile) return;
+    files[activeFile] = editor.value;
+    schedulePersist();
+    schedulePreview();
+    updateGutter();
+    renderHighlight();
+  });
+  editor.addEventListener('scroll', function () {
+    gutter.scrollTop = editor.scrollTop;
+    highlightEl.scrollTop = editor.scrollTop;
+    highlightEl.scrollLeft = editor.scrollLeft;
+  });
+  document.addEventListener('selectionchange', function () {
+    if (document.activeElement === editor) updateCaret();
+  });
+  editor.addEventListener('keyup', updateCaret);
+  editor.addEventListener('click', updateCaret);
+  editor.addEventListener('blur', function () { tabEscape = false; });
+
+  editor.addEventListener('keydown', function (e) {
+    if (editor.readOnly) return;
+    var mod = e.ctrlKey || e.metaKey;
+    if (e.key === 'Escape') { tabEscape = true; return; }
+    if (e.key === 'Tab') {
+      if (tabEscape) { tabEscape = false; return; }
+      e.preventDefault();
+      if (e.shiftKey) outdentLine(); else insertText('  ');
+      return;
+    }
+    tabEscape = false;
+    if (mod && e.key === '/') { e.preventDefault(); toggleComment(); return; }
+    if (mod && e.shiftKey && e.key.toLowerCase() === 'd') { e.preventDefault(); duplicateLine(); return; }
+    if (e.altKey && (e.key === 'ArrowUp' || e.key === 'ArrowDown')) {
+      e.preventDefault();
+      moveLine(e.key === 'ArrowUp' ? -1 : 1);
+      return;
+    }
+    if (e.key === 'Backspace' && !mod && !e.altKey && !e.shiftKey) {
+      var s0 = editor.selectionStart, e0 = editor.selectionEnd, v0 = editor.value;
+      if (s0 === e0 && s0 > 0) {
+        var pair = PAIR_CLOSE[v0.charAt(s0 - 1)];
+        if (pair && v0.charAt(s0) === pair) {
+          e.preventDefault();
+          editor.setSelectionRange(s0 - 1, s0 + 1);
+          insertText('');
+          return;
+        }
+      }
+    }
+    if (!mod && !e.altKey && PAIRS[e.key]) {
+      var s = editor.selectionStart, en = editor.selectionEnd, v = editor.value;
+      var closer = CLOSERS.indexOf(e.key) !== -1;
+      if (closer && s === en && v.charAt(s) === e.key) {
+        e.preventDefault();
+        editor.setSelectionRange(s + 1, s + 1);
+        return;
+      }
+      if (s !== en) {
+        var sel = v.slice(s, en);
+        e.preventDefault();
+        insertText(e.key + sel + PAIRS[e.key]);
+        editor.setSelectionRange(s + 1, s + 1 + sel.length);
+        return;
+      }
+      if (s === en) {
+        e.preventDefault();
+        insertText(e.key + PAIRS[e.key]);
+        editor.setSelectionRange(s + 1, s + 1);
+        return;
+      }
+    }
+    if (e.key === 'Enter' && !e.isComposing && !mod && !e.shiftKey && !e.altKey) {
+      e.preventDefault();
+      var before = editor.value.slice(0, editor.selectionStart);
+      var line = before.slice(before.lastIndexOf('\n') + 1);
+      var indent = line.match(/^\s*/)[0];
+      if (/[{([:]\s*$/.test(line)) indent += '  ';
+      insertText('\n' + indent);
+    }
+  });
+
+  // ---------- find / replace ----------
+  function openSearch(withReplace) {
+    searchBox.classList.remove('hidden');
+    replaceRow.classList.toggle('hidden', !withReplace);
+    findInput.focus();
+    findInput.select();
+    if (findInput.value) runFind(1);
+  }
+  function closeSearch() {
+    searchBox.classList.add('hidden');
+    editor.focus();
+  }
+  function computeMatches() {
+    var q = findInput.value;
+    searchState.matches = [];
+    if (!q) return;
+    var v = searchState.sensitive ? editor.value : editor.value.toLowerCase();
+    var qq = searchState.sensitive ? q : q.toLowerCase();
+    var i = v.indexOf(qq);
+    while (i !== -1 && searchState.matches.length < 5000) {
+      searchState.matches.push(i);
+      i = v.indexOf(qq, i + qq.length);
+    }
+  }
+  function runFind(dir) {
+    computeMatches();
+    var ms = searchState.matches, q = findInput.value;
+    if (!ms.length) { findCount.textContent = q ? '0/0' : ''; return; }
+    var caret = dir === 1 ? editor.selectionEnd : editor.selectionStart;
+    var pick = -1;
+    if (dir === 1) {
+      for (var i = 0; i < ms.length; i++) { if (ms[i] >= caret) { pick = i; break; } }
+      if (pick === -1) pick = 0;
+    } else {
+      for (var j = ms.length - 1; j >= 0; j--) { if (ms[j] + q.length <= caret) { pick = j; break; } }
+      if (pick === -1) pick = ms.length - 1;
+    }
+    searchState.idx = pick;
+    editor.focus();
+    editor.setSelectionRange(ms[pick], ms[pick] + q.length);
+    var lineNo = editor.value.slice(0, ms[pick]).split('\n').length;
+    editor.scrollTop = Math.max(0, (lineNo - 1) * 21 - editor.clientHeight / 2);
+    findCount.textContent = (pick + 1) + '/' + ms.length;
+  }
+  function replaceOne() {
+    var q = findInput.value;
+    if (!q) return;
+    var s = editor.selectionStart, en = editor.selectionEnd;
+    var sel = editor.value.slice(s, en);
+    var eq = searchState.sensitive ? sel === q : sel.toLowerCase() === q.toLowerCase();
+    if (eq) insertText(replaceInput.value);
+    runFind(1);
+  }
+  function replaceAllDo() {
+    var q = findInput.value;
+    if (!q) return;
+    computeMatches();
+    var v = editor.value, res = '', last = 0, n = searchState.matches.length;
+    searchState.matches.forEach(function (m) {
+      res += v.slice(last, m) + replaceInput.value;
+      last = m + q.length;
+    });
+    res += v.slice(last);
+    editor.setSelectionRange(0, v.length);
+    insertText(res);
+    findCount.textContent = n + ' replaced';
+    computeMatches();
+  }
+  findInput.addEventListener('input', function () { if (findInput.value) runFind(1); else findCount.textContent = ''; });
+  findInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); runFind(e.shiftKey ? -1 : 1); }
+  });
+  $('nextMatch').addEventListener('click', function () { runFind(1); });
+  $('prevMatch').addEventListener('click', function () { runFind(-1); });
+  $('caseBtn').addEventListener('click', function () {
+    searchState.sensitive = !searchState.sensitive;
+    this.classList.toggle('on', searchState.sensitive);
+    if (findInput.value) runFind(1);
+  });
+  $('btnReplace').addEventListener('click', replaceOne);
+  $('btnReplaceAll').addEventListener('click', replaceAllDo);
+  $('closeSearchBtn').addEventListener('click', closeSearch);
+
+  // ---------- console ----------
+  function appendConsole(type, text) {
+    var line = document.createElement('div');
+    line.className = 'line ' + type;
+    line.textContent = text;
+    if (type === 'error' && running && currentRunFile) {
+      var lm = String(text).match(/<anonymous>:(\d+)/) ||
+               String(text).match(/line\s+(\d+)/i) ||
+               String(text).match(/:(\d+):\d+/);
+      if (lm) {
+        var ln = parseInt(lm[1], 10);
+        line.classList.add('jump');
+        line.title = 'Jump to line ' + ln;
+        line.addEventListener('click', (function (f, l) {
+          return function () { jumpToLine(f, l); };
+        })(currentRunFile, ln));
+      }
+    }
+    consoleOutput.appendChild(line);
+    consoleOutput.scrollTop = consoleOutput.scrollHeight;
+  }
+  function clearConsole() { consoleOutput.innerHTML = ''; }
+  $('clearConsole').addEventListener('click', clearConsole);
+
+  consoleInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && !e.ctrlKey && !e.metaKey) {
+      var code = consoleInput.value;
+      consoleInput.value = '';
+      if (!code.trim()) return;
+      history.push(code); histIdx = history.length;
+      replEval(code);
+    } else if (e.key === 'ArrowUp') {
+      if (histIdx > 0) { histIdx--; consoleInput.value = history[histIdx]; }
+      e.preventDefault();
+    } else if (e.key === 'ArrowDown') {
+      if (histIdx < history.length - 1) { histIdx++; consoleInput.value = history[histIdx]; }
+      else { histIdx = history.length; consoleInput.value = ''; }
+      e.preventDefault();
+    }
+  });
+
+  // ---------- runners ----------
+  function createRunner(onMessage) {
+    try {
+      if (typeof Worker === 'undefined') throw new Error('workers unavailable');
+      var url = URL.createObjectURL(new Blob([WORKER_SRC], { type: 'application/javascript' }));
+      var w = new Worker(url);
+      var dead = false;
+      w.onmessage = function (e) { if (!dead) onMessage(e.data); };
+      w.onerror = function (e) {
+        if (!dead) appendConsole('error', ['Runner error: ' + (e.message || 'unknown')]);
+      };
+      return {
+        post: function (d) { if (!dead) w.postMessage(d); },
+        kill: function () {
+          dead = true;
+          w.terminate();
+          try { URL.revokeObjectURL(url); } catch (_) {}
+        }
+      };
+    } catch (err) {
+      var frame = document.createElement('iframe');
+      frame.className = 'sandbox';
+      frame.setAttribute('sandbox', 'allow-scripts');
+      frame.srcdoc = BOOTSTRAP;
+      var queue = [], ready = false;
+      function handler(e) {
+        var d = e.data;
+        if (!frame || !d || d.__sandbox !== true || e.source !== frame.contentWindow) return;
+        if (d.type === 'ready') {
+          ready = true;
+          while (queue.length) frame.contentWindow.postMessage(queue.shift(), '*');
+          return;
+        }
+        onMessage(d);
+      }
+      window.addEventListener('message', handler);
+      document.body.appendChild(frame);
+      return {
+        post: function (d) {
+          if (!frame) return;
+          if (ready) frame.contentWindow.postMessage(d, '*'); else queue.push(d);
+        },
+        kill: function () {
+          window.removeEventListener('message', handler);
+          if (frame) { frame.remove(); frame = null; }
+        }
+      };
+    }
+  }
+
+  function replEval(code) {
+    appendConsole('input', '> ' + code);
+    if (!replRunner) {
+      replRunner = createRunner(function (d) {
+        if (!d || typeof d !== 'object' || d.type === 'done') return;
+        appendConsole(d.type, d.text);
+      });
+    }
+    replRunner.post({ type: 'eval', code: code });
+  }
+
+  function updateRunButtons() { stopBtn.disabled = !running; }
+
+  function offerFix() {
+    if (fixAttempts >= 3) {
+      appendConsole('system', '(agent fix attempts exhausted for this error)');
+      return;
+    }
+    var line = document.createElement('div');
+    line.className = 'line system';
+    var btn = document.createElement('button');
+    btn.className = 'mini-btn';
+    btn.textContent = '\uD83D\uDD27 Ask agent to fix (' + (fixAttempts + 1) + '/3)';
+    btn.addEventListener('click', function () {
+      line.remove();
+      fixAttempts++;
+      agentPanel.classList.remove('hidden');
+      agentHandle('fix', { rerun: true });
+    });
+    line.appendChild(btn);
+    consoleOutput.appendChild(line);
+    consoleOutput.scrollTop = consoleOutput.scrollHeight;
+  }
+
+  function runActive() {
+    syncActiveToModel();
+    var ext = activeFile ? extOf(activeFile) : '';
+    if (activeFile && (ext === 'html' || ext === 'css')) {
+      refreshPreview();
+      appendConsole('system', 'Rendering ' + activeFile + '\u2026');
+      return;
+    }
+    var target = null;
+    if (activeFile && ext === 'js') target = activeFile;
+    else if ('index.js' in files) target = 'index.js';
+    if (!target) { toast('Nothing to run (.js / .html / .css)'); return; }
+    startRun(target);
+  }
+  function startRun(name) {
+    stopRun(true);
+    clearConsole();
+    appendConsole('system', '$ run ' + name);
+    running = true;
+    currentRunFile = name;
+    lastRunError = null;
+    sawRunError = false;
+    fixAttempts = 0;
+    updateRunButtons();
+    statusLeft.textContent = 'Running ' + name + '\u2026';
+    statusLeft.classList.add('status-run');
+    var modules = {};
+    Object.keys(files).forEach(function (n) { if (extOf(n) === 'js') modules[n] = files[n]; });
+    runner = createRunner(function (d) {
+      if (!d || typeof d !== 'object') return;
+      if (d.type === 'done') {
+        appendConsole('system', '\u25CF Program exited');
+        running = false;
+        updateRunButtons();
+        statusLeft.classList.remove('status-run');
+        statusLeft.textContent = 'Ready';
+        if (sawRunError) offerFix();
+        return;
+      }
+      if (d.type === 'error') {
+        sawRunError = true;
+        if (!lastRunError) lastRunError = { file: currentRunFile, message: String(d.text).split('\n')[0] };
+      }
+      appendConsole(d.type, d.text);
+    });
+    runner.post({ type: 'run', code: files[name], target: name, modules: modules });
+  }
+  function stopRun(silent) {
+    if (runner) { runner.kill(); runner = null; }
+    var wasRunning = running;
+    running = false;
+    updateRunButtons();
+    statusLeft.classList.remove('status-run');
+    if (wasRunning && !silent) {
+      appendConsole('system', '\u25A0 Run stopped');
+      statusLeft.textContent = 'Run stopped';
+    } else {
+      statusLeft.textContent = 'Ready';
+    }
+  }
+
+  runBtn.addEventListener('click', runActive);
+  stopBtn.addEventListener('click', function () { stopRun(false); });
+
+  // ---------- agent ----------
+  var LOCAL_HELP = 'Local-brain commands: run \u00B7 stop \u00B7 clear \u00B7 list \u00B7 open <file> \u00B7 create <file> \u00B7 delete <file> \u00B7 rename <a> to <b> \u00B7 add function <name> [to <file>] \u00B7 build (snake|todo|landing) \u00B7 fix \u00B7 export. Connect a model via \u2699 for free-form requests.';
+
+  function cleanName(s) {
+    return String(s == null ? '' : s).trim().replace(/^["'`]+|["'`]+$/g, '');
+  }
+  function fileListStr() {
+    return Object.keys(files).sort().join(', ') || '(none)';
+  }
+  function scaffoldFor(name) {
+    var e = extOf(name);
+    var base = name.split('/').pop();
+    if (e === 'html') return '<!doctype html>\n<html>\n<head>\n  <meta charset="utf-8">\n  <title>' + base + '</title>\n</head>\n<body>\n  <h1>' + base + '</h1>\n</body>\n</html>\n';
+    if (e === 'css') return 'body {\n  font-family: sans-serif;\n}\n';
+    if (e === 'md') return '# ' + base + '\n';
+    if (e === 'json') return '{}\n';
+    return '// ' + base + '\n';
+  }
+
+  var AGENT_TOOLS = {
+    list_files: function () { return { ok: true, out: fileListStr() }; },
+    read_file: function (a) {
+      var n = cleanName(a.name);
+      if (!(n in files)) return { ok: false, out: 'file not found' };
+      return { ok: true, out: files[n].slice(0, 1500) };
+    },
+    write_file: function (a) {
+      var n = cleanName(a.name);
+      if (!validFileName(n)) return { ok: false, out: 'invalid file name' };
+      var content = String(a.content == null ? '' : a.content);
+      files[n] = content;
+      if (openTabs.indexOf(n) === -1) openTabs.push(n);
+      if (activeFile === n) {
+        editor.value = content;
+        updateGutter(); renderHighlight();
+      }
+      renderFiles(); renderTabs(); persist();
+      return { ok: true, out: 'wrote ' + content.split('\n').length + ' lines' };
+    },
+    rename_file: function (a) { return renameFile(cleanName(a.from), cleanName(a.to)); },
+    delete_file: function (a) {
+      var n = cleanName(a.name);
+      if (!(n in files)) return { ok: false, out: 'file not found' };
+      removeFileNoConfirm(n);
+      persist();
+      return { ok: true, out: 'deleted ' + n };
+    },
+    open_file: function (a) {
+      var n = cleanName(a.name);
+      if (!(n in files)) return { ok: false, out: 'file not found' };
+      openFile(n);
+      return { ok: true, out: 'opened' };
+    },
+    run: function () { runActive(); return { ok: true, out: 'started' }; },
+    stop: function () { stopRun(false); return { ok: true, out: 'stopped' }; },
+    clear_console: function () { clearConsole(); return { ok: true, out: 'cleared' }; },
+    export_project: function () { exportProject(); return { ok: true, out: 'downloaded' }; }
+  };
+
+  function execAction(act) {
+    var fn = AGENT_TOOLS[act && act.tool];
+    if (!fn) return { ok: false, out: 'unknown tool: ' + (act && act.tool) };
+    try { return fn(act.args || {}); }
+    catch (e) { return { ok: false, out: String(e && e.message || e) }; }
+  }
+
+  function agentMsg(kind, text) {
+    var d = document.createElement('div');
+    d.className = 'msg ' + kind;
+    d.textContent = text;
+    agentMsgs.appendChild(d);
+    agentMsgs.scrollTop = agentMsgs.scrollHeight;
+  }
+  function agentToolLine(name, summary, ok, out) {
+    var d = document.createElement('div');
+    d.className = 'msg tool' + (ok ? '' : ' fail');
+    d.textContent = '\u2699 ' + name + '(' + summary + ') \u2192 ' + (ok ? '\u2713 ' : '\u2717 ') + String(out).slice(0, 200);
+    agentMsgs.appendChild(d);
+    agentMsgs.scrollTop = agentMsgs.scrollHeight;
+  }
+
+  function executePlan(plan) {
+    var results = [];
+    (plan.actions || []).forEach(function (act) {
+      var summary = JSON.stringify(act.args || {}).slice(0, 80);
+      var r = execAction(act);
+      agentToolLine(act.tool, summary, r.ok, r.out);
+      results.push({ tool: act.tool, ok: r.ok, out: r.out });
+    });
+    return results;
+  }
+
+  function fixPlan() {
+    if (!lastRunError) return { reply: 'No recent run error to fix.', actions: [] };
+    var m = String(lastRunError.message).match(/Cannot find module "([^"]+)"/);
+    if (m) {
+      var n = m[1].replace(/^\.\//, '');
+      if (n.slice(-3) !== '.js') n += '.js';
+      if (!(n in files)) {
+        return {
+          reply: 'Missing module "' + n + '" did not exist \u2014 I created a stub. Re-running.',
+          actions: [{ tool: 'write_file', args: { name: n, content: '// stub created by agent\nmodule.exports = {};\n' } }]
+        };
+      }
+    }
+    var m2 = String(lastRunError.message).match(/^"?(\w+)"? is not defined/);
+    if (m2) {
+      return { reply: '"' + m2[1] + '" is used before it is defined \u2014 add a declaration or require() for it. My local brain cannot safely patch this; connect a model via \u2699 for real fixes.', actions: [] };
+    }
+    return { reply: 'My local brain has no safe fix for: ' + lastRunError.message + '. Connect a model via \u2699 for real auto-fixes.', actions: [] };
+  }
+
+  function localBrain(text) {
+    var t = String(text).trim(), m;
+    function A(tool, args) { return { tool: tool, args: args || {} }; }
+    if (/^(run|start|go)\b/i.test(t)) return { reply: 'Running.', actions: [A('run')] };
+    if (/^stop\b/i.test(t)) return { reply: 'Stopped.', actions: [A('stop')] };
+    if (/^clear\b/i.test(t)) return { reply: 'Console cleared.', actions: [A('clear_console')] };
+    if (/^(list|ls|files)\b/i.test(t)) return { reply: 'Files: ' + fileListStr(), actions: [] };
+    if (/^fix\b/i.test(t)) return fixPlan();
+    if ((m = t.match(/^open\s+(.+)$/i))) return { reply: 'Opening ' + cleanName(m[1]) + '.', actions: [A('open_file', { name: cleanName(m[1]) })] };
+    if ((m = t.match(/^rename\s+(.+?)\s+(?:to|as)\s+(.+)$/i))) return { reply: 'Renaming.', actions: [A('rename_file', { from: cleanName(m[1]), to: cleanName(m[2]) })] };
+    if ((m = t.match(/^delete\s+(.+)$/i))) return { reply: 'Deleted.', actions: [A('delete_file', { name: cleanName(m[1]) })] };
+    if ((m = t.match(/^add function\s+([A-Za-z_$][\w$]*)(?:\s+(?:to|in)\s+(.+))?$/i))) {
+      var fname = m[2] ? cleanName(m[2]) : activeFile;
+      if (!fname || !(fname in files)) return { reply: 'No target file \u2014 open or name one first.', actions: [] };
+      var stub = '\nfunction ' + m[1] + '() {\n  // TODO: implement\n}\n';
+      return { reply: 'Added ' + m[1] + '() to ' + fname + '.', actions: [A('write_file', { name: fname, content: files[fname] + stub })] };
+    }
+    if ((m = t.match(/^build\s+(?:me\s+)?(?:a\s+|an\s+)?(.+)$/i))) {
+      var what = m[1].toLowerCase();
+      var tpl = null, name = null;
+      if (/snake/.test(what)) { tpl = TEMPLATES.snake; name = 'snake.html'; }
+      else if (/todo|to-do|task/.test(what)) { tpl = TEMPLATES.todo; name = 'todo.html'; }
+      else if (/landing|site|page|portfolio/.test(what)) { tpl = TEMPLATES.landing; name = 'landing.html'; }
+      if (tpl) {
+        return { reply: 'Built ' + name + ' \u2014 opening preview.', actions: [A('write_file', { name: name, content: tpl }), A('open_file', { name: name })] };
+      }
+      return { reply: 'Local templates: snake, todo, landing page. Connect a model via \u2699 to build anything else.', actions: [] };
+    }
+    if (/^(create|add|new|make)\b/i.test(t)) {
+      var toks = t.match(/[A-Za-z0-9_\-\/]+(?:\.[A-Za-z0-9]{1,8})?/g) || [];
+      var name = toks[toks.length - 1];
+      if (!name || /^(create|add|new|make|a|an|file|script|page|stylesheet|style|called|named)$/i.test(name)) {
+        return { reply: 'Tell me a file name, e.g. "create game.js" or "create src/game.js".', actions: [] };
+      }
+      if (name.indexOf('.') === -1) {
+        if (/page|html/i.test(t)) name += '.html';
+        else if (/style|css/i.test(t)) name += '.css';
+        else name += '.js';
+      }
+      return { reply: 'Created ' + name + '.', actions: [A('write_file', { name: name, content: scaffoldFor(name) }), A('open_file', { name: name })] };
+    }
+    if (/^(export|download)\b/i.test(t)) return { reply: 'Exporting project.', actions: [A('export_project')] };
+    if (/help|what can/i.test(t)) return { reply: LOCAL_HELP, actions: [] };
+    return { reply: 'I did not understand that. ' + (llmConfigured() ? '' : 'Tip: connect a model via \u2699 for free-form requests. ') + 'Try "help".', actions: [] };
+  }
+
+  function setAgentBusy(b) {
+    agentInput.disabled = b;
+    agentSend.disabled = b;
+    agentInput.placeholder = b ? 'Agent is thinking\u2026' : 'Ask the agent\u2026 ("help" for commands)';
+  }
+
+  function agentHandle(text, opts) {
+    opts = opts || {};
+    if (agentBusy) { agentMsg('agent', 'Still working \u2014 one moment.'); return; }
+    text = String(text).trim();
+    if (!text) return;
+    syncActiveToModel();
+    agentMsg('user', text);
+    if (!llmConfigured()) {
+      var plan = localBrain(text);
+      var results = executePlan(plan);
+      if (plan.reply) agentMsg('agent', plan.reply);
+      if (opts.rerun && results.length && results.every(function (r) { return r.ok; })) {
+        setTimeout(runActive, 150);
+      }
+      return;
+    }
+    agentBusy = true;
+    setAgentBusy(true);
+    agentHistory.push({ role: 'user', content: text });
+    if (agentHistory.length > 12) agentHistory = agentHistory.slice(-12);
+    llmRound('', 0, opts);
+  }
+
+  function systemPrompt() {
+    var parts = [
+      'You are the agent inside "repl-ish", a browser-based IDE. You act by calling tools.',
+      'Respond with ONLY a JSON object: {"reply": string, "actions": [{"tool": string, "args": object}]}. No markdown fences, no extra prose.',
+      'Tools:',
+      '- list_files {}',
+      '- read_file {"name"}',
+      '- write_file {"name","content"} â€” creates or overwrites; ALWAYS send the FULL file content; folders allowed ("src/game.js")',
+      '- rename_file {"from","to"}',
+      '- delete_file {"name"}',
+      '- open_file {"name"}',
+      '- run {} â€” runs the active .js (or index.js) / renders html+css',
+      '- stop {}, clear_console {}, export_project {}',
+      'Workspace files: ' + fileListStr(),
+      'Active file: ' + (activeFile || 'none'),
+      lastRunError ? ('Last run error in ' + lastRunError.file + ': ' + lastRunError.message) : '',
+      activeFile ? ('Active file content:\n' + String(files[activeFile]).slice(0, 6000)) : '',
+      'Rules: plain browser JS only (no Node built-ins). require("./x") resolves relative to the file. Keep code runnable. Be concise.'
+    ];
+    return parts.filter(function (p) { return p !== ''; }).join('\n');
+  }
+
+  function parsePlan(s) {
+    s = String(s).trim().replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '');
+    var i = s.indexOf('{'), j = s.lastIndexOf('}');
+    if (i === -1 || j === -1) throw new Error('Model did not return JSON');
+    var plan = JSON.parse(s.slice(i, j + 1));
+    if (!Array.isArray(plan.actions)) plan.actions = [];
+    return { reply: plan.reply || '', actions: plan.actions };
+  }
+
+  function callLLM(messages) {
+    var url = agentCfg.endpoint.replace(/\/+$/, '');
+    if (!/chat\/completions$/.test(url)) url += '/chat/completions';
+    var headers = { 'Content-Type': 'application/json' };
+    if (agentCfg.key) headers['Authorization'] = 'Bearer ' + agentCfg.key;
+    return fetch(url, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify({ model: agentCfg.model, messages: messages, temperature: 0.2 })
+    }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status + ' from model endpoint');
+      return r.json();
+    }).then(function (data) {
+      var content = data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+      if (!content) throw new Error('Empty response from model');
+      return parsePlan(content);
+    });
+  }
+
+  function llmRound(observation, round, opts) {
+    var msgs = [{ role: 'system', content: systemPrompt() }];
+    agentHistory.forEach(function (m) { msgs.push(m); });
+    if (observation) {
+      msgs.push({ role: 'user', content: 'Tool results from your last actions:\n' + observation + '\nSome failed or need follow-up. Respond with a corrected JSON plan.' });
+    }
+    callLLM(msgs).then(function (plan) {
+      var results = executePlan(plan);
+      var failed = results.filter(function (r) { return !r.ok; });
+      if (failed.length && round < 1) {
+        var obs = results.map(function (r) {
+          return r.tool + ': ' + (r.ok ? 'OK ' : 'FAILED ') + r.out;
+        }).join('\n');
+        llmRound(obs, round + 1, opts);
+        return;
+      }
+      if (plan.reply) agentMsg('agent', plan.reply);
+      agentHistory.push({ role: 'assistant', content: plan.reply || '(acted)' });
+      if (opts.rerun && results.length && !failed.length) setTimeout(runActive, 150);
+      agentBusy = false;
+      setAgentBusy(false);
+    }).catch(function (err) {
+      agentMsg('agent', '\u26A0 ' + err.message + ' \u2014 check \u2699 settings, or use local commands ("help").');
+      agentBusy = false;
+      setAgentBusy(false);
+    });
+  }
+
+  function updateAgentBadge() {
+    agentBadge.textContent = llmConfigured() ? agentCfg.model : 'local brain';
+  }
+
+  agentSend.addEventListener('click', function () {
+    var v = agentInput.value;
+    agentInput.value = '';
+    agentHandle(v);
+  });
+  agentInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      var v = agentInput.value;
+      agentInput.value = '';
+      agentHandle(v);
+    }
+  });
+  $('agentChips').addEventListener('click', function (e) {
+    var c = e.target.closest('[data-say]');
+    if (c) agentHandle(c.dataset.say);
+  });
+  $('agentToggle').addEventListener('click', function () {
+    agentPanel.classList.toggle('hidden');
+    if (!agentPanel.classList.contains('hidden')) agentInput.focus();
+  });
+  $('agentClose').addEventListener('click', function () { agentPanel.classList.add('hidden'); });
+
+  // ---------- agent settings modal ----------
+  function openSettings() {
+    cfgEndpoint.value = agentCfg.endpoint;
+    cfgKey.value = agentCfg.key;
+    cfgModel.value = agentCfg.model;
+    settingsModal.classList.remove('hidden');
+  }
+  $('agentSettings').addEventListener('click', openSettings);
+  $('cfgCancel').addEventListener('click', function () { settingsModal.classList.add('hidden'); });
+  $('cfgSave').addEventListener('click', function () {
+    agentCfg.endpoint = cfgEndpoint.value.trim();
+    agentCfg.key = cfgKey.value.trim();
+    agentCfg.model = cfgModel.value.trim();
+    saveAgentCfg();
+    updateAgentBadge();
+    settingsModal.classList.add('hidden');
+    toast(llmConfigured() ? 'Agent now uses ' + agentCfg.model : 'Agent reset to local brain');
+  });
+  $('cfgClear').addEventListener('click', function () {
+    agentCfg = { endpoint: '', key: '', model: '' };
+    saveAgentCfg();
+    cfgEndpoint.value = ''; cfgKey.value = ''; cfgModel.value = '';
+    updateAgentBadge();
+    toast('Agent settings cleared');
+  });
+  settingsModal.addEventListener('click', function (e) {
+    if (e.target === settingsModal) settingsModal.classList.add('hidden');
+  });
+
+  // ---------- shortcuts modal ----------
+  function openShortcuts() { shortcutsModal.classList.remove('hidden'); }
+  $('keysClose').addEventListener('click', function () { shortcutsModal.classList.add('hidden'); });
+  shortcutsModal.addEventListener('click', function (e) {
+    if (e.target === shortcutsModal) shortcutsModal.classList.add('hidden');
+  });
+
+  // ---------- quick open + command palette ----------
+  var quickMode = 'files', quickIdx = 0, quickMatches = [];
+  var COMMANDS = [
+    { name: 'Run active file', run: runActive },
+    { name: 'Stop run', run: function () { stopRun(false); } },
+    { name: 'Clear console', run: clearConsole },
+    { name: 'New fileâ€¦', run: createFile },
+    { name: 'Find and replaceâ€¦', run: function () { openSearch(true); } },
+    { name: 'Export project (JSON)', run: exportProject },
+    { name: 'Import project (JSON)â€¦', run: function () { $('importFile').click(); } },
+    { name: 'Toggle agent panel', run: function () { agentPanel.classList.toggle('hidden'); } },
+    { name: 'Build: Snake game (HTML)', run: function () { agentPanel.classList.remove('hidden'); agentHandle('build snake game'); } },
+    { name: 'Build: Todo app (HTML)', run: function () { agentPanel.classList.remove('hidden'); agentHandle('build todo app'); } },
+    { name: 'Build: Landing page (HTML)', run: function () { agentPanel.classList.remove('hidden'); agentHandle('build landing page'); } },
+    { name: 'Keyboard shortcuts', run: openShortcuts }
+  ];
+  function openQuick(mode) {
+    quickMode = mode || 'files';
+    quickInput.value = '';
+    quickInput.placeholder = quickMode === 'files' ? 'Open fileâ€¦' : 'Type a commandâ€¦';
+    renderQuickList('');
+    quickOpen.classList.remove('hidden');
+    quickInput.focus();
+  }
+  function closeQuick() { quickOpen.classList.add('hidden'); }
+  function renderQuickList(q) {
+    quickList.innerHTML = '';
+    quickIdx = 0;
+    var ql = q.toLowerCase();
+    if (quickMode === 'files') {
+      quickMatches = Object.keys(files).sort().filter(function (n) { return !q || n.toLowerCase().indexOf(ql) !== -1; });
+      quickMatches.forEach(function (n, i) {
+        var d = document.createElement('div');
+        d.className = 'qitem' + (i === quickIdx ? ' sel' : '');
+        d.textContent = n;
+        d.addEventListener('mousedown', function (e) { e.preventDefault(); openFile(n); closeQuick(); });
+        quickList.appendChild(d);
+      });
+    } else {
+      quickMatches = COMMANDS.filter(function (c) { return !q || c.name.toLowerCase().indexOf(ql) !== -1; });
+      quickMatches.forEach(function (c, i) {
+        var d = document.createElement('div');
+        d.className = 'qitem' + (i === quickIdx ? ' sel' : '');
+        d.textContent = '\u203A ' + c.name;
+        d.addEventListener('mousedown', function (e) { e.preventDefault(); closeQuick(); c.run(); });
+        quickList.appendChild(d);
+      });
+    }
+  }
+  function quickMove(delta) {
+    if (!quickMatches.length) return;
+    quickIdx = (quickIdx + delta + quickMatches.length) % quickMatches.length;
+    var items = quickList.children;
+    for (var i = 0; i < items.length; i++) {
+      items[i].classList.toggle('sel', i === quickIdx);
+    }
+  }
+  quickInput.addEventListener('input', function () { renderQuickList(quickInput.value); });
+  quickInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      if (quickMode === 'files') {
+        if (quickMatches[quickIdx]) { openFile(quickMatches[quickIdx]); closeQuick(); }
+      } else {
+        if (quickMatches[quickIdx]) { var c = quickMatches[quickIdx]; closeQuick(); c.run(); }
+      }
+    } else if (e.key === 'ArrowDown') { e.preventDefault(); quickMove(1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); quickMove(-1); }
+  });
+
+  // ---------- resizers ----------
+  function makeResizer(handle, onMove) {
+    handle.addEventListener('pointerdown', function (e) {
+      e.preventDefault();
+      handle.setPointerCapture(e.pointerId);
+      function move(ev) { onMove(ev); }
+      function done() {
+        handle.removeEventListener('pointermove', move);
+        handle.removeEventListener('pointerup', done);
+        handle.removeEventListener('pointercancel', done);
+      }
+      handle.addEventListener('pointermove', move);
+      handle.addEventListener('pointerup', done);
+      handle.addEventListener('pointercancel', done);
+    });
+  }
+  makeResizer($('sidebarResizer'), function (ev) {
+    sidebar.style.width = Math.min(Math.max(ev.clientX, 140), 420) + 'px';
+  });
+  makeResizer($('consoleResizer'), function (ev) {
+    var r = editorArea.getBoundingClientRect();
+    var h = Math.min(Math.max(r.bottom - ev.clientY, 70), r.height - 120);
+    consolePanel.style.height = h + 'px';
+  });
+
+  // ---------- global shortcuts ----------
+  window.addEventListener('keydown', function (e) {
+    var mod = e.ctrlKey || e.metaKey;
+    if (!mod) return;
+    var k = e.key.toLowerCase();
+    if (e.key === 'Enter') { e.preventDefault(); runActive(); return; }
+    if (e.shiftKey && k === 'p') { e.preventDefault(); openQuick('commands'); return; }
+    if (!e.shiftKey && k === 'p') { e.preventDefault(); openQuick('files'); return; }
+    if (k === 's') { e.preventDefault(); clearTimeout(saveTimer); persist(); toast('Saving project'); return; }
+    if (k === 'k') { e.preventDefault(); agentPanel.classList.remove('hidden'); agentInput.focus(); return; }
+    if (k === 'f') { e.preventDefault(); openSearch(false); return; }
+    if (k === 'h') { e.preventDefault(); openSearch(true); return; }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      if (!quickOpen.classList.contains('hidden')) { closeQuick(); return; }
+      if (!settingsModal.classList.contains('hidden')) { settingsModal.classList.add('hidden'); return; }
+      if (!shortcutsModal.classList.contains('hidden')) { shortcutsModal.classList.add('hidden'); return; }
+      if (!searchBox.classList.contains('hidden')) { closeSearch(); return; }
+      return;
+    }
+    if (e.key === '?' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      var t = document.activeElement;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')) return;
+      openShortcuts();
+    }
+  });
+
+  // ---------- init ----------
+  load();
+  loadAgentCfg();
+  if (!loadSession()) {
+    if ('index.js' in files) openTabs = ['index.js'];
+    activeFile = openTabs[0] || Object.keys(files).sort()[0] || null;
+  }
+  if (activeFile && openTabs.indexOf(activeFile) === -1) openTabs.push(activeFile);
+  loadEditorForActive();
+  renderFiles();
+  renderTabs();
+  updateRunButtons();
+  updateAgentBadge();
+  appendConsole('system', 'Console ready \u2014 press \u25B6 Run, or type JS in the input below.');
+  agentMsg('agent', 'Hi \u2014 I am the workspace agent. I build, fix, rename and run. Try the chips below (snake / todo / landing work even offline), press Ctrl/Cmd+K anytime, or type "help". Add a real model via \u2699 for free-form builds.');
+  hydrateBackend(false);
+})();
+</script>
+</body>
+</html>

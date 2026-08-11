@@ -1,0 +1,83 @@
+{
+  "run_id": "f792976b-6b6d-4032-b3c3-262d21c4e477",
+  "lane": "cheap",
+  "model": "dashscope/qwen-turbo",
+  "profile": "all",
+  "tasks_total": 2,
+  "tasks_passed": 0,
+  "aggregate_score": 0.0,
+  "total_cost_usd": 0.0,
+  "avg_latency_ms": 0.0,
+  "summary": {
+    "pass_rate": 0.0,
+    "weighted_score": 0.0,
+    "weakest_capability": "code"
+  },
+  "capabilities": {
+    "code": {
+      "score": 0.0,
+      "tasks_total": 2,
+      "tasks_passed": 0,
+      "failed_tasks": [
+        {
+          "id": "dashscope-test-01",
+          "name": "regex email extractor",
+          "reason": "call failed: All LLM routes failed (10 in chain): Error code: 429 - {'error': {'message': 'Your account org-96213c9715f743a7ab4a4c95afb7169d <ak-fbkfcxh1qdc111bbyxu1> is suspended due to insufficient balance, please recharge your account or check your plan and billing details', 'type': 'exceeded_current_quota_error'}}. Health: [{'provider': 'deepseek', 'source': 'env', 'key': 'sk-e8d\u20261c95', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'env', 'key': 'sk-ws-\u2026GVss', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY', 'key': 'sk-ws-\u20265QHE', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY2', 'key': 'sk-ws-\u2026bJbA', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY3', 'key': 'sk-ws-\u2026RW1w', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY4', 'key': 'sk-ws-\u20265UzQ', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY5', 'key': 'sk-ws-\u20267Tr0', 'stage': 'paid', 'state': 'dead'}, {'provider': 'openrouter', 'source': 'env', 'key': 'sk-or-\u2026530e', 'stage': 'free-router', 'state': 'dead'}, {'provider': 'openrouter', 'source': 'env', 'key': 'sk-or-\u2026530e', 'stage': 'paid', 'state': 'dead'}, {'provider': 'moonshot', 'source': 'env', 'key': 'sk-est\u2026R3Yk', 'stage': 'paid', 'state': 'dead'}]"
+        },
+        {
+          "id": "dashscope-test-02",
+          "name": "fibonacci sequence",
+          "reason": "call failed: All LLM routes failed (10 in chain): Error code: 429 - {'error': {'message': 'Your account org-96213c9715f743a7ab4a4c95afb7169d <ak-fbkfcxh1qdc111bbyxu1> is suspended due to insufficient balance, please recharge your account or check your plan and billing details', 'type': 'exceeded_current_quota_error'}}. Health: [{'provider': 'deepseek', 'source': 'env', 'key': 'sk-e8d\u20261c95', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'env', 'key': 'sk-ws-\u2026GVss', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY', 'key': 'sk-ws-\u20265QHE', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY2', 'key': 'sk-ws-\u2026bJbA', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY3', 'key': 'sk-ws-\u2026RW1w', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY4', 'key': 'sk-ws-\u20265UzQ', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY5', 'key': 'sk-ws-\u20267Tr0', 'stage': 'paid', 'state': 'dead'}, {'provider': 'openrouter', 'source': 'env', 'key': 'sk-or-\u2026530e', 'stage': 'free-router', 'state': 'dead'}, {'provider': 'openrouter', 'source': 'env', 'key': 'sk-or-\u2026530e', 'stage': 'paid', 'state': 'dead'}, {'provider': 'moonshot', 'source': 'env', 'key': 'sk-est\u2026R3Yk', 'stage': 'paid', 'state': 'dead'}]"
+        }
+      ]
+    }
+  },
+  "weaknesses": [
+    {
+      "capability": "code",
+      "score": 0.0,
+      "tasks_total": 2,
+      "tasks_passed": 0,
+      "failed_tasks": [
+        {
+          "id": "dashscope-test-01",
+          "name": "regex email extractor",
+          "reason": "call failed: All LLM routes failed (10 in chain): Error code: 429 - {'error': {'message': 'Your account org-96213c9715f743a7ab4a4c95afb7169d <ak-fbkfcxh1qdc111bbyxu1> is suspended due to insufficient balance, please recharge your account or check your plan and billing details', 'type': 'exceeded_current_quota_error'}}. Health: [{'provider': 'deepseek', 'source': 'env', 'key': 'sk-e8d\u20261c95', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'env', 'key': 'sk-ws-\u2026GVss', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY', 'key': 'sk-ws-\u20265QHE', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY2', 'key': 'sk-ws-\u2026bJbA', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY3', 'key': 'sk-ws-\u2026RW1w', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY4', 'key': 'sk-ws-\u20265UzQ', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY5', 'key': 'sk-ws-\u20267Tr0', 'stage': 'paid', 'state': 'dead'}, {'provider': 'openrouter', 'source': 'env', 'key': 'sk-or-\u2026530e', 'stage': 'free-router', 'state': 'dead'}, {'provider': 'openrouter', 'source': 'env', 'key': 'sk-or-\u2026530e', 'stage': 'paid', 'state': 'dead'}, {'provider': 'moonshot', 'source': 'env', 'key': 'sk-est\u2026R3Yk', 'stage': 'paid', 'state': 'dead'}]"
+        },
+        {
+          "id": "dashscope-test-02",
+          "name": "fibonacci sequence",
+          "reason": "call failed: All LLM routes failed (10 in chain): Error code: 429 - {'error': {'message': 'Your account org-96213c9715f743a7ab4a4c95afb7169d <ak-fbkfcxh1qdc111bbyxu1> is suspended due to insufficient balance, please recharge your account or check your plan and billing details', 'type': 'exceeded_current_quota_error'}}. Health: [{'provider': 'deepseek', 'source': 'env', 'key': 'sk-e8d\u20261c95', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'env', 'key': 'sk-ws-\u2026GVss', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY', 'key': 'sk-ws-\u20265QHE', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY2', 'key': 'sk-ws-\u2026bJbA', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY3', 'key': 'sk-ws-\u2026RW1w', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY4', 'key': 'sk-ws-\u20265UzQ', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY5', 'key': 'sk-ws-\u20267Tr0', 'stage': 'paid', 'state': 'dead'}, {'provider': 'openrouter', 'source': 'env', 'key': 'sk-or-\u2026530e', 'stage': 'free-router', 'state': 'dead'}, {'provider': 'openrouter', 'source': 'env', 'key': 'sk-or-\u2026530e', 'stage': 'paid', 'state': 'dead'}, {'provider': 'moonshot', 'source': 'env', 'key': 'sk-est\u2026R3Yk', 'stage': 'paid', 'state': 'dead'}]"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "task_id": "dashscope-test-01",
+      "name": "regex email extractor",
+      "lane": "cheap",
+      "model": "dashscope/qwen-turbo",
+      "passed": false,
+      "score": 0.0,
+      "output": "",
+      "cost_usd": 0.0,
+      "latency_ms": 0.0,
+      "reason": "call failed: All LLM routes failed (10 in chain): Error code: 429 - {'error': {'message': 'Your account org-96213c9715f743a7ab4a4c95afb7169d <ak-fbkfcxh1qdc111bbyxu1> is suspended due to insufficient balance, please recharge your account or check your plan and billing details', 'type': 'exceeded_current_quota_error'}}. Health: [{'provider': 'deepseek', 'source': 'env', 'key': 'sk-e8d\u20261c95', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'env', 'key': 'sk-ws-\u2026GVss', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY', 'key': 'sk-ws-\u20265QHE', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY2', 'key': 'sk-ws-\u2026bJbA', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY3', 'key': 'sk-ws-\u2026RW1w', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY4', 'key': 'sk-ws-\u20265UzQ', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY5', 'key': 'sk-ws-\u20267Tr0', 'stage': 'paid', 'state': 'dead'}, {'provider': 'openrouter', 'source': 'env', 'key': 'sk-or-\u2026530e', 'stage': 'free-router', 'state': 'dead'}, {'provider': 'openrouter', 'source': 'env', 'key': 'sk-or-\u2026530e', 'stage': 'paid', 'state': 'dead'}, {'provider': 'moonshot', 'source': 'env', 'key': 'sk-est\u2026R3Yk', 'stage': 'paid', 'state': 'dead'}]",
+      "capability": "code"
+    },
+    {
+      "task_id": "dashscope-test-02",
+      "name": "fibonacci sequence",
+      "lane": "cheap",
+      "model": "dashscope/qwen-turbo",
+      "passed": false,
+      "score": 0.0,
+      "output": "",
+      "cost_usd": 0.0,
+      "latency_ms": 0.0,
+      "reason": "call failed: All LLM routes failed (10 in chain): Error code: 429 - {'error': {'message': 'Your account org-96213c9715f743a7ab4a4c95afb7169d <ak-fbkfcxh1qdc111bbyxu1> is suspended due to insufficient balance, please recharge your account or check your plan and billing details', 'type': 'exceeded_current_quota_error'}}. Health: [{'provider': 'deepseek', 'source': 'env', 'key': 'sk-e8d\u20261c95', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'env', 'key': 'sk-ws-\u2026GVss', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY', 'key': 'sk-ws-\u20265QHE', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY2', 'key': 'sk-ws-\u2026bJbA', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY3', 'key': 'sk-ws-\u2026RW1w', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY4', 'key': 'sk-ws-\u20265UzQ', 'stage': 'paid', 'state': 'dead'}, {'provider': 'dashscope', 'source': 'QWEN_WS_KEY5', 'key': 'sk-ws-\u20267Tr0', 'stage': 'paid', 'state': 'dead'}, {'provider': 'openrouter', 'source': 'env', 'key': 'sk-or-\u2026530e', 'stage': 'free-router', 'state': 'dead'}, {'provider': 'openrouter', 'source': 'env', 'key': 'sk-or-\u2026530e', 'stage': 'paid', 'state': 'dead'}, {'provider': 'moonshot', 'source': 'env', 'key': 'sk-est\u2026R3Yk', 'stage': 'paid', 'state': 'dead'}]",
+      "capability": "code"
+    }
+  ]
+}

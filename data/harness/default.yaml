@@ -1,0 +1,54 @@
+harness:
+  context:
+    prefix_stable:
+    - rules
+    - reference_dna
+    - skills_index
+    - tool_declare
+    - effort
+    one_shot_at_tail:
+    - mission_delta
+    - response_format
+    - tool_choice
+    compaction:
+      trigger_tokens: 60000
+      summarize: tool_outputs
+      keep_verbatim: references
+    firewall: subagents_return_summaries_only
+  tools:
+    per_role_subsets: true
+    typed_args: true
+    indexed_parallel: true
+    dynamic_load: true
+  effort:
+    level: high
+    budget_multiplier: 1.0
+    verbosity_cap: 1.3x_baseline
+  verifier:
+    build: true
+    tests: true
+    lint: true
+    pixel_diff_vs_reference: true
+    anti_fake: true
+    hidden_checks: true
+  judge:
+    protocol:
+    - read
+    - rubric
+    - score
+    - scorepad
+    fork_sandbox: true
+    submission_cap: 3
+  loop:
+    repair_with_exact_errors: true
+    close_only_on_green: true
+  memory:
+    repo_wiki: true
+    references: true
+    decisions: true
+    accepted_artifacts_as_fewshot: true
+  training:
+    teachers:
+    - cheap APIs
+    student: hosted_small
+    refresh: weekly_lora

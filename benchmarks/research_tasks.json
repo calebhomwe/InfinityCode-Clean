@@ -1,0 +1,5 @@
+[
+  {
+    "goal": "Find 5 recent papers on multimodal RAG using web_fetch on the arXiv API, summarize key findings, and write a markdown comparison table to papers.md"
+  }
+]

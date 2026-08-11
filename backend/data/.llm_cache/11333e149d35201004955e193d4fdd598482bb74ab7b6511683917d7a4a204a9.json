@@ -1,0 +1,1 @@
+{"text": "The harness routes LLM calls through a failover chain with health tracking. This design ensures continued operation by automatically redirecting requests to backup providers when primary ones fail, while continuously monitoring provider status to optimize routing decisions. [req-19-1786377028]", "input_tokens": 178, "output_tokens": 59, "cached_at": 1786377129.2793305}

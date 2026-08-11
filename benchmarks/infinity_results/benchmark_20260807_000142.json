@@ -1,0 +1,515 @@
+{
+  "timestamp": "2026-08-07T00:01:42.986013",
+  "sessions_count": 20,
+  "sessions": [
+    {
+      "session_id": "inf_0000",
+      "completion_rate": 0.0,
+      "cascade_break_score": 0.0,
+      "credit_efficiency": 0.10040160642570281,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 0.0,
+      "overall_score": 2.0080321285140563,
+      "details": {
+        "files_intended": 4,
+        "files_modified": 20,
+        "cascade_breaks": 30,
+        "duration_minutes": 0.0,
+        "turns": 16,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    },
+    {
+      "session_id": "inf_0001",
+      "completion_rate": 1.0,
+      "cascade_break_score": 1.0,
+      "credit_efficiency": 0.9803921568627451,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 0.75,
+      "overall_score": 82.1078431372549,
+      "details": {
+        "files_intended": 5,
+        "files_modified": 1,
+        "cascade_breaks": 0,
+        "duration_minutes": 0.0,
+        "turns": 5,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    },
+    {
+      "session_id": "inf_0002",
+      "completion_rate": 0.5,
+      "cascade_break_score": 1.0,
+      "credit_efficiency": 0.3401360544217687,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 0.5,
+      "overall_score": 51.802721088435376,
+      "details": {
+        "files_intended": 1,
+        "files_modified": 1,
+        "cascade_breaks": 0,
+        "duration_minutes": 0.0,
+        "turns": 12,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    },
+    {
+      "session_id": "inf_0003",
+      "completion_rate": 0.5,
+      "cascade_break_score": 1.0,
+      "credit_efficiency": 0.36764705882352944,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 0.5,
+      "overall_score": 52.352941176470594,
+      "details": {
+        "files_intended": 4,
+        "files_modified": 1,
+        "cascade_breaks": 0,
+        "duration_minutes": 0.0,
+        "turns": 9,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    },
+    {
+      "session_id": "inf_0004",
+      "completion_rate": 0.0,
+      "cascade_break_score": 0.0,
+      "credit_efficiency": 0.1282051282051282,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 0.0,
+      "overall_score": 2.564102564102564,
+      "details": {
+        "files_intended": 3,
+        "files_modified": 22,
+        "cascade_breaks": 31,
+        "duration_minutes": 0.0,
+        "turns": 19,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    },
+    {
+      "session_id": "inf_0005",
+      "completion_rate": 0.0,
+      "cascade_break_score": 0.0,
+      "credit_efficiency": 0.1,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 0.0,
+      "overall_score": 2.0000000000000004,
+      "details": {
+        "files_intended": 5,
+        "files_modified": 27,
+        "cascade_breaks": 48,
+        "duration_minutes": 0.0,
+        "turns": 22,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    },
+    {
+      "session_id": "inf_0006",
+      "completion_rate": 0.5,
+      "cascade_break_score": 1.0,
+      "credit_efficiency": 0.3597122302158273,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 0.5,
+      "overall_score": 52.19424460431655,
+      "details": {
+        "files_intended": 2,
+        "files_modified": 1,
+        "cascade_breaks": 0,
+        "duration_minutes": 0.0,
+        "turns": 10,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    },
+    {
+      "session_id": "inf_0007",
+      "completion_rate": 1.0,
+      "cascade_break_score": 1.0,
+      "credit_efficiency": 1.0,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 1.0,
+      "overall_score": 85.0,
+      "details": {
+        "files_intended": 4,
+        "files_modified": 1,
+        "cascade_breaks": 0,
+        "duration_minutes": 0.0,
+        "turns": 5,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    },
+    {
+      "session_id": "inf_0008",
+      "completion_rate": 1.0,
+      "cascade_break_score": 1.0,
+      "credit_efficiency": 1.0,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 1.0,
+      "overall_score": 85.0,
+      "details": {
+        "files_intended": 2,
+        "files_modified": 1,
+        "cascade_breaks": 0,
+        "duration_minutes": 0.0,
+        "turns": 5,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    },
+    {
+      "session_id": "inf_0009",
+      "completion_rate": 0.0,
+      "cascade_break_score": 0.0,
+      "credit_efficiency": 0.13192612137203166,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 0.0,
+      "overall_score": 2.638522427440633,
+      "details": {
+        "files_intended": 2,
+        "files_modified": 17,
+        "cascade_breaks": 35,
+        "duration_minutes": 0.0,
+        "turns": 15,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    },
+    {
+      "session_id": "inf_0010",
+      "completion_rate": 1.0,
+      "cascade_break_score": 1.0,
+      "credit_efficiency": 1.0,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 0.75,
+      "overall_score": 82.5,
+      "details": {
+        "files_intended": 1,
+        "files_modified": 1,
+        "cascade_breaks": 0,
+        "duration_minutes": 0.0,
+        "turns": 6,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    },
+    {
+      "session_id": "inf_0011",
+      "completion_rate": 1.0,
+      "cascade_break_score": 1.0,
+      "credit_efficiency": 1.0,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 1.0,
+      "overall_score": 85.0,
+      "details": {
+        "files_intended": 5,
+        "files_modified": 1,
+        "cascade_breaks": 0,
+        "duration_minutes": 0.0,
+        "turns": 4,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    },
+    {
+      "session_id": "inf_0012",
+      "completion_rate": 0.0,
+      "cascade_break_score": 0.0,
+      "credit_efficiency": 0.1358695652173913,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 0.0,
+      "overall_score": 2.717391304347826,
+      "details": {
+        "files_intended": 5,
+        "files_modified": 22,
+        "cascade_breaks": 30,
+        "duration_minutes": 0.0,
+        "turns": 17,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    },
+    {
+      "session_id": "inf_0013",
+      "completion_rate": 0.0,
+      "cascade_break_score": 0.0,
+      "credit_efficiency": 0.13192612137203166,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 0.0,
+      "overall_score": 2.638522427440633,
+      "details": {
+        "files_intended": 5,
+        "files_modified": 27,
+        "cascade_breaks": 45,
+        "duration_minutes": 0.0,
+        "turns": 22,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    },
+    {
+      "session_id": "inf_0014",
+      "completion_rate": 0.5,
+      "cascade_break_score": 1.0,
+      "credit_efficiency": 0.3937007874015748,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 0.5,
+      "overall_score": 52.874015748031496,
+      "details": {
+        "files_intended": 1,
+        "files_modified": 1,
+        "cascade_breaks": 0,
+        "duration_minutes": 0.0,
+        "turns": 11,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    },
+    {
+      "session_id": "inf_0015",
+      "completion_rate": 0.2,
+      "cascade_break_score": 1.0,
+      "credit_efficiency": 0.2074688796680498,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 0.25,
+      "overall_score": 37.649377593361,
+      "details": {
+        "files_intended": 5,
+        "files_modified": 1,
+        "cascade_breaks": 0,
+        "duration_minutes": 0.0,
+        "turns": 12,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    },
+    {
+      "session_id": "inf_0016",
+      "completion_rate": 0.2,
+      "cascade_break_score": 1.0,
+      "credit_efficiency": 0.19607843137254902,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 0.25,
+      "overall_score": 37.42156862745099,
+      "details": {
+        "files_intended": 1,
+        "files_modified": 1,
+        "cascade_breaks": 0,
+        "duration_minutes": 0.0,
+        "turns": 17,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    },
+    {
+      "session_id": "inf_0017",
+      "completion_rate": 0.0,
+      "cascade_break_score": 0.0,
+      "credit_efficiency": 0.16611295681063123,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 0.0,
+      "overall_score": 3.322259136212625,
+      "details": {
+        "files_intended": 1,
+        "files_modified": 17,
+        "cascade_breaks": 34,
+        "duration_minutes": 0.0,
+        "turns": 16,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    },
+    {
+      "session_id": "inf_0018",
+      "completion_rate": 1.0,
+      "cascade_break_score": 1.0,
+      "credit_efficiency": 0.9803921568627451,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 0.75,
+      "overall_score": 82.1078431372549,
+      "details": {
+        "files_intended": 4,
+        "files_modified": 1,
+        "cascade_breaks": 0,
+        "duration_minutes": 0.0,
+        "turns": 7,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    },
+    {
+      "session_id": "inf_0019",
+      "completion_rate": 0.5,
+      "cascade_break_score": 1.0,
+      "credit_efficiency": 0.30303030303030304,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 0.5,
+      "overall_score": 51.06060606060606,
+      "details": {
+        "files_intended": 3,
+        "files_modified": 1,
+        "cascade_breaks": 0,
+        "duration_minutes": 0.0,
+        "turns": 10,
+        "weights": {
+          "completion": 0.3,
+          "cascade": 0.25,
+          "credits": 0.2,
+          "time": 0.15,
+          "satisfaction": 0.1
+        }
+      }
+    }
+  ],
+  "summary": {
+    "averages": {
+      "overall_score": 42.74799955806202,
+      "completion_rate": 0.445,
+      "cascade_break_score": 0.65,
+      "credit_efficiency": 0.45114997790310046,
+      "time_efficiency": 0.0,
+      "user_satisfaction": 0.4125
+    },
+    "score_distribution": {
+      "0-20 (Critical)": 7,
+      "21-40 (Poor)": 2,
+      "41-60 (Fair)": 5,
+      "61-80 (Good)": 0,
+      "81-100 (Excellent)": 6
+    },
+    "worst_sessions": [
+      {
+        "session_id": "inf_0005",
+        "score": 2.0000000000000004,
+        "cascade_breaks": 48
+      },
+      {
+        "session_id": "inf_0000",
+        "score": 2.0080321285140563,
+        "cascade_breaks": 30
+      },
+      {
+        "session_id": "inf_0004",
+        "score": 2.564102564102564,
+        "cascade_breaks": 31
+      },
+      {
+        "session_id": "inf_0009",
+        "score": 2.638522427440633,
+        "cascade_breaks": 35
+      },
+      {
+        "session_id": "inf_0013",
+        "score": 2.638522427440633,
+        "cascade_breaks": 45
+      }
+    ],
+    "insights": [
+      "WARNING: 7 sessions have high cascade breaks. Change isolation engine needs improvement.",
+      "WARNING: Low credit efficiency (0.45). Users burning credits faster than expected.",
+      "WARNING: Sessions taking longer than expected (0.00). Consider performance optimization."
+    ]
+  }
+}

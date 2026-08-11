@@ -1,0 +1,40 @@
+{
+  "name": "qwencloud-model-selector",
+  "title": "QwenCloud Model Selector",
+  "topic": "model routing",
+  "description": "Pick the right Qwen model for the job: weighs task type, context size, cost and vision needs, then names the model to use.",
+  "source_type": "seeded",
+  "always": true,
+  "steps": [
+    {
+      "order": 1,
+      "instruction": "Classify the task first: text/code/reasoning, vision understanding, image generation, video generation, or speech."
+    },
+    {
+      "order": 2,
+      "instruction": "List the constraints: input length, budget, latency, and whether vision or tool calling is required."
+    },
+    {
+      "order": 3,
+      "instruction": "Text and code: qwen-turbo for cheap volume, qwen-plus for balance, qwen-max for hard reasoning."
+    },
+    {
+      "order": 4,
+      "instruction": "Vision: qwen3-vl-plus for image and video understanding; local qwen3-vl-8b when offline."
+    },
+    {
+      "order": 5,
+      "instruction": "Media generation: Wan models for video, qwen-image for images - via the qwen-mm media tools."
+    },
+    {
+      "order": 6,
+      "instruction": "Recommend one primary and one fallback; state cost per million tokens and context window for each."
+    },
+    {
+      "order": 7,
+      "instruction": "Verify key and quota for the chosen model before committing; use the free lane when cost must be zero."
+    }
+  ],
+  "verified": true,
+  "created_at": "2026-08-11T00:00:00+00:00"
+}

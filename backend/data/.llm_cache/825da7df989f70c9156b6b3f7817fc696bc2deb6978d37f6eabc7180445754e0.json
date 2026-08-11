@@ -1,0 +1,1 @@
+{"text": "The harness directs LLM requests through a prioritized failover chain, automatically routing to the next available provider when one fails. It actively monitors each provider's health status to ensure reliable and resilient LLM service delivery.", "input_tokens": 178, "output_tokens": 42, "cached_at": 1786377884.0022018}

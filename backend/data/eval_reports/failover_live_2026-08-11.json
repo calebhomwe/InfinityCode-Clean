@@ -1,0 +1,116 @@
+{
+  "date": "2026-08-11 00:31:05",
+  "requests": 12,
+  "wall_s": 12.16,
+  "answered": 11,
+  "dropped": 1,
+  "failover_observed": false,
+  "swap_gap_s_after_first_429": null,
+  "free_served": 14,
+  "paid_served": 0,
+  "free_cost_usd": 0.0,
+  "paid_cost_usd": 0,
+  "total_cost_usd": 0.0,
+  "final_provider": "openrouter",
+  "route_states": [
+    {
+      "provider": "openrouter",
+      "source": "env",
+      "key": "sk-or-\u2026d36e",
+      "stage": "free-router",
+      "state": "live"
+    },
+    {
+      "provider": "openrouter",
+      "source": "env",
+      "key": "sk-or-\u2026d36e",
+      "stage": "paid",
+      "state": "unknown"
+    }
+  ],
+  "samples": [
+    {
+      "i": 0,
+      "ok": true,
+      "latency_s": 6.297,
+      "cost_usd": 0.0,
+      "text_len": 22
+    },
+    {
+      "i": 1,
+      "ok": true,
+      "latency_s": 2.578,
+      "cost_usd": 0.0,
+      "text_len": 5
+    },
+    {
+      "i": 2,
+      "ok": true,
+      "latency_s": 11.735,
+      "cost_usd": 0.0,
+      "text_len": 18
+    },
+    {
+      "i": 3,
+      "ok": false,
+      "latency_s": 11.266,
+      "error": "'NoneType' object is not subscriptable"
+    },
+    {
+      "i": 4,
+      "ok": true,
+      "latency_s": 2.578,
+      "cost_usd": 0.0,
+      "text_len": 15
+    },
+    {
+      "i": 5,
+      "ok": true,
+      "latency_s": 5.625,
+      "cost_usd": 0.0,
+      "text_len": 161
+    },
+    {
+      "i": 6,
+      "ok": true,
+      "latency_s": 3.938,
+      "cost_usd": 0.0,
+      "text_len": 11
+    },
+    {
+      "i": 7,
+      "ok": true,
+      "latency_s": 5.031,
+      "cost_usd": 0.0,
+      "text_len": 16
+    },
+    {
+      "i": 8,
+      "ok": true,
+      "latency_s": 1.578,
+      "cost_usd": 0.0,
+      "text_len": 189
+    },
+    {
+      "i": 9,
+      "ok": true,
+      "latency_s": 9.094,
+      "cost_usd": 0.0,
+      "text_len": 155
+    },
+    {
+      "i": 10,
+      "ok": true,
+      "latency_s": 1.594,
+      "cost_usd": 0.0,
+      "text_len": 114
+    },
+    {
+      "i": 11,
+      "ok": true,
+      "latency_s": 12.141,
+      "cost_usd": 0.0,
+      "text_len": 14
+    }
+  ]
+}

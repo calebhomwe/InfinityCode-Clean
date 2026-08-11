@@ -1,0 +1,96 @@
+{
+  "run_id": "47944f46-cf0a-479d-80c2-65109d751c6c",
+  "lane": "cheap",
+  "model": "deepseek/deepseek-v4-flash",
+  "profile": "debug-fix",
+  "tasks_total": 3,
+  "tasks_passed": 1,
+  "aggregate_score": 0.3333,
+  "total_cost_usd": 0.000328,
+  "avg_latency_ms": 3822.73,
+  "summary": {
+    "pass_rate": 0.3333,
+    "weighted_score": 0.3333,
+    "weakest_capability": "code"
+  },
+  "capabilities": {
+    "code": {
+      "score": 0.3333,
+      "tasks_total": 3,
+      "tasks_passed": 1,
+      "failed_tasks": [
+        {
+          "id": "ob-dbg-001",
+          "name": "fix broken fibonacci",
+          "reason": "empty output"
+        },
+        {
+          "id": "ob-dbg-002",
+          "name": "fix json helper",
+          "reason": "empty output"
+        }
+      ]
+    }
+  },
+  "weaknesses": [
+    {
+      "capability": "code",
+      "score": 0.3333,
+      "tasks_total": 3,
+      "tasks_passed": 1,
+      "failed_tasks": [
+        {
+          "id": "ob-dbg-001",
+          "name": "fix broken fibonacci",
+          "reason": "empty output"
+        },
+        {
+          "id": "ob-dbg-002",
+          "name": "fix json helper",
+          "reason": "empty output"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "task_id": "ob-dbg-001",
+      "name": "fix broken fibonacci",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": false,
+      "score": 0.0,
+      "output": "",
+      "cost_usd": 0.00015539999999999998,
+      "latency_ms": 4617.813587188721,
+      "reason": "empty output",
+      "capability": "code"
+    },
+    {
+      "task_id": "ob-dbg-002",
+      "name": "fix json helper",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": false,
+      "score": 0.0,
+      "output": "",
+      "cost_usd": 0.00015442,
+      "latency_ms": 4977.635622024536,
+      "reason": "empty output",
+      "capability": "code"
+    },
+    {
+      "task_id": "ob-dbg-003",
+      "name": "fix off-by-one",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "```python\ndef last_two(items):\n    return items[-2:]\n```",
+      "cost_usd": 1.806e-05,
+      "latency_ms": 1872.7459907531738,
+      "reason": "matched variant: items[-2:]",
+      "capability": "code"
+    }
+  ]
+}

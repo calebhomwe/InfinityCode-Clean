@@ -1,0 +1,168 @@
+{
+  "date": "2026-08-11 00:42:46",
+  "requests": 20,
+  "wall_s": 20.53,
+  "answered": 15,
+  "dropped": 5,
+  "failover_observed": false,
+  "swap_gap_s_after_first_429": null,
+  "free_served": 29,
+  "paid_served": 0,
+  "free_cost_usd": 0.0,
+  "paid_cost_usd": 0,
+  "total_cost_usd": 0.0,
+  "final_provider": "openrouter",
+  "route_states": [
+    {
+      "provider": "openrouter",
+      "source": "env",
+      "key": "sk-or-\u2026d36e",
+      "stage": "free-router",
+      "state": "dead"
+    },
+    {
+      "provider": "openrouter",
+      "source": "env",
+      "key": "sk-or-\u2026d36e",
+      "stage": "paid",
+      "state": "dead"
+    }
+  ],
+  "samples": [
+    {
+      "i": 0,
+      "ok": true,
+      "latency_s": 6.515,
+      "cost_usd": 0.0,
+      "text_len": 23
+    },
+    {
+      "i": 1,
+      "ok": true,
+      "latency_s": 1.672,
+      "cost_usd": 0.0,
+      "text_len": 15
+    },
+    {
+      "i": 2,
+      "ok": true,
+      "latency_s": 6.609,
+      "cost_usd": 0.0,
+      "text_len": 15
+    },
+    {
+      "i": 3,
+      "ok": true,
+      "latency_s": 9.125,
+      "cost_usd": 0.0,
+      "text_len": 18
+    },
+    {
+      "i": 4,
+      "ok": false,
+      "latency_s": 10.765,
+      "error": "All LLM routes failed (2 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'No"
+    },
+    {
+      "i": 5,
+      "ok": true,
+      "latency_s": 2.25,
+      "cost_usd": 0.0,
+      "text_len": 25
+    },
+    {
+      "i": 6,
+      "ok": false,
+      "latency_s": 20.5,
+      "error": "All LLM routes failed (2 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'No"
+    },
+    {
+      "i": 7,
+      "ok": false,
+      "latency_s": 19.062,
+      "error": "All LLM routes failed (2 in chain): Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '20', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '17863801800"
+    },
+    {
+      "i": 8,
+      "ok": true,
+      "latency_s": 12.187,
+      "cost_usd": 0.0,
+      "text_len": 112
+    },
+    {
+      "i": 9,
+      "ok": false,
+      "latency_s": 16.125,
+      "error": "All LLM routes failed (2 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'No"
+    },
+    {
+      "i": 10,
+      "ok": true,
+      "latency_s": 1.859,
+      "cost_usd": 0.0,
+      "text_len": 18
+    },
+    {
+      "i": 11,
+      "ok": true,
+      "latency_s": 7.531,
+      "cost_usd": 0.0,
+      "text_len": 18
+    },
+    {
+      "i": 12,
+      "ok": true,
+      "latency_s": 2.797,
+      "cost_usd": 0.0,
+      "text_len": 18
+    },
+    {
+      "i": 13,
+      "ok": true,
+      "latency_s": 7.328,
+      "cost_usd": 0.0,
+      "text_len": 18
+    },
+    {
+      "i": 14,
+      "ok": true,
+      "latency_s": 3.093,
+      "cost_usd": 0.0,
+      "text_len": 18
+    },
+    {
+      "i": 15,
+      "ok": true,
+      "latency_s": 4.218,
+      "cost_usd": 0.0,
+      "text_len": 18
+    },
+    {
+      "i": 16,
+      "ok": true,
+      "latency_s": 7.015,
+      "cost_usd": 0.0,
+      "text_len": 18
+    },
+    {
+      "i": 17,
+      "ok": true,
+      "latency_s": 4.359,
+      "cost_usd": 0.0,
+      "text_len": 18
+    },
+    {
+      "i": 18,
+      "ok": false,
+      "latency_s": 10.39,
+      "error": "All LLM routes failed (2 in chain): Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\"code\":403, \"reason\":\"NOT_ENOUGH_BALANCE\", \"message\":\"not enough balance\", \"metadata\":{}}', 'provider_name': 'No"
+    },
+    {
+      "i": 19,
+      "ok": true,
+      "latency_s": 5.406,
+      "cost_usd": 0.0,
+      "text_len": 17
+    }
+  ]
+}

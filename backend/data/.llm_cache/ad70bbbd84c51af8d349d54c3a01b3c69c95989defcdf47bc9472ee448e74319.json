@@ -1,0 +1,1 @@
+{"text": "{\"tool_call_id\": \"1\", \"tool_name\": \"run_command\", \"parameters\": {\"command\": \"pwd\"}}\n```", "input_tokens": 1460, "output_tokens": 144, "cached_at": 1786371957.7998388}

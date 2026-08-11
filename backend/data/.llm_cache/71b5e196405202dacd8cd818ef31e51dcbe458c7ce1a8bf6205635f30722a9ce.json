@@ -1,0 +1,1 @@
+{"text": "{\n  \"action\": \"web_fetch\",\n  \"args\": {\n    \"url\": \"https://export.arxiv.org/api/query?search_query=all:%22multimodal+retrieval+augmented+generation%22&start=0&max_results=10&sortBy=submitted_date&sortOrder=descending\"\n  }\n}", "input_tokens": 455, "output_tokens": 816, "cached_at": 1786391493.2837512}

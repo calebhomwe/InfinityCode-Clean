@@ -1,0 +1,1 @@
+{"text": "{\"action\": \"run_command\", \"args\": {\"command\": \"curl -s \\\"https://export.arxiv.org/api/query/search?query=multimodal%20retrieval%20augmented%20generation&max_results=5&sortBy=submitted_date\\\"\"}}", "input_tokens": 364, "output_tokens": 1019, "cached_at": 1786371312.400893}

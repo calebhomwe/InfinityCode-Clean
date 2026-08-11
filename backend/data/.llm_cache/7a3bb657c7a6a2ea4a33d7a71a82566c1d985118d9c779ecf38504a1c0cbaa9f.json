@@ -1,0 +1,1 @@
+{"text": "```python\n# Simpler search terms with basic URL encoding\nquery = 'multimodal RAG'\nurl = f'http://export.arxiv.org/api/query?search_query={query}&start=0&max_results=20&sortBy=submittedDate&sortOrder=descending'\n\nresult = web_fetch(url=url)\nprint(result)\n```", "input_tokens": 1443, "output_tokens": 153, "cached_at": 1786391607.58638}

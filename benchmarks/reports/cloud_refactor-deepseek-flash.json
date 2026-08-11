@@ -1,0 +1,73 @@
+{
+  "run_id": "b5d5f4b6-9eea-4d25-95ab-ff4f6575b596",
+  "lane": "cheap",
+  "model": "deepseek/deepseek-v4-flash",
+  "profile": "refactor",
+  "tasks_total": 2,
+  "tasks_passed": 1,
+  "aggregate_score": 0.5,
+  "total_cost_usd": 0.000309,
+  "avg_latency_ms": 6453.67,
+  "summary": {
+    "pass_rate": 0.5,
+    "weighted_score": 0.5,
+    "weakest_capability": "code"
+  },
+  "capabilities": {
+    "code": {
+      "score": 0.5,
+      "tasks_total": 2,
+      "tasks_passed": 1,
+      "failed_tasks": [
+        {
+          "id": "ob-ref-001",
+          "name": "dedupe into helper",
+          "reason": "empty output"
+        }
+      ]
+    }
+  },
+  "weaknesses": [
+    {
+      "capability": "code",
+      "score": 0.5,
+      "tasks_total": 2,
+      "tasks_passed": 1,
+      "failed_tasks": [
+        {
+          "id": "ob-ref-001",
+          "name": "dedupe into helper",
+          "reason": "empty output"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "task_id": "ob-ref-001",
+      "name": "dedupe into helper",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": false,
+      "score": 0.0,
+      "output": "",
+      "cost_usd": 0.00020916,
+      "latency_ms": 9165.568590164185,
+      "reason": "empty output",
+      "capability": "code"
+    },
+    {
+      "task_id": "ob-ref-002",
+      "name": "extract format helper",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "```python\ndef format_price(value: float) -> str:\n    \"\"\"Return a price formatted as $1,234.56.\"\"\"\n    return f\"${value:,.2f}\"\n\n\ndef price_a(p: float) -> str:\n    return format_price(p)\n\n\ndef price_b(p: float, tax: float) -> str:\n    return format_price(p + tax)\n```",
+      "cost_usd": 0.00010024000000000002,
+      "latency_ms": 3741.7683601379395,
+      "reason": "all expected substrings found",
+      "capability": "code"
+    }
+  ]
+}

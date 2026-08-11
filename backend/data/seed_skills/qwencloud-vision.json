@@ -1,0 +1,36 @@
+{
+  "name": "qwencloud-vision",
+  "title": "QwenCloud Vision",
+  "topic": "vision understanding",
+  "description": "Understand images and video with Qwen vision models - OCR, charts, grounding and visual Q&A.",
+  "source_type": "seeded",
+  "always": true,
+  "steps": [
+    {
+      "order": 1,
+      "instruction": "Pre-check the media: format and size; downscale anything over 4MB before upload."
+    },
+    {
+      "order": 2,
+      "instruction": "Use the qwen-mm tools: ocr/read_image for text extraction, vision_chat for charts with an explicit 'read the axes first' instruction."
+    },
+    {
+      "order": 3,
+      "instruction": "Route to a vision model: qwen3-vl-plus primary, qwen3-vl-32b via OpenRouter as fallback, local qwen3-vl-8b offline."
+    },
+    {
+      "order": 4,
+      "instruction": "Grounding and bbox tasks: ask for normalised coordinates and check they sit in [0,1] before drawing."
+    },
+    {
+      "order": 5,
+      "instruction": "Multiple images: at most 4 per request, and describe their order so the model knows which is which."
+    },
+    {
+      "order": 6,
+      "instruction": "Never let a vision answer invent content - cross-check any load-bearing numbers against the source."
+    }
+  ],
+  "verified": true,
+  "created_at": "2026-08-11T00:00:00+00:00"
+}

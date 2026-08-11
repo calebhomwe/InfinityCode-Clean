@@ -1,0 +1,774 @@
+{
+  "run_id": "a9f3c310-7dbb-449b-994a-665d25c99f22",
+  "lane": "cheap",
+  "model": "deepseek/deepseek-v4-flash",
+  "profile": "benchmarks",
+  "tasks_total": 48,
+  "tasks_passed": 46,
+  "aggregate_score": 0.9583,
+  "total_cost_usd": 0.001624,
+  "avg_latency_ms": 1406.85,
+  "summary": {
+    "pass_rate": 0.9583,
+    "weighted_score": 0.9583,
+    "weakest_capability": "math"
+  },
+  "capabilities": {
+    "math": {
+      "score": 0.0,
+      "tasks_total": 1,
+      "tasks_passed": 0,
+      "failed_tasks": [
+        {
+          "id": "lb-01",
+          "name": "livebench arithmetic chain",
+          "reason": "exact mismatch"
+        }
+      ]
+    },
+    "code": {
+      "score": 1.0,
+      "tasks_total": 5,
+      "tasks_passed": 5,
+      "failed_tasks": []
+    },
+    "data_analysis": {
+      "score": 1.0,
+      "tasks_total": 1,
+      "tasks_passed": 1,
+      "failed_tasks": []
+    },
+    "language": {
+      "score": 1.0,
+      "tasks_total": 1,
+      "tasks_passed": 1,
+      "failed_tasks": []
+    },
+    "reasoning": {
+      "score": 1.0,
+      "tasks_total": 4,
+      "tasks_passed": 4,
+      "failed_tasks": []
+    },
+    "science": {
+      "score": 1.0,
+      "tasks_total": 4,
+      "tasks_passed": 4,
+      "failed_tasks": []
+    },
+    "factuality": {
+      "score": 1.0,
+      "tasks_total": 4,
+      "tasks_passed": 4,
+      "failed_tasks": []
+    },
+    "humanities": {
+      "score": 1.0,
+      "tasks_total": 4,
+      "tasks_passed": 4,
+      "failed_tasks": []
+    },
+    "multimodal": {
+      "score": 1.0,
+      "tasks_total": 4,
+      "tasks_passed": 4,
+      "failed_tasks": []
+    },
+    "tools": {
+      "score": 1.0,
+      "tasks_total": 4,
+      "tasks_passed": 4,
+      "failed_tasks": []
+    },
+    "style": {
+      "score": 0.75,
+      "tasks_total": 4,
+      "tasks_passed": 3,
+      "failed_tasks": [
+        {
+          "id": "lm-01",
+          "name": "lmarena concise explain",
+          "reason": "verbosity: 313 > 300"
+        }
+      ]
+    },
+    "legal": {
+      "score": 1.0,
+      "tasks_total": 2,
+      "tasks_passed": 2,
+      "failed_tasks": []
+    },
+    "finance": {
+      "score": 1.0,
+      "tasks_total": 2,
+      "tasks_passed": 2,
+      "failed_tasks": []
+    },
+    "scientific_code": {
+      "score": 1.0,
+      "tasks_total": 4,
+      "tasks_passed": 4,
+      "failed_tasks": []
+    },
+    "hallucination": {
+      "score": 1.0,
+      "tasks_total": 4,
+      "tasks_passed": 4,
+      "failed_tasks": []
+    }
+  },
+  "weaknesses": [
+    {
+      "capability": "math",
+      "score": 0.0,
+      "tasks_total": 1,
+      "tasks_passed": 0,
+      "failed_tasks": [
+        {
+          "id": "lb-01",
+          "name": "livebench arithmetic chain",
+          "reason": "exact mismatch"
+        }
+      ]
+    },
+    {
+      "capability": "style",
+      "score": 0.75,
+      "tasks_total": 4,
+      "tasks_passed": 3,
+      "failed_tasks": [
+        {
+          "id": "lm-01",
+          "name": "lmarena concise explain",
+          "reason": "verbosity: 313 > 300"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "task_id": "lb-01",
+      "name": "livebench arithmetic chain",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": false,
+      "score": 0.0,
+      "output": "17 * 23 = 391  \n128 / 4 = 32  \n391 - 45 + 32 = 378\n\n378",
+      "cost_usd": 7.616e-05,
+      "latency_ms": 3399.7559547424316,
+      "reason": "exact mismatch",
+      "capability": "math"
+    },
+    {
+      "task_id": "lb-02",
+      "name": "livebench debug output",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "0 1 4",
+      "cost_usd": 4.2420000000000004e-05,
+      "latency_ms": 1657.4852466583252,
+      "reason": "exact match",
+      "capability": "code"
+    },
+    {
+      "task_id": "lb-03",
+      "name": "livebench csv reasoning",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "20",
+      "cost_usd": 2.3380000000000003e-05,
+      "latency_ms": 1037.6756191253662,
+      "reason": "exact match",
+      "capability": "data_analysis"
+    },
+    {
+      "task_id": "lb-04",
+      "name": "livebench constrained writing",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "The satellite will complete one orbit around Earth every ninety minutes.",
+      "cost_usd": 2.2960000000000004e-05,
+      "latency_ms": 1220.616102218628,
+      "reason": "all expected substrings found",
+      "capability": "language"
+    },
+    {
+      "task_id": "arc-01",
+      "name": "arc sequence rule",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "64",
+      "cost_usd": 6.146e-05,
+      "latency_ms": 2566.378355026245,
+      "reason": "exact match",
+      "capability": "reasoning"
+    },
+    {
+      "task_id": "arc-02",
+      "name": "arc grid transform",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "1,1",
+      "cost_usd": 3.3180000000000004e-05,
+      "latency_ms": 1414.5607948303223,
+      "reason": "exact match",
+      "capability": "reasoning"
+    },
+    {
+      "task_id": "arc-03",
+      "name": "arc analogy pattern",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "C",
+      "cost_usd": 3.6960000000000005e-05,
+      "latency_ms": 1482.5623035430908,
+      "reason": "exact match",
+      "capability": "reasoning"
+    },
+    {
+      "task_id": "arc-04",
+      "name": "arc color mapping",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "2,1,2",
+      "cost_usd": 3.2340000000000005e-05,
+      "latency_ms": 1194.8792934417725,
+      "reason": "exact match",
+      "capability": "reasoning"
+    },
+    {
+      "task_id": "gpqa-01",
+      "name": "gpqa quantum",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "A",
+      "cost_usd": 2.4920000000000002e-05,
+      "latency_ms": 915.9829616546631,
+      "reason": "exact match",
+      "capability": "science"
+    },
+    {
+      "task_id": "gpqa-02",
+      "name": "gpqa molecular bio",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "B",
+      "cost_usd": 2.506e-05,
+      "latency_ms": 934.5660209655762,
+      "reason": "exact match",
+      "capability": "science"
+    },
+    {
+      "task_id": "gpqa-03",
+      "name": "gpqa thermo",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "B",
+      "cost_usd": 2.828e-05,
+      "latency_ms": 972.9585647583008,
+      "reason": "exact match",
+      "capability": "science"
+    },
+    {
+      "task_id": "gpqa-04",
+      "name": "gpqa stats",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "A",
+      "cost_usd": 2.604e-05,
+      "latency_ms": 865.2956485748291,
+      "reason": "exact match",
+      "capability": "science"
+    },
+    {
+      "task_id": "sq-01",
+      "name": "simpleqa geography",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "Canberra",
+      "cost_usd": 1.8060000000000003e-05,
+      "latency_ms": 1006.9754123687744,
+      "reason": "exact match",
+      "capability": "factuality"
+    },
+    {
+      "task_id": "sq-02",
+      "name": "simpleqa science history",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "Albert Einstein",
+      "cost_usd": 1.6660000000000003e-05,
+      "latency_ms": 794.3639755249023,
+      "reason": "all expected substrings found",
+      "capability": "factuality"
+    },
+    {
+      "task_id": "sq-03",
+      "name": "simpleqa unanswerable",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "I don't know.",
+      "cost_usd": 2.9120000000000006e-05,
+      "latency_ms": 1204.4365406036377,
+      "reason": "all expected substrings found",
+      "capability": "factuality"
+    },
+    {
+      "task_id": "sq-04",
+      "name": "simpleqa chemistry",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "Au",
+      "cost_usd": 1.722e-05,
+      "latency_ms": 791.8787002563477,
+      "reason": "exact match",
+      "capability": "factuality"
+    },
+    {
+      "task_id": "swe-01",
+      "name": "swebench off-by-one",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "```python\ndef sum_to(n):\n    total = 0\n    for i in range(1, n + 1):\n        total += i\n    return total\n\nprint(sum_to(10))\n```",
+      "cost_usd": 5.152000000000001e-05,
+      "latency_ms": 1838.8900756835938,
+      "reason": "execution output matched",
+      "capability": "code"
+    },
+    {
+      "task_id": "swe-02",
+      "name": "swebench keyerror fix",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "def safe_get(d, key):\n    try:\n        return d[key]\n    except KeyError:\n        return None\n\nprint(safe_get({'a':1},'a'))\nprint(safe_get({},'z'))",
+      "cost_usd": 4.172e-05,
+      "latency_ms": 1553.7652969360352,
+      "reason": "execution output matched",
+      "capability": "code"
+    },
+    {
+      "task_id": "swe-03",
+      "name": "swebench str reverse util",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "```python\ndef is_palindrome(s):\n    s = s.lower()\n    return s == s[::-1]\n\nprint(is_palindrome('Racecar'))\nprint(is_palindrome('hello'))\n```",
+      "cost_usd": 6.132e-05,
+      "latency_ms": 2398.2605934143066,
+      "reason": "execution output matched",
+      "capability": "code"
+    },
+    {
+      "task_id": "swe-04",
+      "name": "swebench duplicate removal",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "```python\ndef dedupe(items):\n    seen = set()\n    result = []\n    for item in items:\n        if item not in seen:\n            seen.add(item)\n            result.append(item)\n    return result\n\nprint(dedupe([1,2,1,3,2]))\n```",
+      "cost_usd": 6.496e-05,
+      "latency_ms": 2238.3599281311035,
+      "reason": "execution output matched",
+      "capability": "code"
+    },
+    {
+      "task_id": "hle-01",
+      "name": "hle philosophy",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "B",
+      "cost_usd": 2.142e-05,
+      "latency_ms": 996.5126514434814,
+      "reason": "exact match",
+      "capability": "humanities"
+    },
+    {
+      "task_id": "hle-02",
+      "name": "hle literature",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "B",
+      "cost_usd": 2.45e-05,
+      "latency_ms": 945.6946849822998,
+      "reason": "exact match",
+      "capability": "humanities"
+    },
+    {
+      "task_id": "hle-03",
+      "name": "hle ancient history",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "B",
+      "cost_usd": 2.016e-05,
+      "latency_ms": 875.9875297546387,
+      "reason": "exact match",
+      "capability": "humanities"
+    },
+    {
+      "task_id": "hle-04",
+      "name": "hle art history",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "B",
+      "cost_usd": 2.2820000000000002e-05,
+      "latency_ms": 894.1314220428467,
+      "reason": "exact match",
+      "capability": "humanities"
+    },
+    {
+      "task_id": "mmmu-01",
+      "name": "mmmu chart reading",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "Q4",
+      "cost_usd": 2.8420000000000002e-05,
+      "latency_ms": 964.2670154571533,
+      "reason": "exact match",
+      "capability": "multimodal"
+    },
+    {
+      "task_id": "mmmu-02",
+      "name": "mmmu geometry figure",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "45",
+      "cost_usd": 2.3660000000000004e-05,
+      "latency_ms": 945.8374977111816,
+      "reason": "exact match",
+      "capability": "multimodal"
+    },
+    {
+      "task_id": "mmmu-03",
+      "name": "mmmu diagram logic",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "small",
+      "cost_usd": 1.9180000000000003e-05,
+      "latency_ms": 849.4598865509033,
+      "reason": "exact match",
+      "capability": "multimodal"
+    },
+    {
+      "task_id": "mmmu-04",
+      "name": "mmmu table parse",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "16",
+      "cost_usd": 2.268e-05,
+      "latency_ms": 955.7597637176514,
+      "reason": "exact match",
+      "capability": "multimodal"
+    },
+    {
+      "task_id": "tau-01",
+      "name": "tau single tool call",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "{\"tool\": \"read_file\", \"path\": \"app.py\"}",
+      "cost_usd": 2.366e-05,
+      "latency_ms": 864.0875816345215,
+      "reason": "all expected substrings found",
+      "capability": "tools"
+    },
+    {
+      "task_id": "tau-02",
+      "name": "tau tool order",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "[\"write_file\", \"run_tests\", \"git_commit\"]",
+      "cost_usd": 3.4580000000000004e-05,
+      "latency_ms": 1293.6666011810303,
+      "reason": "all expected substrings found",
+      "capability": "tools"
+    },
+    {
+      "task_id": "tau-03",
+      "name": "tau refusal of unsafe tool",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "no",
+      "cost_usd": 4.312e-05,
+      "latency_ms": 1810.1284503936768,
+      "reason": "exact match",
+      "capability": "tools"
+    },
+    {
+      "task_id": "tau-04",
+      "name": "tau param extraction",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "{\"query\": \"python tutorials\", \"after\": \"2023\"}",
+      "cost_usd": 3.2200000000000003e-05,
+      "latency_ms": 1289.9632453918457,
+      "reason": "all expected substrings found",
+      "capability": "tools"
+    },
+    {
+      "task_id": "lm-01",
+      "name": "lmarena concise explain",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": false,
+      "score": 0.0,
+      "output": "A hash table is a data structure that stores key-value pairs and uses a hash function to compute an index into an array, enabling fast average-case lookups, insertions, and deletions in O(1) time. Collisions, where different keys map to the same index, are handled via techniques like chaining or open addressing.",
+      "cost_usd": 3.752000000000001e-05,
+      "latency_ms": 1803.3738136291504,
+      "reason": "verbosity: 313 > 300",
+      "capability": "style"
+    },
+    {
+      "task_id": "lm-02",
+      "name": "lmarena tight code comment",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "# Retry the operation until it succeeds or the maximum number of attempts is reached.",
+      "cost_usd": 3.178e-05,
+      "latency_ms": 1481.3408851623535,
+      "reason": "all expected substrings found",
+      "capability": "style"
+    },
+    {
+      "task_id": "lm-03",
+      "name": "lmarena no filler",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "Python is interpreted, though it compiles source code to bytecode internally before execution.",
+      "cost_usd": 3.066000000000001e-05,
+      "latency_ms": 1415.9419536590576,
+      "reason": "all expected substrings found",
+      "capability": "style"
+    },
+    {
+      "task_id": "lm-04",
+      "name": "lmarena direct answer",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "dict",
+      "cost_usd": 1.6800000000000002e-05,
+      "latency_ms": 1029.01029586792,
+      "reason": "exact match",
+      "capability": "style"
+    },
+    {
+      "task_id": "seal-01",
+      "name": "seal contract law",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "B",
+      "cost_usd": 2.1560000000000004e-05,
+      "latency_ms": 900.238037109375,
+      "reason": "exact match",
+      "capability": "legal"
+    },
+    {
+      "task_id": "seal-02",
+      "name": "seal compound interest",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "121",
+      "cost_usd": 2.7300000000000006e-05,
+      "latency_ms": 1082.446813583374,
+      "reason": "exact match",
+      "capability": "finance"
+    },
+    {
+      "task_id": "seal-03",
+      "name": "seal accounting",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "B",
+      "cost_usd": 2.114e-05,
+      "latency_ms": 907.6471328735352,
+      "reason": "exact match",
+      "capability": "finance"
+    },
+    {
+      "task_id": "seal-04",
+      "name": "seal torts",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "B",
+      "cost_usd": 2.338e-05,
+      "latency_ms": 892.3721313476562,
+      "reason": "exact match",
+      "capability": "legal"
+    },
+    {
+      "task_id": "sci-01",
+      "name": "scicode mean and range",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "print(sum([2,4,6,8]) / len([2,4,6,8]))\nprint(max([2,4,6,8]) - min([2,4,6,8]))",
+      "cost_usd": 6.23e-05,
+      "latency_ms": 1936.26070022583,
+      "reason": "execution output matched",
+      "capability": "scientific_code"
+    },
+    {
+      "task_id": "sci-02",
+      "name": "scicode factorial",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "```python\nimport math\nprint(math.factorial(6))\n```",
+      "cost_usd": 3.248e-05,
+      "latency_ms": 1302.7102947235107,
+      "reason": "execution output matched",
+      "capability": "scientific_code"
+    },
+    {
+      "task_id": "sci-03",
+      "name": "scicode euler approx",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "```python\nimport math\n\ns = sum(1 / math.factorial(k) for k in range(10))\nprint(f\"{s:.4f}\")\n```",
+      "cost_usd": 0.00010135999999999999,
+      "latency_ms": 3852.081060409546,
+      "reason": "execution output matched",
+      "capability": "scientific_code"
+    },
+    {
+      "task_id": "sci-04",
+      "name": "scicode prime count",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "```python\ndef is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ncount = sum(1 for n in range(2, 20) if is_prime(n))\nprint(count)\n```",
+      "cost_usd": 4.578e-05,
+      "latency_ms": 1422.6264953613281,
+      "reason": "execution output matched",
+      "capability": "scientific_code"
+    },
+    {
+      "task_id": "hh-01",
+      "name": "hhem true claim",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "supported",
+      "cost_usd": 1.9460000000000003e-05,
+      "latency_ms": 993.8504695892334,
+      "reason": "exact match",
+      "capability": "hallucination"
+    },
+    {
+      "task_id": "hh-02",
+      "name": "hhem false claim",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "refuted",
+      "cost_usd": 2.7720000000000006e-05,
+      "latency_ms": 3397.247552871704,
+      "reason": "exact match",
+      "capability": "hallucination"
+    },
+    {
+      "task_id": "hh-03",
+      "name": "hhem unverifiable claim",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "insufficient",
+      "cost_usd": 3.0100000000000003e-05,
+      "latency_ms": 992.8929805755615,
+      "reason": "exact match",
+      "capability": "hallucination"
+    },
+    {
+      "task_id": "hh-04",
+      "name": "hhem fabricated citation",
+      "lane": "cheap",
+      "model": "deepseek/deepseek-v4-flash",
+      "passed": true,
+      "score": 1.0,
+      "output": "refuted",
+      "cost_usd": 4.410000000000001e-05,
+      "latency_ms": 1943.812608718872,
+      "reason": "exact match",
+      "capability": "hallucination"
+    }
+  ]
+}

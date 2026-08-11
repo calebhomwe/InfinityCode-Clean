@@ -1,0 +1,43 @@
+  0     0.7s  test_approval_modes.py                   2 passed in 0.23s
+  0     1.5s  test_arena.py                            20 passed in 1.02s
+  0     3.9s  test_arena_api.py                        4 passed, 6 warnings in 3.03s
+  0     0.6s  test_ascension.py                        12 passed in 0.24s
+  0     4.0s  test_ascension_api.py                    5 passed, 6 warnings in 2.76s
+  0     0.6s  test_ascension_cards.py                  4 passed in 0.12s
+  0     0.6s  test_ascension_router.py                 6 passed in 0.11s
+  0     0.4s  test_benchmark_curriculum.py             1 passed in 0.06s
+  0     0.9s  test_benchmark_profiles.py               6 passed in 0.34s
+  0     0.5s  test_blender_benchmark.py                5 passed in 0.06s
+  0     0.4s  test_browsergym_runner.py                1 passed in 0.05s
+  0     0.5s  test_capability_packs.py                 2 passed in 0.07s
+  0     0.9s  test_credit_routing.py                   4 passed in 0.16s
+  0     0.7s  test_dataset_builder.py                  4 passed in 0.13s
+  0     0.6s  test_eval_harness.py                     9 passed in 0.15s
+  0     0.6s  test_evolve.py                           1 passed in 0.15s
+  0     5.8s  test_eyes.py                             10 passed in 5.10s
+  0     0.5s  test_fine_tuner.py                       4 passed in 0.05s
+  0     3.0s  test_gauntlet.py                         9 passed, 6 warnings in 2.29s
+  0     0.4s  test_huggingface_data.py                 1 passed in 0.05s
+  0     2.9s  test_longtask_api.py                     3 passed, 6 warnings in 2.27s
+  2     1.7s  test_longtask_frontend.py                !!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+  0     0.7s  test_longtask_journal.py                 2 passed in 0.32s
+  0     1.6s  test_longtask_learning.py                10 passed in 0.94s
+  0     0.9s  test_longtask_protocol.py                5 passed in 0.12s
+  0     4.2s  test_longtask_quest_api.py               7 passed, 6 warnings in 3.26s
+  1    60.6s  test_longtask_spec.py                    ?
+  1    60.5s  test_longtask_spec_gate.py               ?
+  0     5.9s  test_longtask_tools.py                   11 passed in 5.39s
+  0     0.5s  test_loop_drill_retrieval.py             1 passed in 0.14s
+  0     0.5s  test_memory_connection_leak.py           1 passed in 0.09s
+  0     1.6s  test_mission_crew.py                     2 passed in 1.04s
+  0     0.4s  test_owner.py                            5 passed in 0.04s
+  0     1.0s  test_p2_fidelity.py                      3 passed in 0.60s
+  0     4.9s  test_p2_references.py                    11 passed, 6 warnings in 3.80s
+  0     0.5s  test_p3_wiki.py                          4 passed in 0.12s
+  0     0.4s  test_plan_anchor.py                      5 passed in 0.06s
+  2     0.5s  test_provider_chat.py                    !!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+  0     0.5s  test_retrain_loop.py                     5 passed in 0.15s
+  0     0.5s  test_self_training_benchmark.py          1 passed in 0.07s
+  0     0.5s  test_smart_defaults.py                   8 passed in 0.05s
+  0     0.6s  test_tools_registry_spatial.py           5 passed in 0.19s
+  0     5.5s  test_verifier.py                         7 passed in 4.62s

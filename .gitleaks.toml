@@ -1,0 +1,20 @@
+﻿# gitleaks config -- blocks secret commits (pre-commit hook + CI)
+title = "Infinity Code gitleaks config"
+
+[allowlist]
+paths = [
+  '''docs/ops/key-rotation\.md''',
+  '''.*\.bundle''',
+]
+
+[[rules]]
+id = "dashscope-key"
+description = "DashScope API key"
+regex = '''sk-[a-f0-9]{32}'''
+keywords = ["dashscope", "DASHSCOPE"]
+
+[[rules]]
+id = "moonshot-key"
+description = "Moonshot API key"
+regex = '''sk-[A-Za-z0-9]{20,}'''
+keywords = ["moonshot", "MOONSHOT"]

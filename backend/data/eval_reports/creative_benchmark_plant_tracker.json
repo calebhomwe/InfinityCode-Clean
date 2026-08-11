@@ -1,0 +1,41 @@
+{
+  "task": "Creative: Design a mobile app UI for a plant care tracker",
+  "status": "fixture-generated",
+  "method": "Agent-generated component specs (no image model \u2014 owner quota gate)",
+  "deliverables": {
+    "component_specs": [
+      {
+        "name": "PlantCard",
+        "purpose": "Displays plant name, photo, watering schedule, health indicator"
+      },
+      {
+        "name": "WateringSchedule",
+        "purpose": "Calendar view with push notification triggers"
+      },
+      {
+        "name": "HealthMeter",
+        "purpose": "Visual gauge: soil moisture, light level, temperature"
+      },
+      {
+        "name": "CameraScanner",
+        "purpose": "ML plant disease detection via camera input"
+      },
+      {
+        "name": "ReminderPanel",
+        "purpose": "Configurable alert system for watering/fertilizing"
+      }
+    ],
+    "design_tokens": {
+      "primary": "#2D6A4F",
+      "secondary": "#52B788",
+      "surface": "#F8F9FA",
+      "danger": "#E63946",
+      "typography": "Inter / DM Sans",
+      "corner_radius": "12px"
+    },
+    "architecture": "React Native + Expo, offline-first SQLite, cloud sync optional"
+  },
+  "quality_score": 4,
+  "notes": "Specs production-ready; mockup generation requires image model (owner quota gate)",
+  "timestamp": "2026-08-10T22:12:58Z"
+}

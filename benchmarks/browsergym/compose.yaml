@@ -1,0 +1,7 @@
+services:
+  browsergym:
+    build:
+      context: .
+    init: true
+    shm_size: 1gb
+    network_mode: none

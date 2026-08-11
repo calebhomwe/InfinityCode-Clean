@@ -1,0 +1,86 @@
+{
+  "run_id": "7d13a1ba-9372-4588-8f66-199676b6e085",
+  "lane": "local",
+  "model": "local/qwen3:8b",
+  "profile": "debug-fix",
+  "tasks_total": 3,
+  "tasks_passed": 2,
+  "aggregate_score": 0.6667,
+  "total_cost_usd": 0.0,
+  "avg_latency_ms": 2434.93,
+  "summary": {
+    "pass_rate": 0.6667,
+    "weighted_score": 0.6667,
+    "weakest_capability": "code"
+  },
+  "capabilities": {
+    "code": {
+      "score": 0.6667,
+      "tasks_total": 3,
+      "tasks_passed": 2,
+      "failed_tasks": [
+        {
+          "id": "ob-dbg-001",
+          "name": "fix broken fibonacci",
+          "reason": "execution output mismatched"
+        }
+      ]
+    }
+  },
+  "weaknesses": [
+    {
+      "capability": "code",
+      "score": 0.6667,
+      "tasks_total": 3,
+      "tasks_passed": 2,
+      "failed_tasks": [
+        {
+          "id": "ob-dbg-001",
+          "name": "fix broken fibonacci",
+          "reason": "execution output mismatched"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "task_id": "ob-dbg-001",
+      "name": "fix broken fibonacci",
+      "lane": "cheap",
+      "model": "local/qwen3:8b",
+      "passed": false,
+      "score": 0.0,
+      "output": "def fib(n):\n    if n <= 1:\n        return n\n    return fib(n - 1) + fib(n - 2)",
+      "cost_usd": 0.0,
+      "latency_ms": 2514.425754547119,
+      "reason": "execution output mismatched",
+      "capability": "code"
+    },
+    {
+      "task_id": "ob-dbg-002",
+      "name": "fix json helper",
+      "lane": "cheap",
+      "model": "local/qwen3:8b",
+      "passed": true,
+      "score": 1.0,
+      "output": "def load_json(text):\n    import json\n    try:\n        return json.loads(text)\n    except:\n        return {}",
+      "cost_usd": 0.0,
+      "latency_ms": 2406.9628715515137,
+      "reason": "matched variant: except",
+      "capability": "code"
+    },
+    {
+      "task_id": "ob-dbg-003",
+      "name": "fix off-by-one",
+      "lane": "cheap",
+      "model": "local/qwen3:8b",
+      "passed": true,
+      "score": 1.0,
+      "output": "def last_two(items):\n    return items[-2:] if len(items) >= 2 else []",
+      "cost_usd": 0.0,
+      "latency_ms": 2383.3959102630615,
+      "reason": "matched variant: items[-2:]",
+      "capability": "code"
+    }
+  ]
+}

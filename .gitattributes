@@ -1,0 +1,23 @@
+# Normalize all text files to LF. CRLF is preserved only where the
+# format requires it (.bat is CRLF-sensitive on Windows).
+* text=auto eol=lf
+
+*.bat text eol=crlf
+
+# Binary assets - never normalize.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.pdf binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+*.zip binary
+*.bundle binary
+*.db binary
+*.sqlite binary
+*.sqlite3 binary
+*.pyc binary

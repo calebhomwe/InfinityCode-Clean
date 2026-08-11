@@ -1,0 +1,240 @@
+{
+  "date": "2026-08-11 00:53:15",
+  "requests": 20,
+  "wall_s": 16.34,
+  "answered": 20,
+  "dropped": 0,
+  "failover_observed": false,
+  "swap_gap_s_after_first_429": null,
+  "free_served": 26,
+  "paid_served": 4,
+  "served_by_model": {
+    "free-router": 26,
+    "deepseek/deepseek-chat": 4
+  },
+  "free_cost_usd": 0.0,
+  "paid_cost_usd": 6.2e-05,
+  "total_cost_usd": 6.2e-05,
+  "final_provider": "deepseek",
+  "route_states": [
+    {
+      "provider": "openrouter",
+      "source": "env",
+      "key": "sk-or-\u2026d36e",
+      "stage": "free-router",
+      "state": "live"
+    },
+    {
+      "provider": "dashscope",
+      "source": "env",
+      "key": "sk-sp-\u2026GwJ9",
+      "stage": "paid",
+      "state": "dead"
+    },
+    {
+      "provider": "dashscope",
+      "source": "QWEN_WS_KEY",
+      "key": "sk-ws-\u20265QHE",
+      "stage": "paid",
+      "state": "dead"
+    },
+    {
+      "provider": "dashscope",
+      "source": "QWEN_WS_KEY2",
+      "key": "sk-ws-\u2026bJbA",
+      "stage": "paid",
+      "state": "dead"
+    },
+    {
+      "provider": "dashscope",
+      "source": "QWEN_WS_KEY3",
+      "key": "sk-ws-\u2026RW1w",
+      "stage": "paid",
+      "state": "dead"
+    },
+    {
+      "provider": "dashscope",
+      "source": "QWEN_WS_KEY4",
+      "key": "sk-ws-\u20265UzQ",
+      "stage": "paid",
+      "state": "dead"
+    },
+    {
+      "provider": "dashscope",
+      "source": "QWEN_WS_KEY5",
+      "key": "sk-ws-\u20267Tr0",
+      "stage": "paid",
+      "state": "dead"
+    },
+    {
+      "provider": "openrouter",
+      "source": "env",
+      "key": "sk-or-\u2026d36e",
+      "stage": "paid",
+      "state": "live"
+    },
+    {
+      "provider": "deepseek",
+      "source": "env",
+      "key": "sk-c5d\u2026c2fd",
+      "stage": "paid",
+      "state": "live"
+    },
+    {
+      "provider": "moonshot",
+      "source": "env",
+      "key": "sk-KdP\u2026C8nI",
+      "stage": "paid",
+      "state": "unknown"
+    },
+    {
+      "provider": "moonshot",
+      "source": "moonshot.key",
+      "key": "sk-est\u2026R3Yk",
+      "stage": "paid",
+      "state": "unknown"
+    }
+  ],
+  "samples": [
+    {
+      "i": 0,
+      "ok": true,
+      "latency_s": 11.031,
+      "cost_usd": 0.0,
+      "text_len": 140
+    },
+    {
+      "i": 1,
+      "ok": true,
+      "latency_s": 4.593,
+      "cost_usd": 0.0,
+      "text_len": 15
+    },
+    {
+      "i": 2,
+      "ok": true,
+      "latency_s": 2.765,
+      "cost_usd": 0.0,
+      "text_len": 2
+    },
+    {
+      "i": 3,
+      "ok": true,
+      "latency_s": 14.156,
+      "cost_usd": 0.0,
+      "text_len": 15
+    },
+    {
+      "i": 4,
+      "ok": true,
+      "latency_s": 3.015,
+      "cost_usd": 0.0,
+      "text_len": 15
+    },
+    {
+      "i": 5,
+      "ok": true,
+      "latency_s": 5.547,
+      "cost_usd": 0.0,
+      "text_len": 26
+    },
+    {
+      "i": 6,
+      "ok": true,
+      "latency_s": 1.468,
+      "cost_usd": 0.0,
+      "text_len": 138
+    },
+    {
+      "i": 7,
+      "ok": true,
+      "latency_s": 2.797,
+      "cost_usd": 0.0,
+      "text_len": 16
+    },
+    {
+      "i": 8,
+      "ok": true,
+      "latency_s": 16.109,
+      "cost_usd": 1.55e-05,
+      "text_len": 2
+    },
+    {
+      "i": 9,
+      "ok": true,
+      "latency_s": 2.468,
+      "cost_usd": 0.0,
+      "text_len": 3
+    },
+    {
+      "i": 10,
+      "ok": true,
+      "latency_s": 12.422,
+      "cost_usd": 0.0,
+      "text_len": 18
+    },
+    {
+      "i": 11,
+      "ok": true,
+      "latency_s": 3.25,
+      "cost_usd": 0.0,
+      "text_len": 28
+    },
+    {
+      "i": 12,
+      "ok": true,
+      "latency_s": 2.297,
+      "cost_usd": 0.0,
+      "text_len": 29
+    },
+    {
+      "i": 13,
+      "ok": true,
+      "latency_s": 7.875,
+      "cost_usd": 0.0,
+      "text_len": 121
+    },
+    {
+      "i": 14,
+      "ok": true,
+      "latency_s": 3.25,
+      "cost_usd": 0.0,
+      "text_len": 13
+    },
+    {
+      "i": 15,
+      "ok": true,
+      "latency_s": 4.14,
+      "cost_usd": 0.0,
+      "text_len": 17
+    },
+    {
+      "i": 16,
+      "ok": true,
+      "latency_s": 10.25,
+      "cost_usd": 1.55e-05,
+      "text_len": 2
+    },
+    {
+      "i": 17,
+      "ok": true,
+      "latency_s": 16.312,
+      "cost_usd": 1.55e-05,
+      "text_len": 2
+    },
+    {
+      "i": 18,
+      "ok": true,
+      "latency_s": 5.812,
+      "cost_usd": 0.0,
+      "text_len": 14
+    },
+    {
+      "i": 19,
+      "ok": true,
+      "latency_s": 12.015,
+      "cost_usd": 1.55e-05,
+      "text_len": 2
+    }
+  ]
+}

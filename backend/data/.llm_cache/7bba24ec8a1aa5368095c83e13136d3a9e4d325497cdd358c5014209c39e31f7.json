@@ -1,0 +1,1 @@
+{"text": "The harness directs LLM calls through a failover chain that continuously monitors health. This capability is linked to request [req-34-1786377881].", "input_tokens": 161, "output_tokens": 157, "cached_at": 1786377884.896964}

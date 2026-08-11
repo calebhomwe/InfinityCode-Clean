@@ -1,0 +1,1 @@
+{"text": "{\"tool_call_id\": \"1\", \"tool_name\": \"list_dir\", \"parameters\": {\"path\": \".\"}}", "input_tokens": 1819, "output_tokens": 584, "cached_at": 1786371729.1113062}

@@ -1,0 +1,36 @@
+{
+  "name": "qwencloud-video-generation",
+  "title": "QwenCloud Video Generation",
+  "topic": "video generation",
+  "description": "Generate video from text or images with Wan models on QwenCloud - shot prompts, durations, and async output handling.",
+  "source_type": "seeded",
+  "always": true,
+  "steps": [
+    {
+      "order": 1,
+      "instruction": "Confirm the shape: text-to-video or image-to-video; use the Wan 2.x route via the qwen-mm media tools."
+    },
+    {
+      "order": 2,
+      "instruction": "Write shot-style prompts: subject, motion, camera, lighting - keep clips at 5s while iterating."
+    },
+    {
+      "order": 3,
+      "instruction": "For image-to-video supply one clean keyframe and describe the motion relative to it."
+    },
+    {
+      "order": 4,
+      "instruction": "Submit and poll: video generation is async, so never block the chat turn waiting for it."
+    },
+    {
+      "order": 5,
+      "instruction": "On failure capture the API error verbatim - quota and content-filter rejections need different fixes."
+    },
+    {
+      "order": 6,
+      "instruction": "Deliver the output with its file path and a one-line description; surface the cost per clip."
+    }
+  ],
+  "verified": true,
+  "created_at": "2026-08-11T00:00:00+00:00"
+}

@@ -1,0 +1,1 @@
+{"text": "The harness routes large language model (LLM) calls through a failover chain that includes health tracking to ensure reliability. This system provides redundancy and continuous monitoring of LLM performance as part of its operational design. [req-1-1786377881]\n", "input_tokens": 157, "output_tokens": 59, "cached_at": 1786377884.3434207}

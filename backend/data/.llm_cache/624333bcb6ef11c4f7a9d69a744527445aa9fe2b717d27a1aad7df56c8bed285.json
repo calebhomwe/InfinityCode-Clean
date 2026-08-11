@@ -1,0 +1,1 @@
+{"text": "{\"action\": \"run_command\", \"args\": {\"command\": \"curl -s -L \\\"https://huggingface.co/api/models?search=multimodal-rag&limit=10\\\"\"}}", "input_tokens": 1457, "output_tokens": 43, "cached_at": 1786371341.7153583}

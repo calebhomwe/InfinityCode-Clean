@@ -1,0 +1,773 @@
+0:00
+A few weeks ago, something became
+0:01
+infinitely easy to do in both Claude
+0:04
+Code and Codeex. Both of them shipped a
+0:06
+feature that lets you record your screen
+0:08
+and turn that recording into a skill.
+0:10
+But what most people don't know is that
+0:11
+by enabling this very feature, they also
+0:13
+quietly enabled both of them to get
+0:15
+better at something else. And that
+0:17
+something is processing raw [music]
+0:18
+video. Neither Anthropic nor OpenAI
+0:20
+explicitly wrote about it or announced
+0:22
+it. But now you can hand both of these
+0:24
+interfaces a raw MP4 file and allow them
+0:28
+to break it down and understand exactly
+0:30
+what's going on along with the audio
+0:32
+inside of it. And you can do this out of
+0:34
+the box without the help of a special
+0:36
+skill, a plug-in, or anything to act as
+0:38
+a crutch. So in this video, I'm going to
+0:40
+walk you through three different ways
+0:41
+that you can take advantage of it and
+0:43
+[music] walk you through some example
+0:44
+use cases. And one of those is hacking
+0:46
+the existing record [music] feature to
+0:48
+allow it to watch me look over my
+0:50
+shoulder and audit my processes. So, if
+0:52
+I've piqued your interest, then let's
+0:54
+dive in. So, just a few months ago, you
+0:55
+either needed a skill or a plug-in to be
+0:57
+able to do something as simple as drag
+drag and drop a raw MP4 into both
+1:00
+and dropping this singular video file
+1:03
+and having both codeex and cloud code be
+1:05
+able to interpret it. So, if we send
+1:07
+over the exact same prompt and say
+1:09
+something like, I want you to watch this
+1:11
+video end to end and tell me where all
+1:13
+the flaws are and if there's any dead
+1:15
+air whatsoever and if there's anywhere
+1:17
+we should cut out in terms of the
+1:18
+transcript. and we take this and we
+1:20
+paste it into our other window and we
+1:23
+send both over and monitor exactly what
+1:25
+they do. And you'll see if we ask both
+1:28
+models to take a closer look at the
+1:30
+video to make sure they don't just pull
+1:31
+the transcript, they'll be smart enough
+1:33
+to break down the video into individual
+1:36
+images on both sides. So you'll see here
+1:38
+the aggregate second by second cut and
+1:40
+every single image that corresponds to
+1:42
+them. And on top of the video, they can
+1:44
+also process the entire transcript and
+1:46
+pull the audio so it knows exactly where
+1:48
+silences are. So it can understand every
+1:50
+single thing that you say, how you say
+1:52
+it, and what you looked like when you
+1:54
+said it. Just a few months ago, I had to
+1:55
+lean on something like a Gemini because
+1:57
+it was one of the only models in the
+1:59
+world that could both interpret and
+how it actually watches (frames + audio)
+2:01
+create video. But now you can pick up
+2:03
+your codec subscription, your cla code
+2:05
+subscription, and add no additional
+2:07
+add-ons and have them fully understand
+2:09
+what's happening in a particular MP4.
+2:11
+And while video editing naturally
+2:13
+appeals to me, there are a series of
+2:15
+other use cases that you'll be able to
+2:16
+use for your day-to-day projects. So,
+2:18
+the three ways we're going to use this
+2:20
+capability is dragging and dropping a
+2:22
+file like I showed you, then using the
+2:24
+record skills, but actually hacking it
+2:26
+to do our bidding instead of what it's
+2:28
+programmed to do, and three is pointing
+2:30
+a generic link at it. And it's more than
+2:32
+smart enough to be able to go on said
+2:33
+link, pull the video, and do this exact
+2:36
+same process. And just to make it clear,
+2:38
+what's happening behind the scenes when
+2:39
+you drag and drop that MP4 file is it
+2:42
+will break it down into these micro
+2:43
+frames, marry it with the audio, then be
+2:46
+able to process both of them with its
+2:48
+image processing capabilities to the
+2:50
+language model of choice. So whether
+2:52
+claude or codeex, and then it'll be able
+2:54
+to take all of that context and come up
+2:56
+with a response. And naturally, because
+2:58
+frames are heavy and images are heavy,
+the flipbook trick and the resolution tip
+3:01
+you'll be able to give something like a
+3:02
+10, 15, 20 minute video, ideally in a
+3:06
+lower resolution, because the higher the
+3:07
+resolution, the higher the processing
+3:09
+power that it needs to put it through
+3:11
+the context window. That's why something
+3:13
+like Gemini historically has capped you
+3:15
+out at a 1-hour length video because by
+3:17
+the time it processes all that text and
+3:20
+all those images, it will surpass that
+3:22
+million context window. So for the first
+3:23
+use case, it could apply to anything
+3:25
+from bug fixing or to improvements that
+3:27
+you want to make. But instead of making
+3:29
+the video for someone else to understand
+3:31
+and then translate that understanding
+3:33
+into requirements for the AI, you can go
+3:35
+directly to the AI. So let's say we go
+3:37
+through my existing website here and I
+3:39
+went through and I found a series of
+3:40
+things that I want to improve. So I
+3:42
+would have just screen recorded using
+3:44
+something like Loom and you can use
+3:45
+whatever you want. And then you can
+3:47
+either feed it the raw Loom link or if
+3:50
+you want to be able to download it,
+3:51
+maybe edit and annotate a few things,
+3:53
+then you can download that video and
+3:55
+feed it as raw input. When you give it
+3:57
+that raw input, it will be able to take
+3:59
+it, understand everything that needs to
+use case 1, website improvements from a Loom
+4:00
+happen. And if it has access to the
+4:02
+underlying codebase, it'll be able to
+4:04
+make the changes, make a plan without
+4:06
+you saying a single thing outside of
+4:08
+this video's context. So all you'd need
+4:10
+to do is go and download this video. And
+4:13
+once you download it, you can drag and
+4:14
+drop it or you can give the direct link.
+4:17
+So I'll show you both. In one of
+4:18
+[snorts] them in cloud code, I will say
+4:20
+I want you to take this Loom link and
+4:22
+then go and download the associated
+4:24
+video, watch it end to end. Don't just
+4:26
+pull the transcript. Look at everything
+4:28
+that I'm looking at and come up with a
+4:30
+list of things we need to do to improve
+4:31
+the website. So we will send something
+4:33
+like this and then paste it. Then we'll
+4:36
+do the exact same thing but in a
+4:38
+different way. So, I'll bring over the
+4:40
+MP4 into Codeex and I'll say, I want you
+4:43
+to watch this end to end and come up
+4:45
+with a comprehensive list of every
+4:47
+single improvement we need to make to
+4:49
+the website. So, we'll send this over
+4:51
+and we'll enable this and then we'll
+4:53
+come back to see if they're able to both
+4:54
+take care of it. Now, one thing I had to
+4:56
+redo on Claude was it started using some
+4:58
+skills I already had on my system to
+5:00
+make it easier to download the video.
+5:02
+So, to avoid that, to increase the
+5:04
+chances that it runs vanilla, I told it
+5:06
+to not use any skills. So then it had to
+5:08
+figure out which libraries it could use
+5:10
+to download said loom video and then it
+5:12
+processed it as you saw the other video
+5:14
+where everything was frame by frame
+5:16
+pulled the audio pulled the transcript
+5:18
+and it gave me a full improvement list
+5:21
+and on the left hand side it was able to
+5:23
+directly watch the video see exactly
+5:25
+from what timestamp to what timestamp
+5:27
+what specific pieces of feedback that I
+5:29
+gave it. So in both avenues, you now
+5:31
+have the ability to take feedback, go
+5:34
+through a website, give it all the list
+5:36
+of what it needs to do, and it can watch
+5:38
+it and create its own plan file. And by
+5:40
+the way, if you enjoy the way I break
+5:41
+down concepts, and you want to go
+5:43
+infinitely deeper on things like cloud
+5:45
+code and codeex and get exclusive tips
+5:47
+and tricks that you'll never see on
+5:49
+YouTube, then you want to check out the
+5:50
+first link down below for my early
+5:52
+adopters community. We offer one-on-one
+5:54
+support with our coaching team, AMAs
+5:56
+with myself and my business partner, and
+5:58
+everyday feedback that we [music] can
+5:59
+give you, whether you're starting a
+community
+6:01
+business, starting your AI learning
+6:02
+journey, or you just want to go
+6:04
+infinitely deeper. If that interests
+6:05
+you, check it out. Otherwise, let's get
+6:07
+back to the video. And what if you want
+6:08
+to go from editing something like a
+6:10
+website to building one from scratch and
+6:12
+you want to be able to emulate a really
+6:14
+nice looking 3D website? Now, if you go
+6:16
+over YouTube, there is a 15-step process
+6:19
+or some mega prompt that you need to use
+6:22
+to create these kinds of websites where
+6:23
+you can scroll in and see exactly how
+6:26
+you transition from there to the rest of
+6:27
+the website. But this is actually very
+use case 2, cloning a 3D website from a recording
+6:30
+easy to do just with a simple recording.
+6:32
+So, all I did was walk through this
+6:35
+exact same website right here and I
+6:38
+broke down exactly what aspects I
+6:40
+wanted. the fact that I wanted to create
+6:42
+this kind of look and feel but for a
+6:45
+hypothetical headphone company and go
+6:48
+through a web page that has that 3D feel
+6:50
+when I scroll through and then goes to
+6:52
+the rest of the body and the page and
+6:54
+keeps it nice and minimalistic. So, you
+6:56
+can create a full loom or recording of
+6:59
+any award-winning website of your
+7:01
+choice. Go through it and tell it which
+7:03
+parts you like, which parts you don't
+7:05
+like, and what added parts of nuances
+7:07
+you want. And that is basically a proxy
+7:10
+for your entire prompt. So for
+7:12
+simplicity, I'm just going to show you
+7:13
+this in codec and you can just believe
+7:15
+me that it will also work in cloud code
+7:17
+just fine. I feed it the MP4. I give it
+7:19
+the exact same instruction. Watch this
+7:21
+end to end with the audio to get a full
+7:23
+picture of what I'm trying to build. And
+7:25
+at the bottom, I also tell it that I
+7:26
+want to use this whole video approach
+7:29
+where I want you to use your skills,
+7:30
+which it knows is the Gemini skill, to
+7:33
+go and use something like Google Video,
+7:35
+to create a quick 8-second clip and then
+7:37
+use that clip as the foundation for the
+7:40
+website. And with no extra hocus pocus
+7:43
+prompt or Higsfield MCP for 10 15 cents,
+7:47
+I was able to crank out a couple images
+7:49
+and then a video to go with those
+7:51
+images. And we got something like this.
+7:53
+some madeup headphone company where if I
+7:56
+zoom in, it scrolls around, it gives you
+7:59
+that 3D experience. It has minimal to no
+8:02
+latency. It goes through transition-wise
+8:05
+into exactly what you'd expect a very
+8:07
+high quality, high-grade headphone
+8:10
+company to look like. But let's say you
+8:12
+don't want to edit a website or build a
+8:13
+website, but you actually want to
+8:14
+rebuild an entire platform for yourself.
+8:17
+You want to go from paying a SAS
+8:19
+subscription per month to an internal
+use case 3, rebuilding a SaaS platform for myself
+8:21
+tool that you pay as you wish. In this
+8:23
+case, as a content creator, I like to
+8:25
+use this website. It's called One of 10.
+8:27
+And the whole point of it is it shows me
+8:29
+outliers. So, concepts on YouTube,
+8:32
+angles that have done exceptionally well
+8:34
+to give me good perspective on what I
+8:36
+can make videos about that might also
+8:38
+trend very well. Now, these kinds of
+8:40
+platforms have AI features right here
+8:42
+where it comes to title generation, idea
+8:44
+generation, and for the most part, I
+8:46
+might have a ton of bells and whistles,
+8:48
+and I just want a handful of those
+8:50
+functionalities. So, in this case, I
+8:52
+just made a video of me walking through
+8:54
+this entire platform, telling it exactly
+8:57
+what features I value, which ones I
+8:59
+don't value, and how I'd want to tailor
+9:01
+this to myself. And the entire process
+9:03
+of building this platform took way
+9:05
+longer than expected. And I was able to
+9:07
+use this recording to be able to start
+9:09
+the process of explaining to codeex
+9:12
+exactly what I'm trying to do, how I'm
+9:14
+looking to build it without having to
+9:15
+overexlain and go through 10 20 prompts
+9:18
+before we get even close to the
+9:20
+inspiration I was looking for. So
+9:21
+hopefully that plants some seeds of
+9:23
+inspiration for what other use cases
+9:25
+that might apply to you that you could
+9:27
+use this for. Now, one more thing I
+9:29
+promised was showing you how we can hack
+hacking record and replay to audit my workflow
+9:31
+the existing skill that in Codeex is
+9:33
+called record and replay and use it to
+9:36
+monitor our processes and not just make
+9:38
+skills out of it, but give us feedback
+9:40
+on them. So, let's say we go here and we
+9:42
+do the plus and we do record and replay.
+9:46
+And if you don't have this enabled,
+9:48
+let's say in the EU, then all you'd have
+9:49
+to do is just record yourself using a
+9:51
+Loom or a screen recorder and feed it
+9:53
+the exact same video as I showed you
+9:55
+before. But if it is available for you,
+9:57
+then you can say, "I want you to monitor
+10:00
+a process for the next 30 minutes and
+10:03
+tell me after you're done watching it
+10:05
+every single thing that I can do to
+10:06
+improve my workflow and make it a lot
+10:09
+more materialized so I don't have to do
+10:10
+it the exact same way, especially if
+10:12
+it's very manual. So, I'm going to show
+10:15
+you a process that I have on X where I
+10:17
+go and I take a look at possible things
+10:19
+that are worth making a video about or
+10:21
+informing my community about. And I want
+10:23
+you to create a full SOP for how I can
+10:25
+do this better and knowing that there's
+10:27
+something called an XMCP or an X API,
+10:31
+how we could possibly use that to cut
+10:33
+down on the manual steps that I'm doing.
+10:35
+So if we send something like this and we
+10:37
+also say, "By the way, I don't want you
+10:39
+to make a skill even though it's in your
+10:40
+programming. I literally just want you
+10:42
+to watch me and audit the process and
+10:43
+then we can talk about skills later."
+10:45
+it'll just make sure that it can go
+10:47
+against its own system prompt and focus
+10:49
+on its video interpretation feature
+10:52
+versus understanding exactly how to
+10:54
+build the skill. So, if we send this
+10:56
+over, we can use something a little bit
+10:57
+more economical. Let's say a Luna, and
+11:00
+we go on, let's say, extra high, still
+11:02
+pretty cheap. And we send this over, it
+11:05
+should be able to invoke this skill to
+11:07
+start recording our screen. And we go
+11:09
+through the manual process. So, you'll
+11:11
+see here it is recording us in real
+11:13
+time. So, if I start going on X and
+11:15
+start clicking around, I'm obviously not
+11:17
+going to do my exact process, but let's
+11:19
+say I'm always clicking tabs here and
+11:22
+I'm clicking into the tabs,
+11:25
+um, going through clicking on the docs
+11:28
+and it's not recording my audio. So,
+11:29
+that's one thing it's missing. But maybe
+11:32
+it sees me writing the words codeex new
+11:34
+features, right? or I send something
+11:36
+like that and then it comes back with a
+11:38
+series of responses and I go to latest
+11:41
+and I'm looking at what people are
+11:43
+posting and then maybe I go to super gro
+11:45
+and I say give me the top seven use
+11:50
+cases of codeex and claude code in the
+11:54
+past 7 days and then we put it on
+11:58
+something like fast mode and we send
+12:01
+this over it might be able to watch this
+12:03
+and know that because I'm walking
+12:05
+through do this workflow. It could
+12:07
+automate the sending of the request via
+12:09
+API. It could automate the sending of
+12:11
+those keywords and bringing back those
+12:13
+search results. And once it has a pulse
+12:15
+for exactly what my step-by-step process
+12:17
+is, it can emulate it. So, if we click
+12:20
+on stop here, it'll be able to say, I'm
+12:22
+done recording. And now its focus won't
+12:24
+be on creating the skill, but creating
+12:26
+the SOP and understand what
+12:28
+opportunities we have. And you can see
+12:29
+once it breaks down the entire process,
+12:31
+it maps it out. It tells me what the
+12:33
+core recommendation is, how the X API
+12:36
+can help me automate this, and you can
+12:38
+keep throwing more resources and skills
+12:40
+at it, and it could build you the entire
+12:42
+process, an entire platform to do this
+12:44
+on your behalf, and pretty much anything
+the SOP it handed back
+12:46
+you can imagine. And that's pretty much
+12:47
+it. So now, on top of your existing very
+12:50
+powerful models and skills, you can also
+12:52
+use these capabilities to enrich as much
+12:55
+context as possible with as minimal
+12:57
+manual input as needed. If you enjoyed
+12:59
+the video, then I'd super appreciate a
+where this leaves you
+13:01
+like and a comment down below. If you
+13:03
+always want access to exclusive tips and
+13:05
+tricks that you might never see on
+13:07
+YouTube, then check out my first link
+13:08
+down below for my early AI adopters
+

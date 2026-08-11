@@ -1,0 +1,73 @@
+{
+  "run_id": "68275ce9-cbe6-4a13-9e30-ce670108a689",
+  "lane": "local",
+  "model": "local/qwen3:8b",
+  "profile": "refactor",
+  "tasks_total": 2,
+  "tasks_passed": 1,
+  "aggregate_score": 0.5,
+  "total_cost_usd": 0.0,
+  "avg_latency_ms": 2669.16,
+  "summary": {
+    "pass_rate": 0.5,
+    "weighted_score": 0.5,
+    "weakest_capability": "code"
+  },
+  "capabilities": {
+    "code": {
+      "score": 0.5,
+      "tasks_total": 2,
+      "tasks_passed": 1,
+      "failed_tasks": [
+        {
+          "id": "ob-ref-001",
+          "name": "dedupe into helper",
+          "reason": "none of the expected variants found"
+        }
+      ]
+    }
+  },
+  "weaknesses": [
+    {
+      "capability": "code",
+      "score": 0.5,
+      "tasks_total": 2,
+      "tasks_passed": 1,
+      "failed_tasks": [
+        {
+          "id": "ob-ref-001",
+          "name": "dedupe into helper",
+          "reason": "none of the expected variants found"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "task_id": "ob-ref-001",
+      "name": "dedupe into helper",
+      "lane": "cheap",
+      "model": "local/qwen3:8b",
+      "passed": false,
+      "score": 0.0,
+      "output": "def area_square(side):\n    return area_rectangle(side, side)\n\ndef area_rectangle(w, h):\n    return w * h\n\ndef area_helper(a, b= None):\n    if b is None:\n        return a * a\n    return a * b",
+      "cost_usd": 0.0,
+      "latency_ms": 2729.0799617767334,
+      "reason": "none of the expected variants found",
+      "capability": "code"
+    },
+    {
+      "task_id": "ob-ref-002",
+      "name": "extract format helper",
+      "lane": "cheap",
+      "model": "local/qwen3:8b",
+      "passed": true,
+      "score": 1.0,
+      "output": "def format_price(value):\n    return f\"${value:,.2f}\"\n\ndef price_a(p):\n    return format_price(p)\n\ndef price_b(p, tax):\n    return format_price(p + tax)",
+      "cost_usd": 0.0,
+      "latency_ms": 2609.2379093170166,
+      "reason": "all expected substrings found",
+      "capability": "code"
+    }
+  ]
+}

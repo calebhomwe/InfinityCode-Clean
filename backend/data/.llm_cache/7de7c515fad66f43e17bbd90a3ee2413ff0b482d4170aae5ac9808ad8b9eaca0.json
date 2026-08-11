@@ -1,0 +1,1 @@
+{"text": "The harness manages LLM calls by routing them through a failover chain. This process includes integrated health tracking to ensure reliability.", "input_tokens": 156, "output_tokens": 26, "cached_at": 1786377070.8567555}

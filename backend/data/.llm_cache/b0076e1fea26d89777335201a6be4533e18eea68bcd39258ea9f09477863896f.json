@@ -1,0 +1,1 @@
+{"text": "```python\ndef last_two(items):\n    return items[-2:]\n```", "input_tokens": 89, "output_tokens": 20, "cached_at": 1786372999.08806}
