@@ -785,7 +785,7 @@ def _workspace_tree_text(
             if item.name.startswith("."):
                 continue
             is_last = i == len(items) - 1
-            marker = "ÃƒÂ¢Ã¢â‚¬ÂÃ¢â‚¬ÂÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ " if is_last else "ÃƒÂ¢Ã¢â‚¬ÂÃ…â€œÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ "
+            marker = "└── " if is_last else "├── "
             lines.append(prefix + marker + item.name)
             if len("\n".join(lines)) > max_chars:
                 lines.pop()
@@ -796,7 +796,7 @@ def _workspace_tree_text(
                 if count > max_files:
                     lines.append(prefix + "...")
                     return
-                walk(item, depth + 1, prefix + ("    " if is_last else "ÃƒÂ¢Ã¢â‚¬ÂÃ¢â‚¬Å¡   "))
+                walk(item, depth + 1, prefix + ("    " if is_last else "│   "))
 
     walk(root, 1, "")
     return "\n".join(lines)
