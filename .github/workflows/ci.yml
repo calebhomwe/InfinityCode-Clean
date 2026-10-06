@@ -27,8 +27,11 @@ jobs:
         run: |
           npm i --no-save --no-audit --no-fund playwright@1
           npx playwright install --with-deps chromium
-          npx vite preview --port 4173 --strictPort &
+          # vite.config.ts binds "localhost" (::1 first on the runner), so pin IPv4
+          # to match the URL below, and fail loudly if the server never comes up.
+          npx vite preview --host 127.0.0.1 --port 4173 --strictPort &
           for i in $(seq 1 30); do curl -sf http://127.0.0.1:4173/ >/dev/null && break; sleep 1; done
+          curl -sf http://127.0.0.1:4173/ >/dev/null || { echo "vite preview never came up on 127.0.0.1:4173"; exit 1; }
           cat > ci-smoke.mjs <<'EOF'
           import { chromium } from 'playwright';
           const browser = await chromium.launch();
