@@ -1,0 +1,60 @@
+name: ci
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Typecheck + unit tests
+        run: npm run check
+      - name: Production build
+        run: npm run build
+      - name: Headless load check (fail on page errors)
+        run: |
+          npm i --no-save --no-audit --no-fund playwright@1
+          npx playwright install --with-deps chromium
+          npx vite preview --port 4173 --strictPort &
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:4173/ >/dev/null && break; sleep 1; done
+          cat > ci-smoke.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          const browser = await chromium.launch();
+          const page = await browser.newPage();
+          const errors = [];
+          page.on('pageerror', (e) => errors.push(String(e)));
+          await page.goto('http://127.0.0.1:4173/', { waitUntil: 'load' });
+          await page.waitForTimeout(3000);
+          console.log('title:', await page.title());
+          await browser.close();
+          if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
+          EOF
+          node ci-smoke.mjs
+
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # The offline suite needs only the web/runtime core; the heavy optional
+      # lanes in backend/requirements.txt (agno, chromadb, whisper) are
+      # skipped or stubbed by the tests themselves.
+      - run: pip install fastapi "uvicorn[standard]" pydantic openai python-multipart websockets pyyaml mcp numpy httpx aiofiles pytest
+      - name: pytest
+        env:
+          INFINITY_ROUTE_HEALTH_FILE: ${{ runner.temp }}/route_health.json
+        run: python -m pytest -q -p no:cacheprovider backend/tests

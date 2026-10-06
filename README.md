@@ -5,6 +5,28 @@ spawns specialized agents that write and run code, generate images, and report
 back with evidence - screenshots, exit codes, critique scores - so you can
 approve or reject each result.
 
+## Play / Test
+
+This repo is an older public snapshot (v0.1.61) of Infinity Code. Active
+development happens in the private `calebhomwe/InfinityCode` repo. It needs its
+local backend, so there is no hosted build. To run it locally:
+
+```bash
+# backend (terminal 1) - API on http://127.0.0.1:8000, docs at /docs
+python -m venv .venv && . .venv/bin/activate
+pip install -r backend/requirements.txt
+cd backend && uvicorn main:app --port 8000
+
+# frontend (terminal 2) - UI on http://127.0.0.1:1420
+npm ci && npm run dev
+```
+
+Tests:
+- `npm run check` runs tsc and vitest for the frontend.
+- `python -m pytest -q backend/tests` runs the backend suite, offline, from the repo root.
+
+CI runs both on every push and PR (`.github/workflows/ci.yml`).
+
 **Core principle: the system never claims success. It shows evidence.** Every
 mission records what actually happened: screenshots, exit codes, critique
 scores. You approve or reject.

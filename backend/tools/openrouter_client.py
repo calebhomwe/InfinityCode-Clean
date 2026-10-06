@@ -387,7 +387,9 @@ def collect_routes(
     # OpenRouter re-enabled 2026-08-10 (owner request): the free tier is the
     # default lane. The GENESIS infra key must STILL never leak in — allow the
     # key only when it came from the process env or the owner's home .env.
-    _or_from_env = (os.environ.get("OPENROUTER_API_KEY") or "").strip()
+    # "Process env" means the mapping the caller handed us (os.environ by
+    # default); keys merged in from include_files above never reach `env`.
+    _or_from_env = ((os.environ if env is None else env).get("OPENROUTER_API_KEY") or "").strip()
     _or_home = (_read_env_file(Path.home() / ".env").get("OPENROUTER_API_KEY") or "").strip()
     if not (_or_from_env or _or_home):
         e.pop("OPENROUTER_API_KEY", None)

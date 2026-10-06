@@ -23,14 +23,25 @@ from backend.core.tools_registry import ToolRegistry  # noqa: E402
 
 # --- MCP tool resolution ----------------------------------------------------- #
 
+def _missing_cfg() -> Path:
+    """A config path that does not exist yet, in a throwaway dir.
+
+    MCPManager seeds starter servers into a missing config file, so pointing
+    it at a relative "nonexistent.json" wrote that file into whatever the cwd
+    was (it got committed at the repo root) and made later runs non-empty.
+    """
+    import tempfile
+    return Path(tempfile.mkdtemp(prefix="mcp-fuzz-")) / "nonexistent.json"
+
+
 def test_mcp_call_unknown_tool_returns_error_not_raise():
-    mgr = mcp_client.MCPManager(Path("nonexistent.json"))  # empty config
+    mgr = mcp_client.MCPManager(_missing_cfg())  # empty config
     out = mgr.call("mcp__nope__missing", {"k": 1})
     assert "not connected" in out
 
 
 def test_mcp_call_no_loop_returns_error(monkeypatch):
-    mgr = mcp_client.MCPManager(Path("nonexistent.json"))
+    mgr = mcp_client.MCPManager(_missing_cfg())
     mgr._loop = None
     stub = mcp_client._Server("stub", {"enabled": True})
     monkeypatch.setattr(mgr, "_resolve", lambda name: (stub, "tool"))
@@ -39,7 +50,7 @@ def test_mcp_call_no_loop_returns_error(monkeypatch):
 
 
 def test_mcp_tool_schemas_skips_disconnected_and_malformed():
-    mgr = mcp_client.MCPManager(Path("nonexistent.json"))
+    mgr = mcp_client.MCPManager(_missing_cfg())
     s1 = mcp_client._Server("s1", {"enabled": True})
     s2 = mcp_client._Server("s2", {"enabled": True})
     s1.session = None
@@ -232,7 +243,7 @@ class _FakeSession:
 def _wire_breaker_mgr(monkeypatch, fail):
     """An MCPManager whose call() runs against a fake session/loop."""
     import asyncio as _asyncio
-    mgr = mcp_client.MCPManager(Path("nonexistent.json"))
+    mgr = mcp_client.MCPManager(_missing_cfg())
     server = mcp_client._Server("flaky", {"enabled": True})
     server.session = _FakeSession()
     server.tools = [type("FakeTool", (), {"name": "t"})()]

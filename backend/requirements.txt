@@ -6,6 +6,10 @@ openai>=1.30.0
 python-multipart>=0.0.9
 websockets>=12.0
 pyyaml>=6.0
+# MCP client (core/mcp_client.py imports it at module top; main.py needs it to boot)
+mcp>=1.0
+# Vector math for core/memory.py + core/knowledge.py (was only arriving transitively)
+numpy>=1.26
 # Fully-local knowledge + memory retrieval (Ollama supplies embeddings)
 chromadb>=1.1,<2.0
 # Tutorial ingestion (used by /api/v1/learn as CLI tools)

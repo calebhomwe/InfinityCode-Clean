@@ -15,7 +15,7 @@ import sys
 import tempfile
 import urllib.parse
 import urllib.request
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 from typing import Any, Dict, List, Tuple
 
 _run_sandboxed = None
@@ -47,6 +47,11 @@ class PathJail:
             raise ToolError(f"repo root does not exist: {root}")
 
     def resolve(self, p: str) -> Path:
+        # Drive-qualified / UNC paths are absolute on Windows (and checked
+        # against the root below) but merely relative on POSIX, where they
+        # would silently create a "C:" folder inside the repo.
+        if os.name != "nt" and PureWindowsPath(p).drive:
+            raise ToolError(f"path escapes repo: {p}")
         cand = Path(p)
         cand = cand if cand.is_absolute() else self.root / cand
         cand = cand.resolve()
