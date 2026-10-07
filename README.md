@@ -23,7 +23,8 @@ npm ci && npm run dev
 
 Tests:
 - `npm run check` runs tsc and vitest for the frontend.
-- `python -m pytest -q backend/tests` runs the backend suite, offline, from the repo root.
+- `pip install pytest` once (test-only, so it is not in `backend/requirements.txt`),
+  then `python -m pytest -q backend/tests` runs the backend suite, offline, from the repo root.
 
 CI runs both on every push and PR (`.github/workflows/ci.yml`).
 
