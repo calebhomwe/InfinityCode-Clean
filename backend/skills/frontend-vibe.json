@@ -1,0 +1,22 @@
+{
+  "name": "frontend-vibe",
+  "topic": "frontend design house style",
+  "description": "Infinity Code's seeded frontend playbook: distinctive, animated, tasteful UI instead of generic AI-slop templates.",
+  "source_type": "seeded",
+  "steps": [
+    {"order": 1, "instruction": "Define design tokens first: a 4px spacing scale, one accent color plus a neutral ramp, border radii and shadows as CSS custom properties before writing any component."},
+    {"order": 2, "instruction": "Use exactly one display font and one body font; sizes follow a modular scale (1.25 ratio) instead of arbitrary pixel values."},
+    {"order": 3, "instruction": "Motion rules: 150-250ms ease-out, animate only transform and opacity, at most one entrance animation per view, and always honor prefers-reduced-motion."},
+    {"order": 4, "instruction": "No default framework blue, no gradient headline text, no three-equal-cards-in-a-row layouts, no emoji as icons - these read as AI-generated slop."},
+    {"order": 5, "instruction": "Compose asymmetric layouts with deliberate whitespace; let one element per section be oversized or off-grid so the design has a point of view."},
+    {"order": 6, "instruction": "Dark surfaces get elevated layering via subtle lightness steps, not borders; light surfaces get depth via soft shadows only."},
+    {"order": 7, "instruction": "Interactive elements must have hover, focus-visible and active states; focus rings are never removed, only restyled."},
+    {"order": 8, "instruction": "Meet WCAG AA: 4.5:1 text contrast minimum, semantic HTML landmarks, keyboard-reachable controls, alt text for meaningful images."},
+    {"order": 9, "instruction": "Empty, loading and error states are designed screens, not afterthoughts; each gets the same visual care as the happy path."},
+    {"order": 10, "instruction": "Micro-interactions (button press scale, checklist strike-through, success pulse) are what make a harness feel alive - add at least one per primary interaction."},
+    {"order": 11, "instruction": "Ship CSS keyframes before reaching for animation libraries; keep the bundle lean."},
+    {"order": 12, "instruction": "Before finishing, visually review the result (screenshot or render) and check it does not look like a generic template."}
+  ],
+  "verified": true,
+  "created_at": "2026-08-05T00:00:00+00:00"
+}

@@ -38,6 +38,13 @@ class ToolError(Exception):
     pass
 
 
+# Windows-absolute spellings: drive letter + separator (C:/x, C:\x), a bare
+# drive (D:), or a UNC prefix (\\server\share, //server/share). Deliberately
+# narrower than PureWindowsPath(p).drive, which is truthy for ANY string whose
+# second character is ":" and so rejected ordinary POSIX names like "a:b.txt".
+_WIN_ABS = re.compile(r"^(?:[A-Za-z]:(?:[\\/]|$)|\\\\|//)")
+
+
 class PathJail:
     """Confines every file operation to one repo subtree (symlink-safe)."""
 
@@ -47,6 +54,11 @@ class PathJail:
             raise ToolError(f"repo root does not exist: {root}")
 
     def resolve(self, p: str) -> Path:
+        # Drive-qualified / UNC paths are absolute on Windows (and checked
+        # against the root below) but merely relative on POSIX, where they
+        # would silently create a "C:" folder inside the repo.
+        if os.name != "nt" and _WIN_ABS.match(str(p)):
+            raise ToolError(f"path escapes repo: {p}")
         cand = Path(p)
         cand = cand if cand.is_absolute() else self.root / cand
         cand = cand.resolve()

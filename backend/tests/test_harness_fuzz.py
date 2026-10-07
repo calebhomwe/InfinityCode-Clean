@@ -23,14 +23,30 @@ from backend.core.tools_registry import ToolRegistry  # noqa: E402
 
 # --- MCP tool resolution ----------------------------------------------------- #
 
-def test_mcp_call_unknown_tool_returns_error_not_raise():
-    mgr = mcp_client.MCPManager(Path("nonexistent.json"))  # empty config
+@pytest.fixture
+def empty_mcp_cfg(tmp_path: Path) -> Path:
+    """A genuinely empty MCP config (no servers) inside pytest's temp tree.
+
+    MCPManager seeds its starter servers into a *missing* config file, so a
+    nonexistent path is not empty: it loads three default servers and writes
+    the file (a relative "nonexistent.json" once landed in the repo root and
+    got committed). An explicit {"mcpServers": {}} is empty, and tmp_path is
+    cleaned up by pytest.
+    """
+    p = tmp_path / "mcp.json"
+    p.write_text('{"mcpServers": {}}', encoding="utf-8")
+    return p
+
+
+def test_mcp_call_unknown_tool_returns_error_not_raise(empty_mcp_cfg):
+    mgr = mcp_client.MCPManager(empty_mcp_cfg)  # empty config
+    assert mgr.servers == {}
     out = mgr.call("mcp__nope__missing", {"k": 1})
     assert "not connected" in out
 
 
-def test_mcp_call_no_loop_returns_error(monkeypatch):
-    mgr = mcp_client.MCPManager(Path("nonexistent.json"))
+def test_mcp_call_no_loop_returns_error(monkeypatch, empty_mcp_cfg):
+    mgr = mcp_client.MCPManager(empty_mcp_cfg)
     mgr._loop = None
     stub = mcp_client._Server("stub", {"enabled": True})
     monkeypatch.setattr(mgr, "_resolve", lambda name: (stub, "tool"))
@@ -38,8 +54,8 @@ def test_mcp_call_no_loop_returns_error(monkeypatch):
     assert "not running" in out
 
 
-def test_mcp_tool_schemas_skips_disconnected_and_malformed():
-    mgr = mcp_client.MCPManager(Path("nonexistent.json"))
+def test_mcp_tool_schemas_skips_disconnected_and_malformed(empty_mcp_cfg):
+    mgr = mcp_client.MCPManager(empty_mcp_cfg)
     s1 = mcp_client._Server("s1", {"enabled": True})
     s2 = mcp_client._Server("s2", {"enabled": True})
     s1.session = None
@@ -229,10 +245,10 @@ class _FakeSession:
         return _noop()
 
 
-def _wire_breaker_mgr(monkeypatch, fail):
+def _wire_breaker_mgr(monkeypatch, cfg_path, fail):
     """An MCPManager whose call() runs against a fake session/loop."""
     import asyncio as _asyncio
-    mgr = mcp_client.MCPManager(Path("nonexistent.json"))
+    mgr = mcp_client.MCPManager(cfg_path)
     server = mcp_client._Server("flaky", {"enabled": True})
     server.session = _FakeSession()
     server.tools = [type("FakeTool", (), {"name": "t"})()]
@@ -251,10 +267,10 @@ def _wire_breaker_mgr(monkeypatch, fail):
     return mgr, calls
 
 
-def test_breaker_opens_after_consecutive_failures(monkeypatch):
+def test_breaker_opens_after_consecutive_failures(monkeypatch, empty_mcp_cfg):
     monkeypatch.setenv("INFINITY_MCP_BREAKER_THRESHOLD", "3")
     monkeypatch.setenv("INFINITY_MCP_BREAKER_COOLDOWN_S", "60")
-    mgr, calls = _wire_breaker_mgr(monkeypatch, fail={"mode": "fail"})
+    mgr, calls = _wire_breaker_mgr(monkeypatch, empty_mcp_cfg, fail={"mode": "fail"})
     for _ in range(3):
         assert "failed" in mgr.call("mcp__flaky__t", {})
     assert calls["n"] == 3
@@ -264,12 +280,12 @@ def test_breaker_opens_after_consecutive_failures(monkeypatch):
     assert calls["n"] == 3
 
 
-def test_breaker_recovers_after_cooldown(monkeypatch):
+def test_breaker_recovers_after_cooldown(monkeypatch, empty_mcp_cfg):
     import time as _time
     monkeypatch.setenv("INFINITY_MCP_BREAKER_THRESHOLD", "2")
     monkeypatch.setenv("INFINITY_MCP_BREAKER_COOLDOWN_S", "0.05")
     fail = {"mode": "fail"}
-    mgr, calls = _wire_breaker_mgr(monkeypatch, fail)
+    mgr, calls = _wire_breaker_mgr(monkeypatch, empty_mcp_cfg, fail)
     assert "failed" in mgr.call("mcp__flaky__t", {})
     assert "failed" in mgr.call("mcp__flaky__t", {})
     assert "circuit breaker open" in mgr.call("mcp__flaky__t", {})
@@ -280,11 +296,11 @@ def test_breaker_recovers_after_cooldown(monkeypatch):
     assert mgr.call("mcp__flaky__t", {}) == "ok"
 
 
-def test_breaker_success_resets_failure_count(monkeypatch):
+def test_breaker_success_resets_failure_count(monkeypatch, empty_mcp_cfg):
     monkeypatch.setenv("INFINITY_MCP_BREAKER_THRESHOLD", "2")
     monkeypatch.setenv("INFINITY_MCP_BREAKER_COOLDOWN_S", "60")
     fail = {"mode": "fail"}
-    mgr, calls = _wire_breaker_mgr(monkeypatch, fail)
+    mgr, calls = _wire_breaker_mgr(monkeypatch, empty_mcp_cfg, fail)
     assert "failed" in mgr.call("mcp__flaky__t", {})
     fail["mode"] = "ok"
     assert mgr.call("mcp__flaky__t", {}) == "ok"
